@@ -1,0 +1,94 @@
+<mvc:View
+    xmlns="sap.m"
+    controllerName="udemy.controller.DgSetModel"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true">    
+    <Shell>
+    <App>
+       <pages>
+           <Page title="Pagina Doug">
+                <content>
+                        <Panel headerText = "Titulo do Painel">
+                                <Button text="click-me" 
+                                        press=".onShowHello"
+                                        icon="sap-icon://account"
+                                        />
+                                <Input value="{/Recipient/Name}"
+                                        description="{/Recipient/Name}"
+                                        width="60%"
+                                        valueLiveUpdate="true"
+                                />
+                                <Button text="Gerar outro Model"
+                                        press=".onGerarModel"
+                                />
+                                <Button text="Ler esse Model"
+                                        press=".onLerModel"
+                                />
+                                <Button text="Ler o Input"
+                                        press=".onLerInput"
+                                        />
+                                <Button text="Mudar o Input"
+                                        press=".onMudarInput"
+                                        />                               
+                                <Input maxLength="3"
+                                        width="10%"
+                                        liveChange=".onVerificarLiveChange"
+                                        value="Max"
+                                        />
+                                <SelectList enabled="true"
+                                                selectedKey="codigo"
+                                />
+                                <ComboBox 
+                                />
+                                <List 
+                                    id="despesasList"
+                                    headerText="Despesas"
+                                    class="sapUiResponsiveMargin"
+                                    width="auto"
+                                    items="{
+                                            path: 'despesas>/Despesas',
+                                            sorter:{
+                                                    path: 'Data',
+                                                    group: true                                                   
+                                            }
+                                            
+                                            }"
+                                    
+                                    >
+                                        <headerToolbar>
+                                                <Toolbar>
+                                                        <Title text="Despesas"/>
+                                                        <ToolbarSpacer/>
+                                                        <SearchField width="30%" search=".onFilterDespesas"/>
+                                                </Toolbar>
+                                                
+                                        </headerToolbar>
+                                        <items>
+                                                <ObjectListItem
+                                                   title = "{despesas>Data} -> {despesas>Descricao} -> {despesas>Tipo}"
+                                                   number="{
+                                                           parts:[
+                                                                {path: 'despesas>Valor'},
+                                                                'R$'
+                                                           ],
+                                                           type: 'sap.ui.model.type.Currency'
+                                                           }"
+                                                           numberUnit="R$"
+                                                           numberState="{= ${despesas>Valor} > 20 ? 'Error' : 'Success'}"
+                                                 />
+                                               
+                                        </items>
+                                </List>
+                        </Panel>
+                </content>
+           </Page>
+        </pages>
+    </App>
+    </Shell>
+
+    
+     
+
+
+</mvc:View>
+

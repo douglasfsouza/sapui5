@@ -1,0 +1,26 @@
+{
+    "despesas":
+    [
+        {
+            "id":1,
+            "data" : "19-12-2020",
+            "descricao": "Popsicle",
+            "valor" : 20,
+            "tipo": "C"
+        },
+        {
+            "id":2,
+            "data" : "18-12-2020",
+            "descricao": "Pizza",
+            "valor" : 50,
+            "tipo": "C"
+        },
+        {
+            "id":3,
+            "data" : "18-12-2020",
+            "descricao": "Bakery",
+            "valor" : 21,
+            "tipo": "D"
+        }
+    ]
+}

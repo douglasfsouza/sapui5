@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Dialog
+    id="helloDialog"
+    title="Hello Dialog"
+    contentHeight="65%"
+	 	contentWidth="50%">
+     <content>
+        <core:Icon
+           src="sap-icon://hello-world"
+           size="8rem"
+           class="sapUiMediumMargin"
+        />
+     </content>    
+
+     <beginButton>
+        <Button 
+          id="btnAccept"
+          type="Accept" 
+          text="Confirmar" 
+          press=".HelloDialog_OnSave" 				 
+        />
+      </beginButton>
+
+      <endButton>
+        <Button type="Reject" text="Cancelar" press=".onClose" />
+      </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

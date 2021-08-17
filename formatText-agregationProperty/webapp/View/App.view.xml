@@ -1,0 +1,65 @@
+<mvc:View
+    xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc">
+
+<Panel headerText="{/title}" width="auto" class="sapUiResponsiveMargin"> 
+    <form:SimpleForm layout="ColumnLayout" editable="true"  >
+        <Label text="First name"/>
+        <Input value="{/firstName}" enabled="{/enabled}" width="200px"/>
+
+        <Label text="Last name"/>
+        <Input value="{/lastName}" enabled="{/enabled}" width="200px"/>
+
+        <Label text="Enabled"/>
+        <CheckBox selected="{/enabled}" width="200px"/>
+    </form:SimpleForm>
+</Panel>
+
+
+
+<Panel headerText="Address" width="auto" class="sapUiResponsiveMargin">
+    <content>
+        <l:VerticalLayout>
+            <Label text="City"/>
+            <Label text="{/address/city}"/>
+
+            <Label text="State"/>
+            <Label text="{/address/state}"/>
+
+
+            <Label text="Neighborhood"/>
+            <Label text="{/address/neighborhood}"/>
+
+            <Label text="Street"/>
+            <Label text="{/address/street}"/>
+
+            <Label text="Zip"/>
+            <Label text="{/address/zip}"/>
+
+        </l:VerticalLayout>
+    </content>
+    
+</Panel>
+<!--
+
+-->
+
+
+<Panel headerText="Address" width="auto" class="sapUiResponsiveMargin">
+    <content>
+        <l:VerticalLayout>
+            <Label labelFor="address" text="Address Detail"/>
+            <FormattedText class="sapUiSmallMarginBottom"
+                           htmlText="{/address/street}&lt;br&gt;{/address/neighborhood}&lt;br&gt; {/address/city}-{/address/state}&lt;br&gt; {/address/zip}"
+                           id="address"
+                           width="300px"
+            />
+        </l:VerticalLayout>
+    </content>
+    
+</Panel>
+
+
+</mvc:View>

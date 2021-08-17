@@ -1,0 +1,23 @@
+{
+    "Despesas":
+    [
+        {
+            "Data" : "19-12-2020",
+            "Descricao": "Popsicle",
+            "Valor" : "20",
+            "Tipo": "C"
+        },
+        {
+            "Data" : "18-12-2020",
+            "Descricao": "Pizza",
+            "Valor" : "50",
+            "Tipo": "C"
+        },
+        {
+            "Data" : "18-12-2020",
+            "Descricao": "Bakery",
+            "Valor" : "21",
+            "Tipo": "D"
+        }
+    ]
+}

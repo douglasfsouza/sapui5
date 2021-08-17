@@ -1,0 +1,43 @@
+{
+    "cadHierarchy":{
+        "class":[
+            {
+                "name": "2 - Pereciveis",
+                "id":5,
+                "class":[
+                    {
+                        "name": "14 - Congelados",
+                        "id":6,
+                        "class":  [
+                            {"name": "3 - Sobremesas",
+                            "id":7,
+                            "class": [
+                                {
+                                    "name": "4 - Sorvetes Pote",
+                                    "id":8,
+                                    "class":[
+                                        {
+                                            "name": "5 - Sorvete Pote 2L",
+                                            "id":9,
+                                            "class":[
+                                                {
+                                                    "name": "Sorvete Chandelle 2L",
+                                                    "id": 10
+                                                },
+                                                {
+                                                    "name": "Sorvete Grego 2L",
+                                                    "id": 11
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

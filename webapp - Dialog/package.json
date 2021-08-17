@@ -1,0 +1,20 @@
+{
+  "name": "dgs.www.tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "browser-sync start -s \"./\" -f . --no-notify",
+    "prod": "browser-sync start -s \"dist/\" -f . --no-notify",
+    "build": "ui5 build --clean-dest --all --exclude-task=createDebugFiles",
+    "build-dbg": "ui5 build --clean-dest",
+    "build-copy": "yarn build && powershell copy -r -force dist/* ../varsis.www.login/apps/APInvoices/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://Varsis@dev.azure.com/Varsis/Varsis%20Retail/_git/varsis.www.apinvoices"
+  },
+  "description": ""
+}

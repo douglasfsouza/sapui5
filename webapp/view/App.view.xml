@@ -1,0 +1,69 @@
+<mvc:View
+   controllerName="doug.controller.App"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true">
+   <Shell>
+      <App class="myAppDemoWT">
+         <pages>
+            <Page title="{i18n>homePageTitle}">
+               <headerContent>
+                   <Button
+                      icon="sap-icon://hello-world"
+                      press=".onOpenDialog"
+                      />
+               
+               </headerContent>
+
+               <content>
+                  <Button
+                     text = "hi there!"
+                     press=".hi"
+                     class="myCustomButton"
+                  />
+                  <Panel
+                     headerText="{i18n>helloPanelTitle}"
+                     class="sapUiResponsiveMargin"
+                     width="auto">
+                     <content>
+                        <Button 
+                           text="{i18n>showHelloButtonText}"
+                           press=".onDgHello"
+                           class="myCustomButton"/>
+                        <Input
+                           value="{/recipient/name}"
+                           description="Hello {/recipient/name}"
+                           valueLiveUpdate="true"
+                           width="60%"/>
+                        <FormattedText
+                           htmlText="Hello {/recipient/name}"
+                           class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
+                        <Input
+                           value="{/rec/nome}"
+                           description="{/rec/nome}"
+                           valueLiveUpdate="true"
+                           width="60%"/>     
+                        <Button
+                           text="Click-me"
+                           press=".onBtClick"/>
+                        <Input
+                           value="{/caixa/texto}"
+                           description="{/caixa/texto}"
+                           valueLiveUpdate="true"/>
+                        <Text
+                         text="Hello {/recipient/name}"
+                         class="sapUiSmallMargin"/>
+                         <Button
+                            text="Open Dialog"
+                            icon="sap-icon://world"
+                            press=".onOpenDialog"/>   
+                        <mvc:XMLView viewName="doug.view.w" />                      
+                                           
+                     </content>
+                  </Panel>
+               </content>
+            </Page>
+         </pages>
+      </App>
+   </Shell>
+ </mvc:View>

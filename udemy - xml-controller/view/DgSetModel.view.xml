@@ -1,0 +1,11 @@
+<mvc:View
+    xmlns="sap.m"
+    controllerName="udemy.controller.DgSetModel"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true">    
+    <Button text="click-me" 
+            press=".onShowHello"/>
+
+
+</mvc:View>
+

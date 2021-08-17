@@ -1,0 +1,67 @@
+{
+    "_version": "1.12.0",
+    "sap.app":{
+        "id": "doug",
+        "title": "Doug",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "invoiceRemote":{
+                "uri": "https://localhost:44354/weatherforecast",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui":{
+        "technology": "UI5",
+        "deviceTypes":{
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5":{
+        "contentDensities" : "cozy",
+        "rootView":{
+            "viewName": "doug.view.App",
+            "type": "XML",
+            
+            "async":  true,
+            "id": "app"
+        },
+        "dependencies":{
+            "minUI5Version": "1.60",
+            "libs":{
+                "sap.m": {}
+            }
+        },
+        "models":{
+            "i18n":{
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings":{
+                    "bundleName": "doug.i18n.i18n",
+                    "supportedLocales": [""],
+                    "fallbackLocale": ""
+                }
+            },
+            "invoice":{
+                 "dataSource": "invoiceRemote"
+            }
+        },
+        
+        "resources":{
+            "css":[
+                {
+                    "uri":"css/style.css"
+                }
+            ]
+        }
+    }
+}

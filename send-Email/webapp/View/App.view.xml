@@ -1,0 +1,47 @@
+<mvc:View
+     controllerName="doug.ui.Controller.App"
+     xmlns="sap.m"
+     xmlns:l="sap.ui.layout"
+     xmlns:mvc="sap.ui.core.mvc"
+     xmlns:form="sap.ui.layout.form"
+>
+     <Panel headerText="Data" class="sapUiResponsiveMargin">
+          <form:SimpleForm layout="ColumnLayout">
+               <Label text="First Name"/>
+               <Input value="{/firstName}" width="200px" enabled="{/enabled}"/>
+
+               <Label text="Last Name"/>
+               <Input value="{/lastName}"  width="200px" enabled="{/enabled}"/>
+
+               <Label text="Enabled"/>
+               <CheckBox selected="{/enabled}"/>
+
+
+          </form:SimpleForm>
+     </Panel>
+     
+     <Panel headerText="Address" class="sapUiResponsiveMargin" width="auto">
+          <content>
+          <l:VerticalLayout>              
+
+               <Label labelFor="address" text="Address Detail"/>
+
+               <FormattedText class="sapUiSmallMarginBottom"
+                    htmlText="Street: {/address/street}&lt;br&gt;Zip: {/address/zip}&lt;br&gt;Neighborbood: {/address/neighborhood}&lt;br&gt;City: {/address/city}-{/address/state}"
+                    id="address"
+                    width="300px"
+               />
+
+               <Link href="{
+                    parts:[
+                    '/firstName',
+                    '/lastName'],
+                    formatter: '.formatMail'}"
+                    text="SendMail"/>
+          </l:VerticalLayout>
+
+          </content>
+
+     </Panel>
+
+</mvc:View>

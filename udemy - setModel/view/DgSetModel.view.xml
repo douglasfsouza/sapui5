@@ -1,0 +1,27 @@
+<mvc:View
+    xmlns="sap.m"
+    controllerName="udemy.controller.DgSetModel"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true">    
+    <Button text="click-me" 
+            press=".onShowHello"/>
+     <Input text="Ola"
+            value="{/Recipient/Name}"
+            description="{/Recipient/Name}"
+            width="60%"
+     />
+     <Button text="Gerar outro Model"
+             press=".onGerarModel"
+     />
+     <Button text="Ler esse Model"
+             press=".onLerModel"
+     />
+     <Button text="Ler o Input"
+             press=".onLerInput"
+             />
+     <Button text="Mudar o Input"
+             press=".onMudarInput"
+             />
+
+</mvc:View>
+

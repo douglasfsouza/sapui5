@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="doug.controller.w"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+   <content>
+                  <Button
+                     text = "hi there!"
+                     press=".hi"
+                     class="myCustomButton"
+                  />
+                  </content>
+     
+
+</mvc:View>
