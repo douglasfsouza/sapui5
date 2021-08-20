@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+      xmlns="sap.m"
+      xmlns:core="sap.ui.core">
+      <StandardListItem
+           id="ProductSimple"
+           icon="sap-icon://warning"
+           title="{products>ProductName}"
+           info="Discontinued"
+           type="Active"
+           infoState="Error"
+           press=".onSelectedItem">
+      </StandardListItem>
+</core:FragmentDefinition>

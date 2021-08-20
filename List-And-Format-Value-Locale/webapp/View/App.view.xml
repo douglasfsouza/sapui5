@@ -1,0 +1,90 @@
+<mvc:View
+     controllerName="doug.ui.Controller.App"
+     xmlns="sap.m"
+     xmlns:l="sap.ui.layout"
+     xmlns:mvc="sap.ui.core.mvc"
+     xmlns:form="sap.ui.layout.form"
+>
+     <Panel headerText="Data" class="sapUiResponsiveMargin">
+          <form:SimpleForm layout="ColumnLayout">
+               <Label text="First Name"/>
+               <Input value="{/firstName}" width="200px" enabled="{/enabled}"/>
+
+               <Label text="Last Name"/>
+               <Input value="{/lastName}"  width="200px" enabled="{/enabled}"/>
+
+               <Label text="Enabled"/>
+               <CheckBox selected="{/enabled}"/>
+
+
+          </form:SimpleForm>
+     </Panel>
+     
+     <Panel headerText="Address" class="sapUiResponsiveMargin" width="auto">
+          <content>
+          <l:VerticalLayout>              
+
+               <Label labelFor="address" text="Address Detail"/>
+
+               <FormattedText class="sapUiSmallMarginBottom"
+                    htmlText="Street: {/address/street}&lt;br&gt;Zip: {/address/zip}&lt;br&gt;Neighborbood: {/address/neighborhood}&lt;br&gt;City: {/address/city}-{/address/state}"
+                    id="address"
+                    width="300px"
+               />
+
+               <Link href="{
+                    parts:[
+                    '/firstName',
+                    '/lastName'],
+                    formatter: '.formatMail'}"
+                    text="SendMail"/>
+          </l:VerticalLayout>
+
+          <l:VerticalLayout>
+               <Label labelFor="salesAmount" text="Sales Amount:"/>
+               <Input id="salesAmount" width="200px" enabled="{/enabled}"
+                      value="{ parts:[ {path:'/salesAmount'},
+                                       {path:'CurrencyCode'}
+                                     ],
+                               type:'sap.ui.model.type.Currency',
+                               formatOptions: {showMeasure: false}}"/>      
+
+          </l:VerticalLayout>
+
+          </content>
+
+     </Panel>
+
+     <Panel headerText="Items" class="sapUiResponsiveMargin" width="auto">
+          <List headerText="List Items" items="{products>/Products}">
+               <items>
+                    <ObjectListItem title="{products>ProductName}"
+                                   number="{
+                                             parts: [
+                                                  {path: 'products>UnitPrice'},
+                                                  {path: '/currencyCode'}
+                                                  ],
+                                                  type: 'sap.ui.model.type.Currency',
+                                                  formatOptions: {showMeasure: false}
+                                           }"
+                                    numberUnit="{/currencyCode}" >
+                                    <attributes>
+                                        <ObjectAttribute text="{products>QuantityPerUnit}" />
+                                        <ObjectAttribute title="Stock Value"
+                                            text="{
+                                                     parts:[
+                                                              {path: 'products>UnitPrice'},
+                                                              {path: 'products>UnitsInStock'},
+                                                              {path: '/currencyCode'}
+                                                           ],
+                                                           formatter: '.formatStockValue'
+
+                                                  }"
+                                        />
+                                    </attributes>
+                    </ObjectListItem>
+               </items>
+          </List>
+     </Panel>
+
+</mvc:View>

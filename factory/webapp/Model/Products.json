@@ -1,0 +1,40 @@
+{
+    "Products" : [
+        {
+            "ProductID": 1,
+            "ProductName": "Coffee",
+            "SupplierID":1,
+            "CategoryID":1,
+            "QuantityPerUnit": "10 boxes x 20 bags",
+            "UnitPrice": 7.0000,
+            "UnitsInStock": 40,
+            "UnitOnOrder": 0,
+            "ReorderLevel": 10,
+            "Discontinued": false
+        },
+        {
+            "ProductID": 2,
+            "ProductName": "Rice",
+            "SupplierID":1,
+            "CategoryID":1,
+            "QuantityPerUnit": "15 boxes x 20 bags",
+            "UnitPrice": 17.0000,
+            "UnitsInStock": 0,
+            "UnitOnOrder": 0,
+            "ReorderLevel": 20,
+            "Discontinued": false
+        },
+        {
+            "ProductID": 3,
+            "ProductName": "Chocolate",
+            "SupplierID":1,
+            "CategoryID":1,
+            "QuantityPerUnit": "5 boxes x 30 bags",
+            "UnitPrice": 47.0000,
+            "UnitsInStock": 0,
+            "UnitOnOrder": 0,
+            "ReorderLevel": 30,
+            "Discontinued": true
+        }
+    ]
+}
