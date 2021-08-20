@@ -1,0 +1,41 @@
+{
+    "fileName": "id_1610203815577_2_propertyChange",
+    "fileType": "change",
+    "changeType": "propertyChange",
+    "moduleName": "",
+    "reference": "accountspayable.mdaccountspayable",
+    "packageName": "",
+    "content": {
+        "property": "useExportToExcel",
+        "newValue": false
+    },
+    "selector": {
+        "id": "accountspayable.mdaccountspayable::sap.suite.ui.generic.template.ListReport.view.ListReport::U_VSPAGTITULOS--listReport",
+        "idIsLocal": false,
+        "type": "sap.ui.comp.smarttable.SmartTable"
+    },
+    "layer": "VENDOR",
+    "texts": {},
+    "namespace": "apps/accountspayable.mdaccountspayable/changes/",
+    "projectId": "accountspayable.mdaccountspayable",
+    "creation": 1610203815577,
+    "originalLanguage": "",
+    "support": {
+        "generator": "changeUtils: SAPFioriTools",
+        "service": "",
+        "user": "",
+        "sapui5Version": "latest",
+        "sourceChangeFileName": "",
+        "compositeCommand": ""
+    },
+    "oDataInformation": {},
+    "dependentSelector": {},
+    "validAppVersions": {
+        "from": "1.0.0",
+        "to": "1.0.0",
+        "creation": "1.0.0"
+    },
+    "jsOnly": false,
+    "variantReference": "",
+    "appDescriptorChange": false
+}

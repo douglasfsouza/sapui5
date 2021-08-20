@@ -1,0 +1,1589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices m:DataServiceVersion="2.0" m:MaxDataServiceVersion="2.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <Schema Namespace="Varsis.OData.Models" xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="AccountReceivableJournalStatus">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountReceivableJournalDateType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountReceivableInvoiceSituation">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountPayableInvoiceSituation">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceAddRebate">
+                <Key>
+                    <PropertyRef Name="CodeAddRebate" />
+                </Key>
+                <Property Name="CodeAddRebate" Type="Edm.String" Nullable="false" />
+                <Property Name="Code" Type="Edm.String" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor Bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="RebateValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Abatimento" sap:label="Valor Abatido" />
+                <Property Name="TotalValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Restante" sap:label="Restante" />
+                <Property Name="LinesPag" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas PAG" sap:label="LinhasPAG" />
+                <Property Name="LinesRec" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas REC" sap:label="LinhasREC" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+            </EntityType>
+            <EntityType Name="TransARInvoiceDejection">
+                <Key>
+                    <PropertyRef Name="CodeMassUpdate" />
+                </Key>
+                <Property Name="CodeMassUpdate" Type="Edm.String" Nullable="false" />
+                <Property Name="Code" Type="Edm.String" />
+                <Property Name="Discount" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor abatimento" sap:label="Valor abatimento" />
+                <Property Name="LinesPag" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas PAG" sap:label="LinhasPAG" />
+                <Property Name="LinesRec" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas REC" sap:label="LinhasREC" />
+            </EntityType>
+            <EntityType Name="TransARInvoiceSchedule">
+                <Key>
+                    <PropertyRef Name="CodeSchedule" />
+                </Key>
+                <Property Name="CodeSchedule" Type="Edm.String" Nullable="false" />
+                <Property Name="AccountType" Type="Edm.String" MaxLength="15" sap:quickinfo="Tipo de Conta" sap:label="Tipo de Conta" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="BankAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="CashAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Caixa" sap:label="Conta Caixa" />
+                <Property Name="CashAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="LedgerAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Razão" sap:label="Conta Razão" />
+                <Property Name="LedgerAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="Settlementdate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data de Liquidação" sap:label="Data de Liquidação" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Favored" Type="Edm.String" MaxLength="15" sap:quickinfo="Favorecido" sap:label="Favorecido" />
+                <Property Name="Code" Type="Edm.String" MaxLength="15" sap:quickinfo="Código" sap:label="Código" />
+                <Property Name="Description" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição" sap:label="Descrição" />
+                <Property Name="Lines" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="TransARInvoiceRearrange">
+                <Key>
+                    <PropertyRef Name="CodeRearrange" />
+                </Key>
+                <Property Name="CodeRearrange" Type="Edm.String" Nullable="false" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Pendency" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Pendência" sap:label="Pendência" />
+                <Property Name="PaymTerm" Type="Edm.String" MaxLength="15" sap:quickinfo="Condição de Pagamento" sap:label="Condição de Pagamento" />
+                <Property Name="UseNetValue" Type="Edm.Boolean" MaxLength="18" sap:quickinfo="Usar o Valor Líquido como Base" sap:label="Base Valor Líquido" />
+                <Property Name="StartDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data de Início" sap:label="Data de Início" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+            </EntityType>
+            <EntityType Name="Favored">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" MaxLength="1" sap:quickinfo="Código do Tipo da conta" sap:label="Tipo" />
+                <Property Name="Description" Type="Edm.String" MaxLength="10" sap:quickinfo="Descrição do Tipo da Conta" sap:label="Descrição" />
+            </EntityType>
+            <EntityType Name="BarcodeType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" MaxLength="1" sap:quickinfo="Tipo do Código de Barras" sap:label="Tipo" />
+                <Property Name="Description" Type="Edm.String" MaxLength="20" sap:quickinfo="Descrição do Tipo do Código de Barras" sap:label="Descrição" />
+            </EntityType>
+            <EntityType Name="FinancialSettlement" sap:label="Abatimentos" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_Codfor" Type="Edm.String" MaxLength="15" sap:quickinfo="Código do Fornecedor" sap:label="Código do Fornecedor" />
+                <Property Name="U_Code_pag" Type="Edm.String" MaxLength="50" sap:quickinfo="Título pagar" sap:label="Título pagar" />
+                <Property Name="U_Code_rec" Type="Edm.String" MaxLength="50" sap:quickinfo="Título receber" sap:label="Título receber" />
+                <Property Name="U_Valor_aba" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor abatimento" sap:label="Valor abatimento" />
+                <Property Name="U_Data_aba" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data de transação" sap:label="Data de transação" />
+                <Property Name="U_Usuario" Type="Edm.String" MaxLength="50" sap:quickinfo="Usuário" sap:label="Usuário" />
+            </EntityType>
+            <EntityType Name="Currency">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Código da Moeda" sap:label="Moeda" />
+                <Property Name="Name" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:quickinfo="Descrição da Moeda" sap:label="Descrição" />
+            </EntityType>
+            <EntityType Name="TransARInvoiceAgroup">
+                <Key>
+                    <PropertyRef Name="Number" />
+                </Key>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="15" sap:quickinfo="Número" sap:label="Número" />
+                <Property Name="DueDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Vencimento" />
+                <Property Name="PaymMethod" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="GrossValue" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Comments" Type="Edm.String" MaxLength="100" sap:quickinfo="Observações" sap:label="Observações" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+            </EntityType>
+            <EntityType Name="TransARInvoiceMassUpdate">
+                <Key>
+                    <PropertyRef Name="CodeMassUpdate" />
+                </Key>
+                <Property Name="CodeMassUpdate" Type="Edm.String" Nullable="false" />
+                <Property Name="DueDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Data Vencimento" />
+                <Property Name="PaymMethod" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="Comments" Type="Edm.String" MaxLength="200" sap:quickinfo="Observações" sap:label="Observações" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+                <Property Name="SettlementDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data Liquidação" sap:label="Data Liquidação" />
+                <Property Name="Validated" Type="Edm.Boolean" MaxLength="1" sap:quickinfo="Validado" sap:label="Validado" />
+            </EntityType>
+            <EntityType Name="PaymentType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountPayableInvoiceStatus">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AccountReceivableInvoiceStatus">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsCompetencyList">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsPeriodicity">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsPeriodType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsSituation">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsUsageType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceDealerShip">
+                <Key>
+                    <PropertyRef Name="CodeDealerShip" />
+                </Key>
+                <Property Name="CodeDealerShip" Type="Edm.String" Nullable="false" />
+                <Property Name="DueDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Vencimento" />
+                <Property Name="PaymMethod" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="Discount" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto" sap:label="Desconto" />
+                <Property Name="Interest" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros" sap:label="Juros" />
+                <Property Name="Expenses" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Despesas" sap:label="Despesas" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="BarCode" Type="Edm.String" MaxLength="100" sap:quickinfo="Código de Barras" sap:label="Código de Barras" />
+                <Property Name="LineFree" Type="Edm.String" MaxLength="100" sap:quickinfo="Linha Digitável" sap:label="Linha Digitável" />
+                <Property Name="Grouped" Type="Edm.Boolean" MaxLength="1" sap:quickinfo="Agrupado" sap:label="Agrupado" />
+                <Property Name="Suspended" Type="Edm.Boolean" MaxLength="1" sap:quickinfo="Bloqueado" sap:label="Bloqueado" />
+                <Property Name="Recipient" Type="Edm.String" MaxLength="100" sap:quickinfo="Beneficiário" sap:label="Beneficiário" />
+                <Property Name="Validated" Type="Edm.Boolean" MaxLength="1" sap:quickinfo="Validado" sap:label="Validado" />
+                <Property Name="Lines" Type="Edm.String" />
+                <Property Name="DealerShipEditable" Type="Edm.Boolean" Nullable="false" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceAgroup">
+                <Key>
+                    <PropertyRef Name="Number" />
+                </Key>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="15" sap:quickinfo="Número" sap:label="Número" />
+                <Property Name="TransDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data de inclusão da nota fiscal" sap:label="Data Lançamento" />
+                <Property Name="IssueDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data de emissão da nota fiscal" sap:label="Data Emissão" />
+                <Property Name="DueDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data de vencimento" sap:label="Data Vencimento" />
+                <Property Name="PaymDateExpected" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Data Caixa" />
+                <Property Name="PaymMethod" Type="Edm.String" Nullable="false" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="PaymMethodDescription" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento (Nome)" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Id Conta Bancária" sap:label="Id Conta Bancária" />
+                <Property Name="BankAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="GrossValue" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Comments" Type="Edm.String" MaxLength="100" sap:quickinfo="Observações" sap:label="Observações" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceRearrange">
+                <Key>
+                    <PropertyRef Name="CodeRearrange" />
+                </Key>
+                <Property Name="CodeRearrange" Type="Edm.String" Nullable="false" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Pendency" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Pendência" sap:label="Pendência" />
+                <Property Name="PaymTerm" Type="Edm.String" MaxLength="15" sap:quickinfo="Condição de Pagamento" sap:label="Condição de Pagamento" />
+                <Property Name="UseNetValue" Type="Edm.Boolean" MaxLength="18" sap:quickinfo="Usar o Valor Líquido como Base" sap:label="Base Valor Líquido" />
+                <Property Name="StartDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data de Início" sap:label="Data de Início" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceSchedule">
+                <Key>
+                    <PropertyRef Name="CodeSchedule" />
+                </Key>
+                <Property Name="CodeSchedule" Type="Edm.String" Nullable="false" />
+                <Property Name="AccountType" Type="Edm.String" MaxLength="15" sap:quickinfo="Tipo de Conta" sap:label="Tipo de Conta" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="BankAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="CashAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Caixa" sap:label="Conta Caixa" />
+                <Property Name="CashAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="LedgerAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Razão" sap:label="Conta Razão" />
+                <Property Name="LedgerAccountDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="Settlementdate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data de Liquidação" sap:label="Data de Liquidação" />
+                <Property Name="GrossValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="NetValue" Type="Edm.Double" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="Favored" Type="Edm.String" MaxLength="15" sap:quickinfo="Favorecido" sap:label="Favorecido" />
+                <Property Name="BankFavored" Type="Edm.String" MaxLength="50" sap:quickinfo="Banco" sap:label="Banco" />
+                <Property Name="BankFavoredDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="Banco" sap:label="Banco" />
+                <Property Name="PNFavored" Type="Edm.String" MaxLength="50" sap:quickinfo="PN" sap:label="PN" />
+                <Property Name="PNFavoredDescription" Type="Edm.String" MaxLength="50" sap:quickinfo="PN" sap:label="PN" />
+                <Property Name="Code" Type="Edm.String" MaxLength="15" sap:quickinfo="Código" sap:label="Código" />
+                <Property Name="Description" Type="Edm.String" MaxLength="50" sap:quickinfo="Descrição" sap:label="Descrição" />
+                <Property Name="Lines" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="TransAPInvoiceMassUpdate">
+                <Key>
+                    <PropertyRef Name="CodeMassUpdate" />
+                </Key>
+                <Property Name="CodeMassUpdate" Type="Edm.String" Nullable="false" />
+                <Property Name="DueDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Data Vencimento" />
+                <Property Name="PaymMethod" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="50" sap:quickinfo="Id da Conta Bancária" sap:label="Id Conta Bancária" />
+                <Property Name="BankAccountCode" Type="Edm.String" MaxLength="50" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="Comments" Type="Edm.String" MaxLength="200" sap:quickinfo="Observações" sap:label="Observações" />
+                <Property Name="Lines" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas para atualização" sap:label="Linhas" />
+                <Property Name="SettlementDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data Liquidação" sap:label="Data Liquidação" />
+                <Property Name="PrevDate" Type="Edm.DateTime" sap:display-format="Date" sap:quickinfo="Data Caixa" sap:label="Data Caixa" />
+                <Property Name="Validated" Type="Edm.Boolean" MaxLength="1" sap:quickinfo="Validado" sap:label="Validado" />
+                <Property Name="MassUpdateEditable" Type="Edm.Boolean" />
+            </EntityType>
+            <EntityType Name="SystemSequence">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+                <Property Name="U_INITIALVALUE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_LIMITVALUE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_SEQUENCE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_PREFIX" Type="Edm.String" />
+                <Property Name="U_LENGTH" Type="Edm.Int64" Nullable="false" />
+            </EntityType>
+            <EntityType Name="Item">
+                <Key>
+                    <PropertyRef Name="ItemCode" />
+                </Key>
+                <Property Name="ItemCode" Type="Edm.String" Nullable="false" />
+                <Property Name="ItemName" Type="Edm.String" />
+                <Property Name="MaterialGroup" Type="Edm.Int64" />
+                <Property Name="SWW" Type="Edm.String" />
+                <Property Name="NCMCode" Type="Edm.Int64" />
+                <Property Name="ProductSource" Type="Edm.Int64" />
+                <Property Name="SupplierCatalogNo" Type="Edm.String" />
+                <Property Name="PurchaseQtyPerPackUnit" Type="Edm.Double" />
+                <Property Name="SalesQtyPerPackUnit" Type="Edm.Double" />
+                <Property Name="PurchaseHeightUnit" Type="Edm.Double" />
+                <Property Name="PurchaseUnitWidth" Type="Edm.Double" />
+                <Property Name="PurchaseUnitWeight" Type="Edm.Double" />
+                <Property Name="SalesUnitHeight" Type="Edm.Double" />
+                <Property Name="SalesUnitWidth" Type="Edm.Double" />
+                <Property Name="SalesLengthUnit" Type="Edm.Int64" />
+                <Property Name="SalesUnit" Type="Edm.String" />
+                <Property Name="ForeignName" Type="Edm.String" />
+                <Property Name="ManageBatchNumbers" Type="Edm.String" />
+                <Property Name="PurchasePackagingUnit" Type="Edm.String" />
+                <Property Name="SalesPackagingUnit" Type="Edm.String" />
+                <Property Name="InventoryUOM" Type="Edm.String" />
+                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="FrozenFrom" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="PurchaseItem" Type="Edm.String" />
+                <Property Name="SalesItem" Type="Edm.String" />
+                <Property Name="InventoryItem" Type="Edm.String" />
+                <Property Name="ItemClass" Type="Edm.String" />
+                <Property Name="IssueMethod" Type="Edm.String" />
+                <Property Name="BarCode" Type="Edm.String" />
+                <Property Name="ItemType" Type="Edm.String" />
+                <Property Name="Valid" Type="Edm.String" />
+                <Property Name="Frozen" Type="Edm.String" />
+                <Property Name="PurchaseUnit" Type="Edm.String" />
+                <Property Name="MaterialType" Type="Edm.String" />
+                <Property Name="InventoryWeight" Type="Edm.Double" Nullable="false" />
+                <Property Name="PurchaseLengthUnit" Type="Edm.Double" />
+                <Property Name="PurchaseUnitLength" Type="Edm.Double" />
+                <Property Name="PurchaseUnitHeight" Type="Edm.Double" />
+                <Property Name="PurchaseItemsPerUnit" Type="Edm.Double" Nullable="false" />
+                <Property Name="Mainsupplier" Type="Edm.String" />
+                <Property Name="U_SKILL_CEST" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsEventType">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsEventStatus">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+                <Property Name="Description" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="InventoryTransaction">
+                <Key>
+                    <PropertyRef Name="TransDate" />
+                </Key>
+                <Property Name="TransDate" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="BranchCode" Type="Edm.Int64" Nullable="false" />
+                <Property Name="ProductCode" Type="Edm.String" />
+                <Property Name="Quantity" Type="Edm.Decimal" Nullable="false" />
+                <Property Name="Branch" Type="Varsis.OData.Models.Branch" />
+                <Property Name="Product" Type="Varsis.OData.Models.Product" />
+            </EntityType>
+            <EntityType Name="AccountPayableInvoiceRaw" sap:label="Contas a pagar" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_TransId" Type="Edm.Int64" Nullable="false" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Id da transação" sap:label="Transação" />
+                <Property Name="U_LineId" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha da transação" sap:label="Linha" />
+                <Property Name="U_Cod_Forne" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio" sap:label="Código PN" />
+                <Property Name="U_Cod_Forne_Ori" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio original da transação" sap:label="Código PN Original" />
+                <Property Name="U_Nota" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:quickinfo="Nota" sap:label="Nota" />
+                <Property Name="U_Serie" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Série" sap:label="Série" />
+                <Property Name="U_Parcela" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Parcela" sap:label="Parcela" />
+                <Property Name="U_Vencto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento" sap:label="Data Vencimento" sap:filter-restriction="interval" />
+                <Property Name="U_Vencto_Ori" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento original" sap:label="Data Vencimento Original" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Recepcao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de recepção" sap:label="Data Recepção" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Emissao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de emissão" sap:label="Data Emissão" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Agendamento" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de agendamento" sap:label="Data Agendamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Pagto" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de pagamento" sap:label="Data Baixa" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Liquida" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liquidação" sap:label="Data Liquidação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Lancto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de lançamento" sap:label="Data Lançamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Prev_Pagto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data prevista de pagamento" sap:label="Data Caixa" sap:filter-restriction="interval" />
+                <Property Name="U_Conta_Razao" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Código do tipo de operação" sap:label="Código Tipo Operação" />
+                <Property Name="U_Conta_Controle" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Conta Controle" sap:label="Conta Controle" />
+                <Property Name="U_Banco_For" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Banco do parceiro de negócios" sap:label="Banco" />
+                <Property Name="U_Empresa" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Id Empresa" />
+                <Property Name="U_Filial" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código da filial" sap:label="Id Filial" />
+                <Property Name="U_Bloqueado" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado" sap:label="Bloqueado" />
+                <Property Name="U_Bloqueado_Descr" Type="Edm.String" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado (descrição)" sap:label="Bloqueado" />
+                <Property Name="U_Usuario_Liberacao" Type="Edm.String" MaxLength="25" sap:aggregation-role="dimension" sap:quickinfo="Usuário Liberação" sap:label="Usuário Liberação" />
+                <Property Name="U_Dt_Liberacao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liberação" sap:label="Data Liberação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Bloqueio" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de bloqueio" sap:label="Data Bloqueio" sap:filter-restriction="interval" />
+                <Property Name="U_Condicao_Pagto" Type="Edm.Int64" Nullable="false" Precision="6" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Condição Pagamento" sap:label="Condição Pagamento" />
+                <Property Name="U_Condicao_Pagto_Descr" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Condição Pagamento" sap:label="Condição Pagamento" />
+                <Property Name="U_Status" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Status" />
+                <Property Name="U_Situacao" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Situação" />
+                <Property Name="U_Meio_Pagto" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Código do meio de pagamento" sap:label="Id Meio Pagamento" />
+                <Property Name="U_Forma_Pagto" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:quickinfo="Forma Pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_Tipo_Conta" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Tipo Conta" sap:label="Id Tipo Conta" />
+                <Property Name="U_Numero_Conta" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Número Conta" sap:label="Número Conta" />
+                <Property Name="U_Numero_Conta_Corrente" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Id da conta corrente" sap:label="Id Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_COMPL" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Número da conta corrente" sap:label="Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nome da conta corrente" sap:label="Nome Conta Corrente" />
+                <Property Name="U_Numero_Conta_Caixa" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta caixa" sap:label="Id Conta Caixa" />
+                <Property Name="U_NUM_CONTA_CAIXA_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta caixa" sap:label="Conta Caixa" />
+                <Property Name="U_Numero_Conta_Razao" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta razão" sap:label="Id Conta Razão" />
+                <Property Name="U_NUM_CONTA_RAZAO_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta razão" sap:label="Conta Razão" />
+                <Property Name="U_Agencia_For" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Agencia do parceiro de negócios" sap:label="Agencia" />
+                <Property Name="U_Dig_Agencia_For" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Dígito da agência do parceiro de negócios" sap:label="Dígito Agencia" />
+                <Property Name="U_Conta_Banc_For" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Conta bancária do parceiro de negócios" sap:label="Conta Bancária" />
+                <Property Name="U_Dig_Conta_Banc_For" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Dígito da conta do parceiro de negócios" sap:label="Dígito Conta" />
+                <Property Name="U_Valor_Bruto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="U_Abat_Manual" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento Manual" sap:label="Abatimento Manual" />
+                <Property Name="U_Abat_Receber" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento a Receber" sap:label="Abatimento a Receber" />
+                <Property Name="U_Desconto_Acordo" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto Acordo" sap:label="Desconto Acordo" />
+                <Property Name="U_Desconto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto" sap:label="Desconto" />
+                <Property Name="U_Acrescimos" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Acrescimos" sap:label="Acrescimos" />
+                <Property Name="U_Retencoes" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Retenções" sap:label="Retenções" />
+                <Property Name="U_Funrural" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Funrural" sap:label="Funrural" />
+                <Property Name="U_Juros" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros" sap:label="Juros" />
+                <Property Name="U_Multa" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Multa" sap:label="Multa" />
+                <Property Name="U_Valor_Pago" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor pago do título" sap:label="Valor pago" />
+                <Property Name="U_Codigo_Moeda" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Código Moeda" sap:label="Código Moeda" />
+                <Property Name="U_Valor_Moeda_Cmp" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Moeda Compra" sap:label="Valor Moeda Compra" />
+                <Property Name="U_Moeda_Pagto" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Moeda Pagamento" sap:label="Moeda Pagamento" />
+                <Property Name="U_Valor_Moeda_Pagto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Moeda Pagamento" sap:label="Valor Moeda Pagamento" />
+                <Property Name="U_Valor_Bruto_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Bruto Moeda" sap:label="Valor Bruto Moeda" />
+                <Property Name="U_Variacao_Cambial" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial" sap:label="Variação Cambial" />
+                <Property Name="U_Juros_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros Moeda" sap:label="Juros Moeda" />
+                <Property Name="U_Tipcodbar" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Tipo Código Barras" sap:label="Tipo Código Barras" />
+                <Property Name="U_Codbar" Type="Edm.String" MaxLength="48" sap:aggregation-role="dimension" sap:quickinfo="Código Barras" sap:label="Código de Barras" />
+                <Property Name="U_Code_Pagto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Diário" sap:label="Diário" />
+                <Property Name="U_Seu_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Seu Número" sap:label="Seu Número" />
+                <Property Name="U_Nosso_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nosso Número" sap:label="Nosso Número" />
+                <Property Name="U_Instr_Pagto" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Instrução de Pagamento" sap:label="Instrução de Pagamento" />
+                <Property Name="U_Arquivo_Gerado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Gerado" sap:label="Arquivo Gerado" />
+                <Property Name="U_Arquivo_Importado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Importado" sap:label="Arquivo Importado" />
+                <Property Name="U_Usu_Gerou_Arquivo" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Gerou" sap:label="Usuário Gerou" />
+                <Property Name="U_Usu_Importou_Conf" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Confirmação" sap:label="Usuário Importou Confirmação" />
+                <Property Name="U_Usu_Importou_Liq" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Liquidação" sap:label="Usuário Importou Liquidação" />
+                <Property Name="U_Dt_geracao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de geração" sap:label="Data Geração" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_confirma" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de confirmação" sap:label="Data confirmação" sap:filter-restriction="interval" />
+                <Property Name="U_Motivo_Baixa" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Motivo Baixa" sap:label="Motivo Baixa" />
+                <Property Name="U_Numero_Boleto" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Boleto" sap:label="Número Boleto" />
+                <Property Name="U_Lote_EDI" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Lote EDI" sap:label="Lote EDI" />
+                <Property Name="U_Code_Antecipa" Type="Edm.Int64" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Código Antecipação" sap:label="Código Antecipação" />
+                <Property Name="U_Modelo_NF" Type="Edm.Int64" Nullable="false" MaxLength="6" sap:aggregation-role="dimension" sap:quickinfo="Modelo Nota Fiscal" sap:label="Modelo Nota Fiscal" />
+                <Property Name="U_Ocorrencia" Type="Edm.Int64" Nullable="false" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Ocorrências" sap:label="Ocorrências" />
+                <Property Name="U_Val_Tran_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Transação em Moeda" sap:label="Valor Transação em Moeda" />
+                <Property Name="U_Taxa_Cambio" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Taxa Cambio" sap:label="Taxa Câmbio" />
+                <Property Name="U_Var_Cam_Nreal" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Não Realizada" sap:label="Variação Cambial Não Realizada" />
+                <Property Name="U_Var_Cam_Real" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Realizada" sap:label="Variação Cambial Realizada" />
+                <Property Name="U_Val_Var_Cam" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Variação Cambial" sap:label="Valor Variação Cambial" />
+                <Property Name="U_Ult_Tax_Cam" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Última Taxa Cambial" sap:label="Última Taxa Cambial" />
+                <Property Name="U_Ult_Dat_Tax_Cam" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de ult data taxa camb" sap:label="Data ultima data taxa camb" sap:filter-restriction="interval" />
+                <Property Name="U_Contrato" Type="Edm.Int64" Nullable="false" Precision="8" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Contrato" sap:label="Contrato" />
+                <Property Name="U_NumConcil" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Conciliação" sap:label="Número Conciliação" />
+                <Property Name="U_Beneficiario" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Beneficiário" sap:label="Beneficiário" />
+                <Property Name="U_LinhaFluxo" Type="Edm.Int64" Nullable="false" Precision="11" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha Fluxo" sap:label="Linha Fluxo" />
+                <Property Name="U_CARDNAME" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Nome do cliente" sap:label="Parceiro de Negócio" />
+                <Property Name="U_BRANCH_NAME" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nome Filial" sap:label="Filial" />
+                <Property Name="U_COMPANY_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Empresa" />
+                <Property Name="U_CONTA_RAZ_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição do tipo de operação" sap:label="Tipo Operação" />
+                <Property Name="U_CONTA_CTR_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta controle" sap:label="Descrição Conta Controle" />
+                <Property Name="U_DAYS" Type="Edm.String" Precision="4" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Dias" sap:label="Dias" />
+                <Property Name="U_MEIO_PAGTO_DESCR" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Meio de Pagamento" sap:label="Meio Pagamento" />
+                <Property Name="U_STATUS_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_SITUATION_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Situação" sap:label="Situação" />
+                <Property Name="U_PAYMETH_DESCRIPTION" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Forma de pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_TYPE_ACCT_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Conta Corrente" sap:label="Tipo de Conta" />
+                <Property Name="U_VALIDATED" Type="Edm.String" MaxLength="5" sap:quickinfo="Validado" sap:label="Validado" />
+                <Property Name="U_VALIDATED_Criticality" Type="Edm.Int64" Nullable="false" sap:filterable="false" sap:sortable="false" sap:quickinfo="Validado" sap:label="--" />
+                <Property Name="U_Valor_Liquido" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+            </EntityType>
+            <EntityType Name="AccountPayableGrouping" sap:label="AccountPayableGrouping">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:quickinfo="Id do registro" sap:label="Código interno" />
+                <Property Name="Name" Type="Edm.String" MaxLength="50" sap:quickinfo="Nome interno do registro" sap:label="Nome interno" />
+                <Property Name="U_Nota" Type="Edm.Int64" Nullable="false" Precision="11" Scale="0" sap:quickinfo="Id do Agrupamento" sap:label="Agrupamento" />
+                <Property Name="U_Serie" Type="Edm.String" MaxLength="3" sap:quickinfo="Série do agrupamento" sap:label="Série" />
+                <Property Name="U_Cod_Forne" Type="Edm.String" MaxLength="15" sap:quickinfo="Código do parceiro de negócios" sap:label="Código PN" />
+                <Property Name="U_Filial" Type="Edm.String" MaxLength="5" sap:quickinfo="Código da Filial" sap:label="Código Filial" />
+                <Property Name="U_Empresa" Type="Edm.String" MaxLength="5" sap:quickinfo="Código da Empresa" sap:label="Código Empresa" />
+                <Property Name="U_Vencto" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de vencimento" sap:label="Data Vencimento" />
+                <Property Name="U_Dt_Recepcao" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de recepção" sap:label="Data Recepção" />
+                <Property Name="U_Dt_Emissao" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de emissão" sap:label="Data Emissão" />
+                <Property Name="U_Dt_Lancto" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de lançamento" sap:label="Data Lançamento" />
+                <Property Name="U_Dt_Prev_Pagto" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data prevista para pagamento" sap:label="Data Caixa" />
+                <Property Name="U_Conta_Razao" Type="Edm.String" MaxLength="20" sap:quickinfo="Código da operação" sap:label="Código Operação" />
+                <Property Name="U_Conta_Controle" Type="Edm.String" MaxLength="20" sap:quickinfo="Conta controle" sap:label="Conta controle" />
+                <Property Name="U_Tipo_Conta" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:quickinfo="Tipo da conta corrente" sap:label="Tipo conta corrente" />
+                <Property Name="U_Numero_Conta" Type="Edm.String" MaxLength="20" sap:quickinfo="Número da conta corrente" sap:label="Conta corrente" />
+            </EntityType>
+            <EntityType Name="AccountReceivableJournal" sap:label="Diário de Recebimentos" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_Diario" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número do Diário" sap:label="Diário" />
+                <Property Name="U_Tipo_conta" Type="Edm.Int64" Nullable="false" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Tipo da Conta" sap:label="Tipo Conta" />
+                <Property Name="U_VALIDATED_Criticality" Type="Edm.Int64" Nullable="false" sap:filterable="false" sap:sortable="false" sap:quickinfo="Validado" sap:label="--" />
+                <Property Name="TYPE_ACCT_DESCRIPTION" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Descrição do Tipo da Conta" sap:label="Descrição Tipo Conta" />
+                <Property Name="U_Conta" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Código da Conta" sap:label="Conta" />
+                <Property Name="U_ACCT_DESCRIPTION" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Descrição da Conta" sap:label="Descrição Conta" />
+                <Property Name="U_Meio_pagto" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Meio de Pagamento" sap:label="Meio Pagamento" />
+                <Property Name="U_MEIO_PAGTO_DESCR" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Descrição do Meio de Pagamento" sap:label="Descrição Meio Pagamento" />
+                <Property Name="U_Nominal" Type="Edm.String" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Nominal" sap:label="Nominal" />
+                <Property Name="U_NOMINAL_DESCR" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Descrição Nominal" sap:label="Descrição Nominal" />
+                <Property Name="U_Favorecido" Type="Edm.String" Precision="40" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Código do Favorecido" sap:label="Favorecido" />
+                <Property Name="U_Descricao" Type="Edm.String" Precision="100" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Descrição do Diário" sap:label="Descrição" />
+                <Property Name="U_Dt_criacao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de criação" sap:label="Data Criação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_pagto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de pagamento" sap:label="Data Pagamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_lancto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de lançamento" sap:label="Data Lançamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_aprovacao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de aprovação" sap:label="Data Aprovação" sap:filter-restriction="interval" />
+                <Property Name="U_Qtde" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Quantidade" sap:label="Qtde" />
+                <Property Name="U_Valbru" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto" sap:label="Valor bruto" />
+                <Property Name="U_Valliq" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido" sap:label="Valor líquido" />
+                <Property Name="U_Status" Type="Edm.String" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_STATUS_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Descrição do Status" sap:label="Descrição Status" />
+                <Property Name="U_Aprovacao" Type="Edm.String" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Aprovação" sap:label="Aprovação" />
+                <Property Name="U_APROVACAO_DESCR" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:quickinfo="Descrição Aprovação" sap:label="Descrição Aprovação" />
+                <Property Name="U_Cheque" Type="Edm.String" Precision="15" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Cheque" sap:label="Cheque" />
+                <Property Name="U_Recibo" Type="Edm.String" Precision="15" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Recibo" sap:label="Recibo" />
+                <Property Name="U_Dt_cancel" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de cancelamento" sap:label="Data Cancelamento" sap:filter-restriction="interval" />
+            </EntityType>
+            <EntityType Name="FinancialRebate" sap:label="AbatimentosDetalhe" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_Codfor" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código do Fornecedor" sap:label="Código do Fornecedor" />
+                <Property Name="U_Code_pag" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Título pagar" sap:label="Título pagar" />
+                <Property Name="U_Pag_Nota" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Título" sap:label="Título" />
+                <Property Name="U_Pag_Serie" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Série" sap:label="Série" />
+                <Property Name="U_PAG_BRANCH_ALIASNAME" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Filial" sap:label="Filial" />
+                <Property Name="U_Pag_Conta_Razao" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Conta" sap:label="Conta" />
+                <Property Name="U_Pag_Status_Descr" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_Code_rec" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Título receber" sap:label="Título receber" />
+                <Property Name="U_Rec_Nota" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Título" sap:label="Título" />
+                <Property Name="U_Rec_Serie" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Série" sap:label="Série" />
+                <Property Name="U_REC_BRANCH_ALIASNAME" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Filial" sap:label="Filial" />
+                <Property Name="U_Rec_Conta_Razao" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Conta" sap:label="Conta" />
+                <Property Name="U_Rec_Vencto" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Vencimento" sap:label="Vencimento" />
+                <Property Name="U_Data_aba" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Abatimento" sap:label="Abatimento" />
+                <Property Name="U_Rec_Dt_Liquida" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Liquidação" sap:label="Liquidação" />
+                <Property Name="U_Rec_Abat_Pagar" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor abatimento" sap:label="Valor abatimento" />
+                <Property Name="U_Rec_Valor_Liquido" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido" sap:label="Valor líquido" />
+                <Property Name="U_Rec_Status_Descr" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+            </EntityType>
+            <EntityType Name="AccountReceivableLog" sap:label="AccountReceivableLog" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Transacao" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Transação" sap:label="Transacao" />
+                <Property Name="U_Campo" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Campo" sap:label="Campo" />
+                <Property Name="U_Descricao" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Descrição" sap:label="Descrição" />
+                <Property Name="U_Valor_de" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Conteúdo anterior" sap:label="De" />
+                <Property Name="U_Valor_para" Type="Edm.String" sap:aggregation-role="dimension" sap:quickinfo="Conteúdo posterior" sap:label="Para" />
+                <Property Name="U_Usuario" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário" sap:label="Usuario" />
+                <Property Name="U_Hora" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Hora" sap:label="Hora" />
+            </EntityType>
+            <EntityType Name="AccountReceivableComment" sap:label="AccountReceivableComment" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Dt_alteracao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data alteração" sap:label="Data alteração" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_inclusao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data alteração" sap:label="Data inclusão" sap:filter-restriction="interval" />
+                <Property Name="U_Usu_inclusao" Type="Edm.String" MaxLength="20" sap:quickinfo="Usuário" sap:label="Usuário" />
+                <Property Name="U_Texto" Type="Edm.String" MaxLength="130" sap:quickinfo="Texto" sap:label="Texto" />
+            </EntityType>
+            <EntityType Name="AccountPayableInvoiceNumberItem" sap:label="Relacionamento Nota vs Boleto">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_NOTA" Type="Edm.String" MaxLength="10" sap:label="Número da nota" />
+                <Property Name="U_SERIE" Type="Edm.String" MaxLength="3" sap:label="Série" />
+                <Property Name="U_VALOR_BRUTO" Type="Edm.Double" Nullable="false" Precision="10" Scale="2" sap:aggregation-role="measure" sap:label="Valor Bruto" />
+                <Property Name="U_CARDCODE" Type="Edm.String" MaxLength="8" sap:label="Código PN" />
+                <Property Name="U_CARDNAME" Type="Edm.String" MaxLength="15" sap:label="Nome PN" />
+                <Property Name="U_REFERENCIA" Type="Edm.String" MaxLength="10" sap:label="Referência" />
+            </EntityType>
+            <EntityType Name="AccountPayableInvoice" sap:label="Contas a pagar" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_TransId" Type="Edm.Int64" Nullable="false" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Id da transação" sap:label="Transação" />
+                <Property Name="U_LineId" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha da transação" sap:label="Linha" />
+                <Property Name="U_Cod_Forne" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio" sap:label="Código PN" />
+                <Property Name="U_Cod_Forne_Ori" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio original da transação" sap:label="Código PN Original" />
+                <Property Name="U_Nota" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Nota" sap:label="Nota" />
+                <Property Name="U_Serie" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Série" sap:label="Série" />
+                <Property Name="U_Parcela" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Parcela" sap:label="Parcela" />
+                <Property Name="U_Vencto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento" sap:label="Data Vencimento" sap:filter-restriction="interval" />
+                <Property Name="U_Vencto_Ori" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento original" sap:label="Data Vencimento Original" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Recepcao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de recepção" sap:label="Data Recepção" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Emissao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de emissão" sap:label="Data Emissão" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Agendamento" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de agendamento" sap:label="Data Agendamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Pagto" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de pagamento" sap:label="Data Baixa" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Liquida" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liquidação" sap:label="Data Liquidação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Lancto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de lançamento" sap:label="Data Lançamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Prev_Pagto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data prevista de pagamento" sap:label="Data Caixa" sap:filter-restriction="interval" />
+                <Property Name="U_Conta_Razao" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Código do tipo de operação" sap:label="Código Tipo Operação" />
+                <Property Name="U_Conta_Controle" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Conta Controle" sap:label="Conta Controle" />
+                <Property Name="U_Banco_For" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Banco do parceiro de negócios" sap:label="Banco" />
+                <Property Name="U_Empresa" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Id Empresa" />
+                <Property Name="U_Filial" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código da filial" sap:label="Id Filial" />
+                <Property Name="U_Bloqueado" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado" sap:label="Bloqueado" />
+                <Property Name="U_Bloqueado_Descr" Type="Edm.String" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado (descrição)" sap:label="Bloqueado" />
+                <Property Name="U_Usuario_Liberacao" Type="Edm.String" MaxLength="25" sap:aggregation-role="dimension" sap:quickinfo="Usuário Liberação" sap:label="Usuário Liberação" />
+                <Property Name="U_Dt_Liberacao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liberação" sap:label="Data Liberação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Bloqueio" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de bloqueio" sap:label="Data Bloqueio" sap:filter-restriction="interval" />
+                <Property Name="U_Condicao_Pagto" Type="Edm.Int64" Nullable="false" Precision="6" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Condição Pagamento" sap:label="Condição Pagamento" />
+                <Property Name="U_Condicao_Pagto_Descr" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Condição Pagamento" sap:label="Descrição Condição Pagamento" />
+                <Property Name="U_Status" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Status" />
+                <Property Name="U_Situacao" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Situação" />
+                <Property Name="U_Meio_Pagto" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Código do meio de pagamento" sap:label="Id Meio Pagamento" />
+                <Property Name="U_Forma_Pagto" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:quickinfo="Forma Pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_Tipo_Conta" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Tipo Conta" sap:label="Id Tipo Conta" />
+                <Property Name="U_Numero_Conta" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Número Conta" sap:label="Número Conta" />
+                <Property Name="U_Numero_Conta_Corrente" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Id da conta corrente" sap:label="Id Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_COMPL" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Número da conta corrente" sap:label="Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nome da conta corrente" sap:label="Nome Conta Corrente" />
+                <Property Name="U_Numero_Conta_Caixa" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta caixa" sap:label="Id Conta Caixa" />
+                <Property Name="U_NUM_CONTA_CAIXA_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta caixa" sap:label="Conta Caixa" />
+                <Property Name="U_Numero_Conta_Razao" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta razão" sap:label="Id Conta Razão" />
+                <Property Name="U_NUM_CONTA_RAZAO_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta razão" sap:label="Conta Razão" />
+                <Property Name="U_Agencia_For" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Agencia do parceiro de negócios" sap:label="Agencia" />
+                <Property Name="U_Dig_Agencia_For" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Dígito da agência do parceiro de negócios" sap:label="Dígito Agencia" />
+                <Property Name="U_Conta_Banc_For" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Conta bancária do parceiro de negócios" sap:label="Conta Bancária" />
+                <Property Name="U_Dig_Conta_Banc_For" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Dígito da conta do parceiro de negócios" sap:label="Dígito Conta" />
+                <Property Name="U_Valor_Bruto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="U_Abat_Manual" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento Manual" sap:label="Abatimento Manual" />
+                <Property Name="U_Abat_Receber" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento a Receber" sap:label="Abatimento a Receber" />
+                <Property Name="U_Desconto_Acordo" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto Acordo" sap:label="Desconto Acordo" />
+                <Property Name="U_Desconto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto" sap:label="Desconto" />
+                <Property Name="U_Acrescimos" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Acrescimos" sap:label="Acrescimos" />
+                <Property Name="U_Retencoes" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Retenções" sap:label="Retenções" />
+                <Property Name="U_Funrural" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Funrural" sap:label="Funrural" />
+                <Property Name="U_Juros" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros" sap:label="Juros" />
+                <Property Name="U_Multa" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Multa" sap:label="Multa" />
+                <Property Name="U_Valor_Pago" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor pago do título" sap:label="Valor pago" />
+                <Property Name="U_Codigo_Moeda" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Código Moeda" sap:label="Código Moeda" />
+                <Property Name="U_Valor_Moeda_Cmp" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Moeda Compra" sap:label="Valor Moeda Compra" />
+                <Property Name="U_Moeda_Pagto" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Moeda Pagamento" sap:label="Moeda Pagamento" />
+                <Property Name="U_Valor_Moeda_Pagto" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Moeda Pagamento" sap:label="Valor Moeda Pagamento" />
+                <Property Name="U_Valor_Bruto_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Bruto Moeda" sap:label="Valor Bruto Moeda" />
+                <Property Name="U_Variacao_Cambial" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial" sap:label="Variação Cambial" />
+                <Property Name="U_Juros_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros Moeda" sap:label="Juros Moeda" />
+                <Property Name="U_Tipcodbar" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Tipo Código Barras" sap:label="Tipo Código Barras" />
+                <Property Name="U_Codbar" Type="Edm.String" MaxLength="48" sap:aggregation-role="dimension" sap:quickinfo="Código Barras" sap:label="Código de Barras" />
+                <Property Name="U_Code_Pagto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Diário" sap:label="Diário" />
+                <Property Name="U_Seu_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Seu Número" sap:label="Seu Número" />
+                <Property Name="U_Nosso_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nosso Número" sap:label="Nosso Número" />
+                <Property Name="U_Instr_Pagto" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Instrução de Pagamento" sap:label="Instrução de Pagamento" />
+                <Property Name="U_Arquivo_Gerado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Gerado" sap:label="Arquivo Gerado" />
+                <Property Name="U_Arquivo_Importado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Importado" sap:label="Arquivo Importado" />
+                <Property Name="U_Usu_Gerou_Arquivo" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Gerou" sap:label="Usuário Gerou" />
+                <Property Name="U_Usu_Importou_Conf" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Confirmação" sap:label="Usuário Importou Confirmação" />
+                <Property Name="U_Usu_Importou_Liq" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Liquidação" sap:label="Usuário Importou Liquidação" />
+                <Property Name="U_Dt_geracao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de geração" sap:label="Data Geração" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_confirma" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de confirmação" sap:label="Data confirmação" sap:filter-restriction="interval" />
+                <Property Name="U_Motivo_Baixa" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Motivo Baixa" sap:label="Motivo Baixa" />
+                <Property Name="U_Numero_Boleto" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Boleto" sap:label="Número Boleto" />
+                <Property Name="U_Lote_EDI" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Lote EDI" sap:label="Lote EDI" />
+                <Property Name="U_Code_Antecipa" Type="Edm.Int64" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Código Antecipação" sap:label="Código Antecipação" />
+                <Property Name="U_Modelo_NF" Type="Edm.Int64" Nullable="false" MaxLength="6" sap:aggregation-role="dimension" sap:quickinfo="Modelo Nota Fiscal" sap:label="Modelo Nota Fiscal" />
+                <Property Name="U_Ocorrencia" Type="Edm.Int64" Nullable="false" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Ocorrências" sap:label="Ocorrências" />
+                <Property Name="U_Val_Tran_Moeda" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Transação em Moeda" sap:label="Valor Transação em Moeda" />
+                <Property Name="U_Taxa_Cambio" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Taxa Cambio" sap:label="Taxa Câmbio" />
+                <Property Name="U_Var_Cam_Nreal" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Não Realizada" sap:label="Variação Cambial Não Realizada" />
+                <Property Name="U_Var_Cam_Real" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Realizada" sap:label="Variação Cambial Realizada" />
+                <Property Name="U_Val_Var_Cam" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Variação Cambial" sap:label="Valor Variação Cambial" />
+                <Property Name="U_Ult_Tax_Cam" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Última Taxa Cambial" sap:label="Última Taxa Cambial" />
+                <Property Name="U_Ult_Dat_Tax_Cam" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de ult data taxa camb" sap:label="Data ultima data taxa camb" sap:filter-restriction="interval" />
+                <Property Name="U_Contrato" Type="Edm.Int64" Nullable="false" Precision="8" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Contrato" sap:label="Contrato" />
+                <Property Name="U_NumConcil" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Conciliação" sap:label="Número Conciliação" />
+                <Property Name="U_Beneficiario" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Beneficiário" sap:label="Beneficiário" />
+                <Property Name="U_LinhaFluxo" Type="Edm.Int64" Nullable="false" Precision="11" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha Fluxo" sap:label="Linha Fluxo" />
+                <Property Name="U_CARDNAME" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Nome do cliente" sap:label="Parceiro de Negócio" />
+                <Property Name="U_BRANCH_NAME" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nome Filial" sap:label="Filial" />
+                <Property Name="U_COMPANY_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Empresa" />
+                <Property Name="U_CONTA_RAZ_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição do tipo de operação" sap:label="Tipo Operação" />
+                <Property Name="U_CONTA_CTR_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta controle" sap:label="Descrição Conta Controle" />
+                <Property Name="U_DAYS" Type="Edm.String" Precision="4" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Dias" sap:label="Dias" />
+                <Property Name="U_MEIO_PAGTO_DESCR" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Meio de Pagamento" sap:label="Meio Pagamento" />
+                <Property Name="U_STATUS_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_SITUATION_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Situação" sap:label="Situação" />
+                <Property Name="U_PAYMETH_DESCRIPTION" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Forma de pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_TYPE_ACCT_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Conta Corrente" sap:label="Tipo de Conta" />
+                <Property Name="U_VALIDATED" Type="Edm.String" MaxLength="5" sap:quickinfo="Validado" sap:label="Validado" />
+                <Property Name="U_VALIDATED_Criticality" Type="Edm.Int64" Nullable="false" sap:filterable="false" sap:sortable="false" sap:quickinfo="Validado" sap:label="--" />
+                <Property Name="U_Valor_Liquido" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="U_CodForma" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Código de Controle da Forma de Pagamento" sap:label="Controle Forma Pagamento" />
+                <Property Name="BusinessPartnerHouseBankAccount" Type="Edm.String" MaxLength="100" sap:aggregation-role="dimension" sap:quickinfo="Conta Bancária do Fornecedor" sap:label="Conta Bancária do Fornecedor" />
+            </EntityType>
+            <EntityType Name="AccountReceivableInvoiceNumberItem" sap:label="Relacionamento Nota vs Boleto">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_NOTA" Type="Edm.String" MaxLength="10" sap:label="Número da nota" />
+                <Property Name="U_SERIE" Type="Edm.String" MaxLength="3" sap:label="Série" />
+                <Property Name="U_VALOR_BRUTO" Type="Edm.Double" Nullable="false" Precision="10" Scale="2" sap:aggregation-role="measure" sap:label="Valor Bruto" />
+                <Property Name="U_CARDCODE" Type="Edm.String" MaxLength="8" sap:label="Código PN" />
+                <Property Name="U_CARDNAME" Type="Edm.String" MaxLength="15" sap:label="Nome PN" />
+                <Property Name="U_REFERENCIA" Type="Edm.String" MaxLength="10" sap:label="Referência" />
+            </EntityType>
+            <EntityType Name="BankAccountItem" sap:label="Contas bancárias">
+                <Key>
+                    <PropertyRef Name="BankAccountCode" />
+                </Key>
+                <Property Name="BankAccountCode" Type="Edm.String" Nullable="false" MaxLength="40" sap:quickinfo="Número da conta corrente" sap:label="Conta Corrente" />
+                <Property Name="BankAccountInternal" Type="Edm.String" MaxLength="40" sap:quickinfo="Id da conta corrente" sap:label="Id da Conta Corrente" />
+                <Property Name="BankAccountName" Type="Edm.String" MaxLength="20" sap:quickinfo="Nome da conta corrente" sap:label="Nome da conta" />
+            </EntityType>
+            <EntityType Name="BankAccounts">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Codigo" sap:label="Codigo" />
+                <Property Name="Name" Type="Edm.String" MaxLength="30" sap:quickinfo="Name" sap:label="Name" />
+                <Property Name="U_EMPRESA" Type="Edm.String" MaxLength="20" sap:quickinfo="Empresa" sap:label="Empresa" />
+                <Property Name="U_BANCO" Type="Edm.String" MaxLength="20" sap:quickinfo="Banco" sap:label="Banco" />
+                <Property Name="U_STATUS" Type="Edm.String" MaxLength="3" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_CONTA" Type="Edm.String" MaxLength="6" sap:quickinfo="Conta" sap:label="Conta" />
+                <Property Name="U_DIGCONTA" Type="Edm.String" MaxLength="6" sap:quickinfo="Dígito conta" sap:label="Dígito conta" />
+                <Property Name="U_AGENCIA" Type="Edm.String" MaxLength="6" sap:quickinfo="Agência" sap:label="Agência" />
+                <Property Name="U_DIGAGENCIA" Type="Edm.String" MaxLength="6" sap:quickinfo="Dígito agência" sap:label="Dígito agência" />
+                <Property Name="U_DESCRICAO" Type="Edm.String" MaxLength="10" sap:quickinfo="Descrição" sap:label="Descrição" />
+                <Property Name="U_Descricao_Conta" Type="Edm.String" MaxLength="40" sap:quickinfo="Descrição Conta" sap:label="Descrição Conta" />
+            </EntityType>
+            <EntityType Name="AccountPayableComment" sap:label="AccountPayableComment" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Dt_alteracao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data alteração" sap:label="Data alteração" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_inclusao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data alteração" sap:label="Data inclusão" sap:filter-restriction="interval" />
+                <Property Name="U_Usu_inclusao" Type="Edm.String" MaxLength="20" sap:quickinfo="Usuário" sap:label="Usuário" />
+                <Property Name="U_Texto" Type="Edm.String" MaxLength="130" sap:quickinfo="Texto" sap:label="Texto" />
+            </EntityType>
+            <EntityType Name="AccountPayableLog" sap:label="AccountPayableLog" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Data" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data" sap:label="Data" sap:filter-restriction="interval" />
+                <Property Name="U_Transacao" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="Transacao" />
+                <Property Name="U_Campo" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="Campo" />
+                <Property Name="U_Descricao" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="Descrição" />
+                <Property Name="U_Valor_de" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="De" />
+                <Property Name="U_Valor_para" Type="Edm.String" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data" sap:label="Para" sap:filter-restriction="interval" />
+                <Property Name="U_Usuario" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Imposto" sap:label="Usuario" />
+                <Property Name="U_Hora" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Imposto" sap:label="Hora" />
+            </EntityType>
+            <EntityType Name="AccountReceivableWithHoldingTax" sap:label="Impostos retidos" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Fato" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="Entrada/pagamento" />
+                <Property Name="U_Data" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data" sap:label="Data " sap:filter-restriction="interval" />
+                <Property Name="U_Cod_Imposto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Imposto" sap:label="Imposto" />
+                <Property Name="U_Valbase" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor base" sap:label="Valor base" />
+                <Property Name="U_Aliquota" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor alíquota" sap:label="Alíquota" />
+                <Property Name="U_Valimp" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor imposto" sap:label="Valor Imposto" />
+                <Property Name="U_Valret" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor retenção" sap:label="Valor Retenção" />
+            </EntityType>
+            <EntityType Name="MenuNavigationItem" sap:label="MenuNavigationItem">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:quickinfo="Identificação do registro" sap:label="Id" />
+                <Property Name="Name" Type="Edm.String" MaxLength="50" sap:quickinfo="Nome interno" sap:label="Nome interno" />
+                <Property Name="U_GROUPNAME" Type="Edm.String" MaxLength="50" sap:quickinfo="Nome do grupo para inclusão do item" sap:label="Grupo" />
+                <Property Name="U_TITLE" Type="Edm.String" MaxLength="100" sap:quickinfo="Título do item" sap:label="Título" />
+                <Property Name="U_SUBTITLE" Type="Edm.String" MaxLength="100" sap:quickinfo="Subtítulo do item" sap:label="Subtítulo" />
+                <Property Name="U_FOOTER" Type="Edm.String" MaxLength="100" sap:quickinfo="Rodapé do item" sap:label="Rodapé" />
+                <Property Name="U_USERNAME" Type="Edm.String" MaxLength="100" sap:quickinfo="Usuário que criou o item" sap:label="Usuário" />
+                <Property Name="U_ENTITYSET" Type="Edm.String" MaxLength="100" sap:quickinfo="Nome da entidade que preenche o item" sap:label="Entidade" />
+                <Property Name="U_COMPONENT" Type="Edm.String" MaxLength="100" sap:quickinfo="Componente que contém a página destino" sap:label="Componente" />
+                <Property Name="U_TARGET" Type="Edm.String" MaxLength="100" sap:quickinfo="Nome da página de destino" sap:label="Página" />
+                <Property Name="U_TABLEVARIANT" Type="Edm.String" MaxLength="30" sap:filterable="false" sap:sortable="false" sap:quickinfo="Configuração da tabela" sap:label="Tabela" />
+                <Property Name="U_FILTERVARIANT" Type="Edm.String" MaxLength="30" sap:filterable="false" sap:sortable="false" sap:quickinfo="Configuração da tabela" sap:label="Tabela" />
+                <Property Name="U_SHARED" Type="Edm.String" MaxLength="1" sap:quickinfo="Indica se item pode ser utilizado por outros usuários" sap:label="Compartilhado" />
+            </EntityType>
+            <EntityType Name="WithHoldingTax" sap:label="Impostos retidos" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code" sap:label="Code" />
+                <Property Name="U_Code_titulo" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Code Título" sap:label="Code Título" />
+                <Property Name="U_Fato" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Entrada/pagamento" sap:label="Entrada/pagamento" />
+                <Property Name="U_Data" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data" sap:label="Data " sap:filter-restriction="interval" />
+                <Property Name="U_Cod_Imposto" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Imposto" sap:label="Imposto" />
+                <Property Name="U_Valbase" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor base" sap:label="Valor base" />
+                <Property Name="U_Aliquota" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor alíquota" sap:label="Alíquota" />
+                <Property Name="U_Valimp" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor imposto" sap:label="Valor Imposto" />
+                <Property Name="U_Valret" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor retenção" sap:label="Valor Retenção" />
+            </EntityType>
+            <EntityType Name="BankPaymentOccurrence">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código Interno da Ocorrência" sap:label="Código Interno" />
+                <Property Name="Banco" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Código do Banco" sap:label="Banco" />
+                <Property Name="U_Cod_oco_ban" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Código da Ocorrência Bancária" sap:label="Ocorrência" />
+                <Property Name="U_Descricao" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:quickinfo="Descrição da Ocorrência" sap:label="Descrição" />
+                <Property Name="U_Acao" Type="Edm.Int32" Nullable="false" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Ação a ser executada" sap:label="Ação" />
+            </EntityType>
+            <EntityType Name="JournalPayment">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="15" sap:quickinfo="Número do Diário" sap:label="Diário" />
+                <Property Name="Name" Type="Edm.String" sap:quickinfo="Name" sap:label="Name" />
+                <Property Name="U_Banco" Type="Edm.Int32" Nullable="false" Precision="3" Scale="0" sap:quickinfo="Código do Banco" sap:label="Banco" />
+                <Property Name="U_Tipo_conta" Type="Edm.Int32" Nullable="false" Precision="1" Scale="0" sap:quickinfo="Tipo da Conta" sap:label="Tipo Conta" />
+                <Property Name="U_Conta" Type="Edm.String" MaxLength="40" sap:quickinfo="Código da Conta" sap:label="Conta" />
+                <Property Name="U_Meio_pagto" Type="Edm.Int32" Nullable="false" Precision="3" Scale="0" sap:quickinfo="Meio de Pagamento" sap:label="Meio Pagamento" />
+                <Property Name="U_Forma_pagto" Type="Edm.String" MaxLength="3" sap:quickinfo="Forma de Pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_Nominal" Type="Edm.String" MaxLength="1" sap:quickinfo="Nominal" sap:label="Nominal" />
+                <Property Name="U_Favorecido" Type="Edm.String" MaxLength="40" sap:quickinfo="Favorecido" sap:label="Favorecido" />
+                <Property Name="U_Descricao" Type="Edm.String" MaxLength="40" sap:quickinfo="Descrição do Diário" sap:label="Descrição" />
+                <Property Name="U_Dt_criacao" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de Criação" sap:label="Criação" />
+                <Property Name="U_Dt_pagto" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de Pagamento" sap:label="Pagamento" />
+                <Property Name="U_Dt_lancto" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de Lançamento" sap:label="Lançamento" />
+                <Property Name="U_Dt_aprovacao" Type="Edm.DateTime" Nullable="false" MaxLength="10" sap:quickinfo="Data de Aprovação" sap:label="Aprovação" />
+                <Property Name="U_Qtde" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:quickinfo="Quantidade de titulos" sap:label="Quantidade" />
+                <Property Name="U_Valbru" Type="Edm.Double" Nullable="false" Precision="15" Scale="2" sap:quickinfo="Valor total bruto" sap:label="Valor Bruto" />
+                <Property Name="U_Valliq" Type="Edm.Double" Nullable="false" Precision="15" Scale="2" sap:quickinfo="Valor total líquido" sap:label="Valor Líquido" />
+                <Property Name="U_Status" Type="Edm.String" MaxLength="3" sap:quickinfo="Status do Diário" sap:label="Status" />
+                <Property Name="U_Aprovacao" Type="Edm.String" MaxLength="3" sap:quickinfo="Aprovação" sap:label="Aprovação" />
+            </EntityType>
+            <EntityType Name="HouseBankAccount">
+                <Key>
+                    <PropertyRef Name="BankCode" />
+                </Key>
+                <Property Name="BankCode" Type="Edm.String" Nullable="false" />
+                <Property Name="AccNo" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Número da Conta" sap:label="Número da Conta" />
+                <Property Name="AccountCheckDigit" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Dígito Conta" sap:label="Dígito Conta" />
+                <Property Name="Branch" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Agência" sap:label="Agência" />
+                <Property Name="BranchCheckDigit" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Dígito Agência" sap:label="Dígito Agência" />
+                <Property Name="AccountName" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Dígito Agência" sap:label="Descrição Conta" />
+            </EntityType>
+            <EntityType Name="UserVariant" sap:label="Variantes do usuário">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="20" sap:filterable="false" sap:sortable="false" sap:quickinfo="Código interno da variante" sap:label="Código" />
+                <Property Name="Name" Type="Edm.String" sap:filterable="false" sap:sortable="false" sap:quickinfo="(não utilizar)" sap:label="Nome interno" />
+                <Property Name="U_USERNAME" Type="Edm.String" MaxLength="10" sap:quickinfo="Nome do usuário" sap:label="Usuário" />
+                <Property Name="U_PAGENAME" Type="Edm.String" MaxLength="10" sap:quickinfo="Nome da página" sap:label="Página" />
+                <Property Name="U_VARIANTNAME" Type="Edm.String" MaxLength="10" sap:quickinfo="Nome da variante" sap:label="Nome" />
+                <Property Name="U_TABLEVARIANT" Type="Edm.String" MaxLength="30" sap:filterable="false" sap:sortable="false" sap:quickinfo="Configuração da tabela" sap:label="Tabela" />
+                <Property Name="U_FILTERVARIANT" Type="Edm.String" MaxLength="30" sap:filterable="false" sap:sortable="false" sap:quickinfo="Configuração da tabela" sap:label="Tabela" />
+            </EntityType>
+            <EntityType Name="AccountReceivableInvoice" sap:label="Contas a receber" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_TransId" Type="Edm.Int64" Nullable="false" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Id da transação" sap:label="Transação" />
+                <Property Name="U_LineId" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha da transação" sap:label="Linha" />
+                <Property Name="U_Cod_Cli" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio" sap:label="Código PN" />
+                <Property Name="U_Cod_Cli_Ori" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código do parceiro de negócio original da transação" sap:label="Código PN Original" />
+                <Property Name="U_Nota" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:quickinfo="Nota" sap:label="Nota" />
+                <Property Name="U_Serie" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Série" sap:label="Série" />
+                <Property Name="U_Parcela" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Parcela" sap:label="Parcela" />
+                <Property Name="U_Vencto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento" sap:label="Data Vencimento" sap:filter-restriction="interval" />
+                <Property Name="U_Vencto_Ori" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de vencimento original" sap:label="Data Vencimento Original" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Recepcao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de recepção" sap:label="Data Recepção" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Emissao" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de emissão" sap:label="Data Emissão" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Agendamento" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de agendamento" sap:label="Data Agendamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Pagto" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de pagamento" sap:label="Data Baixa" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Liquida" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liquidação" sap:label="Data Liquidação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Lancto" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de lançamento" sap:label="Data Lançamento" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Prev_Recto" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data prevista de pagamento" sap:label="Data Caixa" sap:filter-restriction="interval" />
+                <Property Name="U_Conta_Razao" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Código do tipo de operação" sap:label="Código Tipo Operação" />
+                <Property Name="U_Conta_Controle" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:quickinfo="Conta Controle" sap:label="Conta Controle" />
+                <Property Name="U_Empresa" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Id Empresa" />
+                <Property Name="U_Filial" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Código da filial" sap:label="Id Filial" />
+                <Property Name="U_Bloqueado" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado" sap:label="Bloqueado" />
+                <Property Name="U_Usuario_Liberacao" Type="Edm.String" MaxLength="25" sap:aggregation-role="dimension" sap:quickinfo="Usuário Liberação" sap:label="Usuário Liberação" />
+                <Property Name="U_Dt_Liberacao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de liberação" sap:label="Data Liberação" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_Bloqueio" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de bloqueio" sap:label="Data Bloqueio" sap:filter-restriction="interval" />
+                <Property Name="U_Bloqueado_Descr" Type="Edm.String" Precision="5" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Bloqueado (descrição)" sap:label="Bloqueado (descrição)" />
+                <Property Name="U_Condicao_Pagto" Type="Edm.Int64" Nullable="false" Precision="6" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Condição Pagamento" sap:label="Condição Pagamento" />
+                <Property Name="U_Status" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Status" />
+                <Property Name="U_Situacao" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:quickinfo="Situação atual" sap:label="Id Situação" />
+                <Property Name="U_Meio_Pagto" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Código do meio de pagamento" sap:label="Id Meio Pagamento" />
+                <Property Name="U_Forma_Pagto" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:quickinfo="Forma Pagamento" sap:label="Forma Pagamento" />
+                <Property Name="U_Tipo_Conta" Type="Edm.Int64" Nullable="false" Precision="1" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Tipo Conta" sap:label="Id Tipo Conta" />
+                <Property Name="U_Numero_Conta" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Número Conta" sap:label="Número Conta" />
+                <Property Name="U_Numero_Conta_Corrente" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta corrente" sap:label="Id Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_COMPL" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Número da conta corrente" sap:label="Conta Corrente" />
+                <Property Name="U_NUM_CONTA_CORRENTE_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Número da conta corrente" sap:label="Nome Conta Corrente" />
+                <Property Name="U_Numero_Conta_Caixa" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta caixa" sap:label="Id Conta Caixa" />
+                <Property Name="U_NUM_CONTA_CAIXA_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta caixa" sap:label="Conta Caixa" />
+                <Property Name="U_Numero_Conta_Razao" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Id da conta razão" sap:label="Id Conta Razão" />
+                <Property Name="U_NUM_CONTA_RAZAO_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta razão" sap:label="Conta Razão" />
+                <Property Name="U_Valor_Bruto" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor bruto do título" sap:label="Valor bruto" />
+                <Property Name="U_Abat_Manual" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento Manual" sap:label="Abatimento Manual" />
+                <Property Name="U_Abat_Pagar" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Abatimento a Pagar" sap:label="Abatimento a Pagar" />
+                <Property Name="U_Desconto_Acordo" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto Acordo" sap:label="Desconto Acordo" />
+                <Property Name="U_Desconto" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Desconto" sap:label="Desconto" />
+                <Property Name="U_Acrescimos" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Acrescimos" sap:label="Acrescimos" />
+                <Property Name="U_Retencoes" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Retenções" sap:label="Retenções" />
+                <Property Name="U_Juros" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Juros" sap:label="Juros" />
+                <Property Name="U_Multa" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Multa" sap:label="Multa" />
+                <Property Name="U_Valor_Pago" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor pago do título" sap:label="Valor pago" />
+                <Property Name="U_Moeda" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:quickinfo="Código Moeda" sap:label="Código Moeda" />
+                <Property Name="U_Code_Diar" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Diário" sap:label="Diário" />
+                <Property Name="U_Seu_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Seu Número" sap:label="Seu Número" />
+                <Property Name="U_Nosso_Numero" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nosso Número" sap:label="Nosso Número" />
+                <Property Name="U_Instr_Pagto" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Instrução de Pagamento" sap:label="Instrução de Pagamento" />
+                <Property Name="U_Arquivo_Gerado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Gerado" sap:label="Arquivo Gerado" />
+                <Property Name="U_Arquivo_Importado" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Arquivo Importado" sap:label="Arquivo Importado" />
+                <Property Name="U_Usu_Gerou_Arquivo" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Gerou" sap:label="Usuário Gerou" />
+                <Property Name="U_Usu_Importou_Conf" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Confirmação" sap:label="Usuário Importou Confirmação" />
+                <Property Name="U_Usu_Importou_Liq" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Usuário Importou Liquidação" sap:label="Usuário Importou Liquidação" />
+                <Property Name="U_Dt_geracao" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de geração" sap:label="Data Geração" sap:filter-restriction="interval" />
+                <Property Name="U_Dt_confirma" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de confirmação" sap:label="Data confirmação" sap:filter-restriction="interval" />
+                <Property Name="U_Motivo_Baixa" Type="Edm.Int64" Nullable="false" Precision="3" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Motivo Baixa" sap:label="Motivo Baixa" />
+                <Property Name="U_Numero_Boleto" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Boleto" sap:label="Número Boleto" />
+                <Property Name="U_Lote_EDI" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Lote EDI" sap:label="Lote EDI" />
+                <Property Name="U_Code_Antecipa" Type="Edm.Int64" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Código Antecipação" sap:label="Código Antecipação" />
+                <Property Name="U_Modelo_NF" Type="Edm.Int64" Nullable="false" MaxLength="6" sap:aggregation-role="dimension" sap:quickinfo="Modelo Nota Fiscal" sap:label="Modelo Nota Fiscal" />
+                <Property Name="U_Ocorrencia" Type="Edm.Int64" Nullable="false" MaxLength="2" sap:aggregation-role="dimension" sap:quickinfo="Ocorrências" sap:label="Ocorrências" />
+                <Property Name="U_Val_Tran_Moeda" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Transação em Moeda" sap:label="Valor Transação em Moeda" />
+                <Property Name="U_Taxa_Cambio" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Taxa Cambio" sap:label="Taxa Cambio" />
+                <Property Name="U_Var_Cam_Nreal" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Não Realizada" sap:label="Variação Cambial Não Realizada" />
+                <Property Name="U_Var_Cam_Real" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Variação Cambial Realizada" sap:label="Variação Cambial Realizada" />
+                <Property Name="U_Val_Var_Cam" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor Variação Cambial" sap:label="Valor Variação Cambial" />
+                <Property Name="U_Ult_Tax_Cam" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Última Taxa Cambial" sap:label="Última Taxa Cambial" />
+                <Property Name="U_Ult_Dat_Tax_Cam" Type="Edm.DateTime" sap:display-format="Date" sap:aggregation-role="dimension" sap:quickinfo="Data de ult data taxa camb" sap:label="Data ultima data taxa camb" sap:filter-restriction="interval" />
+                <Property Name="U_Contrato" Type="Edm.Int64" Nullable="false" Precision="8" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Contrato" sap:label="Contrato" />
+                <Property Name="U_NumConcil" Type="Edm.Int64" Nullable="false" Precision="10" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Número Conciliação" sap:label="Número Conciliação" />
+                <Property Name="U_LinhaFluxo" Type="Edm.Int64" Nullable="false" Precision="11" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Linha Fluxo" sap:label="Linha Fluxo" />
+                <Property Name="U_CARDNAME" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Nome do cliente" sap:label="Parceiro de Negócio" />
+                <Property Name="U_BRANCH_NAME" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Nome Filial" sap:label="Filial" />
+                <Property Name="U_COMPANY_DESCR" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:quickinfo="Empresa" sap:label="Empresa" />
+                <Property Name="U_CONTA_RAZ_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição do tipo de operação" sap:label="Tipo Operação" />
+                <Property Name="U_CONTA_CTR_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Descrição da conta controle" sap:label="Descrição Conta Controle" />
+                <Property Name="U_DAYS" Type="Edm.String" Precision="4" Scale="0" sap:aggregation-role="dimension" sap:quickinfo="Dias" sap:label="Dias" />
+                <Property Name="U_MEIO_PAGTO_DESCR" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:quickinfo="Meio de Pagamento" sap:label="Meio Pagamento" />
+                <Property Name="U_STATUS_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Status" sap:label="Status" />
+                <Property Name="U_SITUATION_DESCRIPTION" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:quickinfo="Situação" sap:label="Situação" />
+                <Property Name="U_PAYMETH_DESCRIPTION" Type="Edm.String" MaxLength="8" sap:aggregation-role="dimension" sap:quickinfo="Forma de pagamento" sap:label="Descrição Forma Pagamento" />
+                <Property Name="U_TYPE_ACCT_DESCR" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:quickinfo="Conta Corrente" sap:label="Descrição Tipo de Conta" />
+                <Property Name="U_Valor_Liquido" Type="Edm.Double" Nullable="false" Precision="9" Scale="2" sap:aggregation-role="measure" sap:quickinfo="Valor líquido do título" sap:label="Valor líquido" />
+                <Property Name="LinesRec" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas REC" sap:label="LinhasREC" />
+                <Property Name="LinesPag" Type="Edm.String" MaxLength="200" sap:quickinfo="Linhas PAG" sap:label="LinhasPAG" />
+                <Property Name="U_NOMEBANDEIRA" Type="Edm.String" MaxLength="100" sap:aggregation-role="dimension" sap:quickinfo="Nome da Bandeira" sap:label="Bandeira" />
+            </EntityType>
+            <EntityType Name="Agreements">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+                <Property Name="U_CONTRACTNUM" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_EVENTCODE" Type="Edm.String" />
+                <Property Name="U_DESCRIPTION" Type="Edm.String" />
+                <Property Name="U_CARDCODE" Type="Edm.String" />
+                <Property Name="U_CARDNAME" Type="Edm.String" />
+                <Property Name="U_SALESMAN" Type="Edm.String" />
+                <Property Name="U_EMAIL" Type="Edm.String" />
+                <Property Name="U_PHONENUMBER" Type="Edm.String" />
+                <Property Name="U_STARTDATE" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="U_ENDDATE" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="U_STATUS" Type="Edm.String" />
+                <Property Name="U_LEGALNUMBER" Type="Edm.String" />
+                <Property Name="U_INSTALLMENTS" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_BASEVALUE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_BONUSTYPE" Type="Edm.String" />
+                <Property Name="U_BUYERCODE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_COMPANYID" Type="Edm.String" />
+                <Property Name="U_PRODUCTSEL" Type="Edm.String" />
+                <Property Name="U_BRANCHSEL" Type="Edm.String" />
+                <Property Name="U_OBSERVATIONS" Type="Edm.String" />
+                <Property Name="U_SECTIONCODE" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="AgreementsList">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+                <Property Name="U_CONTRACTNUM" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_EVENTCODE" Type="Edm.String" />
+                <Property Name="U_EVENT_DESCRIPTION" Type="Edm.String" />
+                <Property Name="U_PREVCONTRACT" Type="Edm.String" />
+                <Property Name="U_AGRMNTTYPE_DESCR" Type="Edm.String" />
+                <Property Name="U_SITUATION_DESCR" Type="Edm.String" />
+                <Property Name="U_APPROVAL_DESCR" Type="Edm.String" />
+                <Property Name="U_SALES_NAME" Type="Edm.String" />
+                <Property Name="U_DESCRIPTION" Type="Edm.String" />
+                <Property Name="U_CARDCODE" Type="Edm.String" />
+                <Property Name="U_CARDNAME" Type="Edm.String" />
+                <Property Name="U_SALESMAN" Type="Edm.String" />
+                <Property Name="U_EMAIL" Type="Edm.String" />
+                <Property Name="U_PHONENUMBER" Type="Edm.String" />
+                <Property Name="U_STARTDATE" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="U_ENDDATE" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="U_STATUS" Type="Edm.String" />
+                <Property Name="U_LEGALNUMBER" Type="Edm.String" />
+                <Property Name="U_INSTALLMENTS" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_BASEVALUE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_BONUSTYPE" Type="Edm.String" />
+                <Property Name="U_BUYERCODE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_COMPANYID" Type="Edm.String" />
+                <Property Name="U_PRODUCTSEL" Type="Edm.String" />
+                <Property Name="U_BRANCHSEL" Type="Edm.String" />
+                <Property Name="U_OBSERVATIONS" Type="Edm.String" />
+                <Property Name="U_SECTIONCODE" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="ChartOfAccounts">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="30" sap:quickinfo="Código da operação" sap:label="Código Operação" />
+                <Property Name="Name" Type="Edm.String" MaxLength="30" sap:quickinfo="Descrição da operação" sap:label="Descrição Operação" />
+                <Property Name="U_VSIT_CP" Type="Edm.String" MaxLength="3" sap:quickinfo="Considera Contas a Pagar" sap:label="Considera Contas a Pagar" />
+                <Property Name="U_VSIT_CR" Type="Edm.String" MaxLength="3" sap:quickinfo="Considera Contas a Receber" sap:label="Considera Contas a Receber" />
+                <Property Name="U_VSIT_FLUXODECAIXA" Type="Edm.String" MaxLength="3" sap:quickinfo="Considera Fluxo de Caixa" sap:label="Considera Fluxo de Caixa" />
+                <Property Name="LockManualTransaction" Type="Edm.String" MaxLength="1" sap:quickinfo="Identifica se é uma conta controle" sap:label="É conta controle?" />
+                <Property Name="CashAccount" Type="Edm.String" MaxLength="4" sap:quickinfo="Identifica se é uma conta caixa" sap:label="É conta caixa?" />
+            </EntityType>
+            <EntityType Name="CostCenterType">
+                <Key>
+                    <PropertyRef Name="CostCenterTypeCode" />
+                </Key>
+                <Property Name="CostCenterTypeCode" Type="Edm.String" Nullable="false" />
+                <Property Name="CostCenterTypeName" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="WizardPaymentMethod">
+                <Key>
+                    <PropertyRef Name="PaymentMethodCode" />
+                </Key>
+                <Property Name="PaymentMethodCode" Type="Edm.String" Nullable="false" MaxLength="10" sap:quickinfo="Código da forma de pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="Description" Type="Edm.String" MaxLength="15" sap:quickinfo="Descrição" sap:label="Descrição" />
+                <Property Name="U_Origem" Type="Edm.String" MaxLength="15" sap:quickinfo="Origem" sap:label="Origem" />
+                <Property Name="U_Validacb" Type="Edm.Int32" Nullable="false" Precision="1" Scale="0" sap:quickinfo="Valida Código de Barras" sap:label="Valida Código de Barras" />
+                <Property Name="U_Validactapn" Type="Edm.Int32" Nullable="false" Precision="1" Scale="0" sap:quickinfo="Valida Parceiro de negócios" sap:label="Valida Parceiro de negócios" />
+                <Property Name="U_CodForma" Type="Edm.String" MaxLength="15" sap:quickinfo="Código Forma" sap:label="Código Forma" />
+            </EntityType>
+            <EntityType Name="PaymentTermsType">
+                <Key>
+                    <PropertyRef Name="GroupNumber" />
+                </Key>
+                <Property Name="GroupNumber" Type="Edm.Int64" Nullable="false" Precision="6" Scale="0" sap:quickinfo="Código da Condição de Pagamento" sap:label="Condição Pagamento" />
+                <Property Name="PaymentTermsGroupName" Type="Edm.String" MaxLength="40" sap:quickinfo="Descrição da Condição de Pagamento" sap:label="Descrição" />
+            </EntityType>
+            <EntityType Name="CadCompany">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_RAZAO_SOCIAL" Type="Edm.String" MaxLength="20" sap:quickinfo="Razão Social" sap:label="Razão Social" />
+                <Property Name="U_NOME_FANTASIA" Type="Edm.String" MaxLength="20" sap:quickinfo="Nome Fantasia" sap:label="Nome Fantasia" />
+                <Property Name="U_CNPJ" Type="Edm.String" MaxLength="15" sap:quickinfo="CNPJ" sap:label="CNPJ" />
+                <Property Name="U_TELEFONE" Type="Edm.String" MaxLength="15" sap:quickinfo="Telefone" sap:label="Telefone" />
+                <Property Name="U_ENDERECO" Type="Edm.String" MaxLength="20" sap:quickinfo="Endereço" sap:label="Endereço" />
+                <Property Name="U_CEP" Type="Edm.String" MaxLength="8" sap:quickinfo="CEP" sap:label="CEP" />
+                <Property Name="U_CIDADE" Type="Edm.String" MaxLength="20" sap:quickinfo="Cidade" sap:label="Cidade" />
+                <Property Name="U_BAIRRO" Type="Edm.String" MaxLength="15" sap:quickinfo="Bairro" sap:label="Bairro" />
+                <Property Name="U_ESTADO" Type="Edm.String" MaxLength="2" sap:quickinfo="UF" sap:label="UF" />
+                <Property Name="U_FILIAL_PAGTO" Type="Edm.Int64" Nullable="false" Precision="5" Scale="0" sap:quickinfo="Código de filial para títulos agrupados" sap:label="Filial Pagto" />
+            </EntityType>
+            <EntityType Name="AgreementsEventList">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="U_ACCTCODE" Type="Edm.String" />
+                <Property Name="U_AGREEMENTTYPE" Type="Edm.String" />
+                <Property Name="U_COMPETENCYTYPE" Type="Edm.String" />
+                <Property Name="U_EVENT_DESCRIPTION" Type="Edm.String" MaxLength="40" />
+                <Property Name="U_ITEMCODE" Type="Edm.String" MaxLength="10" />
+                <Property Name="U_STATUS" Type="Edm.String" />
+                <Property Name="U_TAXCODE" Type="Edm.String" MaxLength="20" />
+                <Property Name="U_USAGEID" Type="Edm.String" />
+                <Property Name="U_USAGETYPE" Type="Edm.String" />
+                <Property Name="U_AGRMNT_TYPE_DESCR" Type="Edm.String" MaxLength="30" />
+                <Property Name="U_COMPETENCY_DESCR" Type="Edm.String" MaxLength="12" />
+                <Property Name="U_STATUS_DESCRIPTION" Type="Edm.String" MaxLength="10" />
+                <Property Name="U_USAGETYPE_DESCR" Type="Edm.String" MaxLength="20" />
+                <Property Name="U_USAGE_DESCRIPTION" Type="Edm.String" MaxLength="20" />
+            </EntityType>
+            <EntityType Name="AgreementsEvent">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+                <Property Name="U_AGREEMENTTYPE" Type="Edm.String" />
+                <Property Name="U_ITEMCODE" Type="Edm.String" />
+                <Property Name="U_TAXCODE" Type="Edm.String" />
+                <Property Name="U_USAGETYPE" Type="Edm.String" />
+                <Property Name="U_USAGEID" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_STATUS" Type="Edm.String" />
+                <Property Name="U_COMPETENCYTYPE" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="BusinessPlace">
+                <Key>
+                    <PropertyRef Name="BPLID" />
+                </Key>
+                <Property Name="BPLID" Type="Edm.String" Nullable="false" MaxLength="7" sap:quickinfo="Identificação interna da filial" sap:label="ID" />
+                <Property Name="BPLName" Type="Edm.String" MaxLength="15" sap:quickinfo="Razão social da filial" sap:label="Razão Social Filial" />
+                <Property Name="AliasName" Type="Edm.String" MaxLength="15" sap:quickinfo="Nome da filial" sap:label="Nome Filial" />
+                <Property Name="BR_CNPJ" Type="Edm.String" MaxLength="20" sap:quickinfo="CNPJ da filial" sap:label="CNPJ Filial" />
+                <Property Name="BR_IE" Type="Edm.String" MaxLength="10" sap:quickinfo="Inscrição estadual da filial" sap:label="IE Filial" />
+                <Property Name="Disabled" Type="Edm.String" MaxLength="1" sap:sortable="false" sap:quickinfo="Indica se a filial está desabilitada" sap:label="Desabilitado" />
+            </EntityType>
+            <EntityType Name="BusinessPartner">
+                <Key>
+                    <PropertyRef Name="CardCode" />
+                </Key>
+                <Property Name="CardCode" Type="Edm.String" Nullable="false" MaxLength="8" sap:quickinfo="Código do parceiro de negócio" sap:label="Código PN" />
+                <Property Name="CardName" Type="Edm.String" MaxLength="20" sap:quickinfo="Nome do parceiro de negócio" sap:label="Parceiro de negócio" />
+                <Property Name="AliasName" Type="Edm.String" MaxLength="20" sap:quickinfo="Nome fantasia do parceiro de negócio" sap:label="Nome fantasia PN" />
+                <Property Name="CardType" Type="Edm.String" MaxLength="5" sap:filterable="false" sap:quickinfo="Tipo de parceiro de negócio" sap:label="Tipo de parceiro" />
+                <Property Name="Address" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="Endereço de cobrança" sap:label="Endereço (cobrança)" />
+                <Property Name="Block" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="Bairro do endereço de cobrança" sap:label="Bairro (cobrança)" />
+                <Property Name="City" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="Município do endereço de cobrança" sap:label="Município (cobrança)" />
+                <Property Name="BillToState" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="Estado do endereço de cobrança" sap:label="Estado (cobrança)" />
+                <Property Name="Country" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="País do endereço de cobrança" sap:label="País (cobrança)" />
+                <Property Name="BR_CNPJ_CPF" Type="Edm.String" MaxLength="20" sap:quickinfo="CNPJ ou CPF do parceiro de negócio" sap:label="CNPJ/CPF" />
+                <Property Name="BR_IE_RG" Type="Edm.String" MaxLength="20" sap:filterable="false" sap:quickinfo="Inscrição estadual ou RG do parceiro de negócio" sap:label="IE/RG" />
+                <Property Name="U_ISCOMPANY" Type="Edm.String" MaxLength="1" sap:filterable="false" sap:quickinfo="Indica se o parceiro é uma pessoa física ou jurídica" sap:label="Pessoa jurídica" />
+            </EntityType>
+            <EntityType Name="BusinessPlaceExtension">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+                <Property Name="U_BPLID" Type="Edm.String" />
+                <Property Name="U_BPLID_Name" Type="Edm.String" />
+                <Property Name="U_CARDCODE" Type="Edm.String" />
+                <Property Name="U_CARDCODE_Name" Type="Edm.String" />
+                <Property Name="U_USAGE" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_OPENINGDATE" Type="Edm.DateTime" />
+                <Property Name="U_CASHACCOUNT" Type="Edm.String" />
+                <Property Name="U_CASHACCOUNT_Name" Type="Edm.String" />
+                <Property Name="U_CREDITCARDID" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_DEBITCARDID" Type="Edm.Int64" Nullable="false" />
+                <Property Name="U_BPLIDLGCY" Type="Edm.Int64" Nullable="false" />
+            </EntityType>
+            <EntityType Name="SalesPerson">
+                <Key>
+                    <PropertyRef Name="SalesEmployeeCode" />
+                </Key>
+                <Property Name="SalesEmployeeCode" Type="Edm.Int64" Nullable="false" />
+                <Property Name="SalesEmployeeName" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="SalesTaxCode">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" />
+            </EntityType>
+            <EntityType Name="Usage">
+                <Key>
+                    <PropertyRef Name="USAGE_ID" />
+                </Key>
+                <Property Name="USAGE_ID" Type="Edm.Int64" Nullable="false" />
+                <Property Name="USAGE_DESCRIPTION" Type="Edm.String" />
+            </EntityType>
+            <ComplexType Name="Branch">
+                <Property Name="BranchName" Type="Edm.String" />
+            </ComplexType>
+            <ComplexType Name="Product">
+                <Property Name="ProductCode" Type="Edm.String" />
+                <Property Name="ProductName" Type="Edm.String" />
+            </ComplexType>
+            <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="AccountReceivableJournalStatus" EntityType="Varsis.OData.Models.AccountReceivableJournalStatus" />
+                <EntitySet Name="AccountReceivableJournalDateType" EntityType="Varsis.OData.Models.AccountReceivableJournalDateType" />
+                <EntitySet Name="AccountReceivableInvoiceSituationList" EntityType="Varsis.OData.Models.AccountReceivableInvoiceSituation" />
+                <EntitySet Name="AccountPayableInvoiceSituationList" EntityType="Varsis.OData.Models.AccountPayableInvoiceSituation" />
+                <EntitySet Name="TransAPInvoicesAddRebateService" EntityType="Varsis.OData.Models.TransAPInvoiceAddRebate" />
+                <EntitySet Name="TransARInvoicesDejectionService" EntityType="Varsis.OData.Models.TransARInvoiceDejection" />
+                <EntitySet Name="TransARInvoicesScheduleService" EntityType="Varsis.OData.Models.TransARInvoiceSchedule" />
+                <EntitySet Name="TransARInvoicesRearrangeService" EntityType="Varsis.OData.Models.TransARInvoiceRearrange" />
+                <EntitySet Name="FavoredList" EntityType="Varsis.OData.Models.Favored" />
+                <EntitySet Name="AccountTypesList" EntityType="Varsis.OData.Models.AccountType" />
+                <EntitySet Name="BarcodeTypes" EntityType="Varsis.OData.Models.BarcodeType" />
+                <EntitySet Name="FinancialSettlements" EntityType="Varsis.OData.Models.FinancialSettlement" />
+                <EntitySet Name="Currencies" EntityType="Varsis.OData.Models.Currency" />
+                <EntitySet Name="TransARInvoicesAgroupService" EntityType="Varsis.OData.Models.TransARInvoiceAgroup" />
+                <EntitySet Name="TransARInvoicesMassUpdateService" EntityType="Varsis.OData.Models.TransARInvoiceMassUpdate" />
+                <EntitySet Name="PaymentTypeList" EntityType="Varsis.OData.Models.PaymentType" />
+                <EntitySet Name="AccountPayableInvoiceStatusList" EntityType="Varsis.OData.Models.AccountPayableInvoiceStatus" />
+                <EntitySet Name="AccountReceivableInvoiceStatusList" EntityType="Varsis.OData.Models.AccountReceivableInvoiceStatus" />
+                <EntitySet Name="AgreementsCompetenciesList" EntityType="Varsis.OData.Models.AgreementsCompetencyList" />
+                <EntitySet Name="AgreementsPeriodicities" EntityType="Varsis.OData.Models.AgreementsPeriodicity" />
+                <EntitySet Name="AgreementsPeriodTypes" EntityType="Varsis.OData.Models.AgreementsPeriodType" />
+                <EntitySet Name="AgreementsSituationList" EntityType="Varsis.OData.Models.AgreementsSituation" />
+                <EntitySet Name="AgreementsUsageTypesList" EntityType="Varsis.OData.Models.AgreementsUsageType" />
+                <EntitySet Name="TransAPInvoicesDealerShipService" EntityType="Varsis.OData.Models.TransAPInvoiceDealerShip" />
+                <EntitySet Name="TransAPInvoicesAgroupService" EntityType="Varsis.OData.Models.TransAPInvoiceAgroup" />
+                <EntitySet Name="TransAPInvoicesRearrangeService" EntityType="Varsis.OData.Models.TransAPInvoiceRearrange" />
+                <EntitySet Name="TransAPInvoicesScheduleService" EntityType="Varsis.OData.Models.TransAPInvoiceSchedule" />
+                <EntitySet Name="TransAPInvoicesMassUpdateService" EntityType="Varsis.OData.Models.TransAPInvoiceMassUpdate" />
+                <EntitySet Name="ConvDate" EntityType="Varsis.OData.Controllers.Parameters" />
+                <EntitySet Name="Sequences" EntityType="Varsis.OData.Models.SystemSequence" />
+                <EntitySet Name="Items" EntityType="Varsis.OData.Models.Item" />
+                <EntitySet Name="AgreementsEventTypesList" EntityType="Varsis.OData.Models.AgreementsEventType" />
+                <EntitySet Name="AgreementsEventStatusList" EntityType="Varsis.OData.Models.AgreementsEventStatus" />
+                <EntitySet Name="InventoryTransactions" EntityType="Varsis.OData.Models.InventoryTransaction" />
+                <EntitySet Name="AccountPayableInvoicesRaw" EntityType="Varsis.OData.Models.AccountPayableInvoiceRaw" />
+                <EntitySet Name="AccountPayableGroupings" EntityType="Varsis.OData.Models.AccountPayableGrouping" />
+                <EntitySet Name="AccountReceivableJournal" EntityType="Varsis.OData.Models.AccountReceivableJournal" />
+                <EntitySet Name="FinancialRebates" EntityType="Varsis.OData.Models.FinancialRebate" />
+                <EntitySet Name="AccountReceivableLogs" EntityType="Varsis.OData.Models.AccountReceivableLog" />
+                <EntitySet Name="AccountReceivableComments" EntityType="Varsis.OData.Models.AccountReceivableComment" />
+                <EntitySet Name="AccountPayableInvoiceNumberList" EntityType="Varsis.OData.Models.AccountPayableInvoiceNumberItem" />
+                <EntitySet Name="AccountPayableInvoices" EntityType="Varsis.OData.Models.AccountPayableInvoice" />
+                <EntitySet Name="AccountReceivableInvoiceNumberList" EntityType="Varsis.OData.Models.AccountReceivableInvoiceNumberItem" />
+                <EntitySet Name="BankAccountList" EntityType="Varsis.OData.Models.BankAccountItem" />
+                <EntitySet Name="BankAccounts" EntityType="Varsis.OData.Models.BankAccounts" />
+                <EntitySet Name="AccountPayableComments" EntityType="Varsis.OData.Models.AccountPayableComment" />
+                <EntitySet Name="AccountPayableLogs" EntityType="Varsis.OData.Models.AccountPayableLog" />
+                <EntitySet Name="AccountReceivableWithHoldingTaxes" EntityType="Varsis.OData.Models.AccountReceivableWithHoldingTax" />
+                <EntitySet Name="MenuNavigationItems" EntityType="Varsis.OData.Models.MenuNavigationItem" />
+                <EntitySet Name="WithHoldingTaxes" EntityType="Varsis.OData.Models.WithHoldingTax" />
+                <EntitySet Name="BankPaymentOccurrences" EntityType="Varsis.OData.Models.BankPaymentOccurrence" />
+                <EntitySet Name="JournalPayments" EntityType="Varsis.OData.Models.JournalPayment" />
+                <EntitySet Name="HouseBankAccounts" EntityType="Varsis.OData.Models.HouseBankAccount" />
+                <EntitySet Name="UserVariants" EntityType="Varsis.OData.Models.UserVariant" />
+                <EntitySet Name="AccountReceivableInvoices" EntityType="Varsis.OData.Models.AccountReceivableInvoice" />
+                <EntitySet Name="Agreements" EntityType="Varsis.OData.Models.Agreements" />
+                <EntitySet Name="AgreementsList" EntityType="Varsis.OData.Models.AgreementsList" />
+                <EntitySet Name="ChartOfAccounts" EntityType="Varsis.OData.Models.ChartOfAccounts" />
+                <EntitySet Name="CostCenterTypes" EntityType="Varsis.OData.Models.CostCenterType" />
+                <EntitySet Name="WizardPaymentMethods" EntityType="Varsis.OData.Models.WizardPaymentMethod" />
+                <EntitySet Name="PaymentTermsTypes" EntityType="Varsis.OData.Models.PaymentTermsType" />
+                <EntitySet Name="CadCompanies" EntityType="Varsis.OData.Models.CadCompany" />
+                <EntitySet Name="AgreementsEventsList" EntityType="Varsis.OData.Models.AgreementsEventList" />
+                <EntitySet Name="AgreementsEvents" EntityType="Varsis.OData.Models.AgreementsEvent" />
+                <EntitySet Name="BusinessPlaces" EntityType="Varsis.OData.Models.BusinessPlace" />
+                <EntitySet Name="BusinessPartners" EntityType="Varsis.OData.Models.BusinessPartner" />
+                <EntitySet Name="BusinessPlacesExtension" EntityType="Varsis.OData.Models.BusinessPlaceExtension" />
+                <EntitySet Name="SalesPersons" EntityType="Varsis.OData.Models.SalesPerson" />
+                <EntitySet Name="SalesTaxCodes" EntityType="Varsis.OData.Models.SalesTaxCode" />
+                <EntitySet Name="Usages" EntityType="Varsis.OData.Models.Usage" />
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableJournalStatus)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableJournalDateType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableInvoiceSituation)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableInvoiceSituation)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceAddRebate)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransARInvoiceDejection)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransARInvoiceSchedule)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransARInvoiceRearrange)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.Favored)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BarcodeType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.FinancialSettlement)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.Currency)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransARInvoiceAgroup)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransARInvoiceMassUpdate)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.PaymentType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableInvoiceStatus)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableInvoiceStatus)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsCompetencyList)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsPeriodicity)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsPeriodType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsSituation)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsUsageType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceDealerShip)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceAgroup)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceRearrange)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceSchedule)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.TransAPInvoiceMassUpdate)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Controllers.Parameters)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.SystemSequence)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.Item)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsEventType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsEventStatus)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.InventoryTransaction)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableInvoiceRaw)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableGrouping)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableJournal)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.FinancialRebate)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableLog)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableComment)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableInvoiceNumberItem)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableInvoice)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableInvoiceNumberItem)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BankAccountItem)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BankAccounts)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableComment)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountPayableLog)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableWithHoldingTax)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.MenuNavigationItem)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.WithHoldingTax)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BankPaymentOccurrence)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.JournalPayment)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.HouseBankAccount)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.UserVariant)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AccountReceivableInvoice)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.Agreements)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsList)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.ChartOfAccounts)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.CostCenterType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.WizardPaymentMethod)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.PaymentTermsType)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.CadCompany)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsEventList)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.AgreementsEvent)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BusinessPlace)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BusinessPartner)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.BusinessPlaceExtension)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.SalesPerson)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.SalesTaxCode)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+                <FunctionImport Name="$count" ReturnType="Edm.Int64" IsBindable="true" m:IsAlwaysBindable="true">
+                    <Parameter Name="bindingParameter" Type="Collection(Varsis.OData.Models.Usage)" Nullable="false" />
+                    <Parameter Name="$filter" Type="Edm.String" FixedLength="false" Unicode="false" />
+                </FunctionImport>
+            </EntityContainer>
+        </Schema>
+        <Schema Namespace="Varsis.OData.Controllers" xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Parameters">
+                <Key>
+                    <PropertyRef Name="Code" />
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" />
+                <Property Name="DueDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date" sap:quickinfo="Data prevista de pagamento" sap:label="Vencimento" />
+                <Property Name="PaymMethod" Type="Edm.String" MaxLength="15" sap:quickinfo="Forma de Pagamento" sap:label="Forma de Pagamento" />
+                <Property Name="PaymType" Type="Edm.String" MaxLength="15" sap:quickinfo="Meio de Pagamento" sap:label="Meio de Pagamento" />
+                <Property Name="BankAccount" Type="Edm.String" MaxLength="15" sap:quickinfo="Conta Bancária" sap:label="Conta Bancária" />
+                <Property Name="Comments" Type="Edm.String" MaxLength="100" sap:quickinfo="Observações" sap:label="Observações" />
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
