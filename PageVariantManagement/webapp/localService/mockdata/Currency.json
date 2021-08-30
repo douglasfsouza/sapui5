@@ -1,0 +1,18 @@
+[
+    {
+        "CURR": "EUR",
+        "DESCR": "Euro",
+        "COUNTRY": "Portugal"
+    },
+    {
+        "CURR": "R$",
+        "DESCR": "Real",
+        "COUNTRY": "Brasil"
+    },
+    {
+        "CURR": "USD",
+        "DESCR": "Dollar",
+        "COUNTRY": "EUA"
+    }
+
+]

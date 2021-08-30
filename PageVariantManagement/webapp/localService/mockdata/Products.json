@@ -1,0 +1,20 @@
+[
+  {
+	"ProductId": "4711",
+	"Price": 856.49,
+	"CurrencyCode": "EUR",
+	"ProductName": "Coffee",
+	"Country": "55",
+	"Supplier": "2",
+	"CategoryCode": "Fd"
+  },
+  {
+	"ProductId": "4712",
+	"Price": 148.00,
+	"CurrencyCode": "USD",
+	"ProductName": "Binocular",
+	"Country": "57",
+	"Supplier": "1",
+	"CategoryCode": "El"
+  }
+]

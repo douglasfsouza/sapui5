@@ -1,0 +1,14 @@
+[
+  {
+	"CAT": "Fd",
+	"DESCR": "Food"
+  },
+  {
+	  "CAT": "Lap",
+	  "DESCR": "Laptop"
+  },
+  {
+	  "CAT": "El",
+	  "DESCR": "Eletronics"
+  }
+]

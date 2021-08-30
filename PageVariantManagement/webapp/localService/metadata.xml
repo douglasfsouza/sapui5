@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+		   xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+		   xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+		   xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="com.sap.doug"
+				sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			
+			<EntityType Name="Product">
+				<Key>
+					<PropertyRef Name="ProductId"/>
+				</Key>
+				<Property Name="ProductId" Type="Edm.String"/>
+				<Property Name="Price" Type="Edm.Decimal"
+						  sap:unit="CurrencyCode" sap:label="Price"
+						  sap:updatable="true"/>
+
+				<Property Name="CurrencyCode" 
+				          Type="Edm.String"
+						  MaxLength="3" 
+						  sap:label="Currency" 
+						  sap:semantics="currency-code"
+						  sap:updatable="true"
+						  sap:filterable="true"
+						  />
+				<Property Name="ProductName" Type="Edm.String"
+				          sap:label="Product Name"
+						  Nullable="false"
+				/>
+				<Property Name="Country" 
+				          Type="Edm.String"
+				          sap:label="Country"
+						  sap:semantics="Country"
+				/>
+				<Property Name="Supplier"
+				          Type="Edm.String"
+						  Nullable="false"
+						  sap:label="Parceiro de Negocio"
+						  sap:semantics="Parceiro de Negocio"
+				/>
+				<Property Name="CategoryCode"
+				          Type="Edm.String"
+						  Nullable="false"
+						  sap:label="Category-Filtro manual"
+						  sap:semantics="Categoryx3"
+						  sap:filterable="true"
+				/>
+
+			</EntityType>
+
+			<EntityType Name="Currency">
+				<Key>
+					<PropertyRef Name="CURR"/>
+				</Key>
+				<!--TEXT É UM CAMPO E NAO UM TEXTO-->
+				<Property Name="CURR" Type="Edm.String"
+				          sap:text="DESCR"
+				          sap:label="Currency Code"
+				          sap:filterable="true"				
+				/>
+				<Property Name="DESCR" Type="Edm.String"
+						  sap:label="Description"						  
+				/>
+				<Property Name="COUNTRY" 
+				          Type="Edm.String"
+						  sap:label="Country"
+						  sap:filterable="true"		
+						  sap:semantics="Country"				  
+				/>
+			</EntityType>
+
+			<EntityType Name="Categories">
+				<Key>
+					<PropertyRef Name="CAT"/>
+				</Key>
+				<Property Name="CAT" Type="Edm.String"
+				          sap:text="DESCR"
+						  sap:label="Categoryx5"
+						  sap:filterable="true"
+						  />
+				<Property Name="DESCR" Type="Edm.String"
+				          sap:text="Description"
+						  sap:label="Description"
+						  />
+			</EntityType>
+
+			<EntityType Name="Countries">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String"
+				          sap:text="Name"
+						  sap:label="Code"
+						  sap:filterable="true"
+						  />
+				<Property Name="Name" Type="Edm.String"
+				          sap:text="Name"
+						  sap:label="Name"
+						  />
+				<Property Name="Idiom" Type="Edm.String"
+						  sap:label="Idiom"
+						  sap:filterable="false"
+						  />
+			</EntityType>
+
+			<EntityType Name="BusinessPartners">
+				<Key>
+					<PropertyRef Name="CardCode"/>
+				</Key>
+				<Property Name="CardCode" Type="Edm.String"
+				          sap:text="CardName"
+						  sap:label="Code"
+						  sap:filterable="true"
+						  />
+				<Property Name="CardName" Type="Edm.String"
+				          sap:text="Name"
+						  sap:label="Name"
+						  />				
+			</EntityType>
+
+
+			<EntityContainer m:IsDefaultEntityContainer="true"
+							 sap:supported-formats="atom json">
+				<EntitySet Name="Products" EntityType="com.sap.doug.Product"
+						   sap:updatable="true"/>
+			    <EntitySet Name="Currency" EntityType="com.sap.doug.Currency"
+				           sap:updatable="false"/>
+				<EntitySet Name="Categories" EntityType="com.sap.doug.Categories"
+				           sap:updatable="false"/>
+				<EntitySet Name="Countries" EntityType="com.sap.doug.Countries"
+				           sap:updatable="false"/>
+				<EntitySet Name="BusinessPartners" EntityType="com.sap.doug.BusinessPartners"
+				           sap:updatable="false"/>
+
+			</EntityContainer>
+
+			<Annotations Target="com.sap.doug.Product/Supplier"
+			             xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+						 <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+						 	<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+							 	<PropertyValue Property="Label" String="Supplier"/>
+								<PropertyValue Property="CollectionPath" String="BusinessPartners"/>
+                                <PropertyValue Property="SearchSupported" Bool="false"/>
+						        <PropertyValue Property="Parameters">
+									<Collection>
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut">
+											<PropertyValue Property="LocalDataProperty"
+													    	PropertyPath="Supplier"
+											/>
+											<PropertyValue Property="ValueListProperty"
+														   String="CardCode"
+											/>
+										</Record>
+										
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+											<PropertyValue Property="ValueListProperty"
+														   String="CardName"
+											/>
+										</Record>									
+
+										
+									</Collection>
+								</PropertyValue>
+
+						 	</Record>
+						 </Annotation>
+			</Annotations>	
+
+			<Annotations Target="com.sap.doug.Product/Country"
+			             xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+						 <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+						 	<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+							 	<PropertyValue Property="Label" String="Country"/>
+								<PropertyValue Property="CollectionPath" String="Countries"/>
+                                <PropertyValue Property="SearchSupported" Bool="false"/>
+						        <PropertyValue Property="Parameters">
+									<Collection>
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut">
+											<PropertyValue Property="LocalDataProperty"
+													    	PropertyPath="Country"
+											/>
+											<PropertyValue Property="ValueListProperty"
+														   String="ID"
+											/>
+										</Record>
+										
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+											<PropertyValue Property="ValueListProperty"
+														   String="Name"
+											/>
+										</Record>	
+
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+											<PropertyValue Property="ValueListProperty"
+														   String="Idiom"
+											/>
+										</Record>														
+
+										
+									</Collection>
+								</PropertyValue>
+
+						 	</Record>
+						 </Annotation>
+			</Annotations>	
+
+			<Annotations Target="com.sap.doug.Product/CategoryCode"
+			             xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+						 <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+						 	<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+							 	<PropertyValue Property="Label" String="Categoryx1"/>
+								<PropertyValue Property="CollectionPath" String="Categories"/>
+                                <PropertyValue Property="SearchSupported" Bool="false"/>
+						        <PropertyValue Property="Parameters">
+									<Collection>
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut">
+											<PropertyValue Property="LocalDataProperty"
+													    	PropertyPath="CategoryCode"
+											/>
+											<PropertyValue Property="ValueListProperty"
+														   String="CAT"
+											/>
+										</Record>
+										
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+											<PropertyValue Property="ValueListProperty"
+														   String="DESCR"
+											/>
+										</Record>
+
+										<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterConstant">
+											<PropertyValue Property="ValueListProperty" PropertyPath="CAT"/>
+											<PropertyValue Property="Constant" String="Fd" />
+										</Record>									
+
+										
+									</Collection>
+								</PropertyValue>
+
+						 	</Record>
+						 </Annotation>
+			</Annotations>			 
+
+			<Annotations Target="com.sap.doug.Product/CurrencyCode"
+			             xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+						<PropertyValue Property="Label" String="Moeda"/>
+						<PropertyValue Property="CollectionPath" String="Currency"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+
+							<!-- NAO FUNCIONOU CONSTANT E IN-->
+
+								<Record Type="com.sap.vocabularies.Common.v2.ValueListParameterConstant">
+									<PropertyValue Property="ValueListProperty" PropertyPath="Country"/>
+									<PropertyValue Property="Constant" String="EUA" />
+								</Record>
+											
+
+								<!--
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty"
+									               PropertyPath="Country"
+									/>
+									<PropertyValue Property="ValueListProperty"
+									               String="Country"
+									/>
+								</Record >
+								-->
+								
+								
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty"
+									               PropertyPath="CurrencyCode"
+									/>
+									<PropertyValue Property="ValueListProperty"
+									               String="CURR"
+									/>
+								</Record >
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty"
+									               String="DESCR"
+									/>
+								</Record>
+								
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty"
+									               String="COUNTRY"
+									/>
+								</Record>								
+								
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="com.sap.doug.Product"
+		             	xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+						 <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+						 	<Collection>
+							 	<Record Type="com.sap.vocabularies.UI.v1.DataField">
+								 	<PropertyValue Property="Value" Path="ProductId"/>
+							 	</Record>
+								 <Record Type="com.sap.vocabularies.UI.v1.DataField">
+								 	<PropertyValue Property="Value" Path="ProductName"/>
+							 	</Record>
+								 <Record Type="com.sap.vocabularies.UI.v1.DataField">
+								 	<PropertyValue Property="Value" Path="Price"/>
+							 	</Record>
+								 <Record Type="com.sap.vocabularies.UI.v1.DataField">
+								 	<PropertyValue Property="Value" Path="CurrencyCode"/>
+							 	</Record>
+								  <Record Type="com.sap.vocabularies.UI.v1.DataField">
+								 	<PropertyValue Property="Value" Path="CategoryCode"/>
+							 	</Record>
+						 	</Collection>
+						 </Annotation>
+
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

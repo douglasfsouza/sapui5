@@ -1,0 +1,35 @@
+Ciar menu no front-end VARSIS sapui5
+  - varsis.www.login
+        - menu.json
+		   - items: 
+		       -{
+					"componentName": "target_name(1)@routeName(2)",
+					"routeName": "routeName(3)",
+					"title": "Pagamento eletrônico (novo)",
+					"subtitle": "", 
+					"showInLaunchPad": true,
+					"showInMenu": true
+				},
+				
+		- manifest.json
+		    - componentUsages
+			    componentName(4)
+				   "name": nome_projeto. ex: "varsis.www.agreements",]		
+					  
+			- routes:
+				 name: routeName(2)
+					 target: 
+						 name: target_name(1)
+						 
+			- targets:
+				 target_name(1) 
+					  usage: componentName(4)
+					 
+  - Projeto. ex. varsis.www.agreements
+       - manifest.json
+	        - routes:
+                 name: routeName(3)
+                 target: target_name(3)		
+            - targets
+                 target_name(3)		
+                     viewName: xml_name  Ex: AgreementsEventsList				 

@@ -1,0 +1,72 @@
+<mvc:View
+	controllerName="doug.ui.smartControls.controller.App"
+	xmlns="sap.m"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:sap.ui.layout="sap.ui.layout"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
+	xmlns:smartField="sap.ui.comp.smartfield">
+
+	<HBox class="exPageVariantPadding">
+		<smartVariantManagement:SmartVariantManagement
+		   id="pageVariantId"
+		   persistencyKey="PageVariantPKey"/>
+
+	</HBox>
+
+	<smartFilterBar:SmartFilterBar
+		id="smartFilterBar"
+		persistencyKey="SmartFilterPKey"
+		smartVariant="pageVariantId"
+		entitySet="Products">
+			<smartFilterBar:controlConfiguration>
+				<smartFilterBar:ControlConfiguration
+				     key="CategoryCode"
+					 visibleInAdvancedArea="true"					 
+					 preventInitialDataFetchInValueHelpDialog="true">
+				</smartFilterBar:ControlConfiguration>			
+
+				<smartFilterBar:ControlConfiguration
+				     key="CurrencyCode"
+					 visibleInAdvancedArea="true"
+					 preventInitialDataFetchInValueHelpDialog="false">
+				</smartFilterBar:ControlConfiguration>
+
+				<smartFilterBar:ControlConfiguration
+				     key="Country"
+					 visibleInAdvancedArea="true"
+					 preventInitialDataFetchInValueHelpDialog="false">
+				</smartFilterBar:ControlConfiguration>
+
+				<smartFilterBar:ControlConfiguration
+				     key="Supplier"
+					 visibleInAdvancedArea="true"
+					 preventInitialDataFetchInValueHelpDialog="false">
+				</smartFilterBar:ControlConfiguration>
+
+
+			</smartFilterBar:controlConfiguration>
+	</smartFilterBar:SmartFilterBar>
+
+	<smartTable:SmartTable
+		id="smartTable_ResponsiveTable"
+		smartFilterId="smartFilterBar"
+		smartVariant="pageVariantId"
+		tableType="ResponsiveTable"
+		editable="false"
+		entitySet="Products"
+		useVariantManagement="true"
+		useTablePersonalisation="true"
+		header="Products"
+		showRowCount="true"
+		useExportToExcel="false"
+		enableAutoBinding="true"
+		persistencyKey="SmartTablePKey"
+		>
+
+
+	</smartTable:SmartTable>
+	
+	</mvc:View>
