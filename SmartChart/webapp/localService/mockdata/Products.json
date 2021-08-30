@@ -1,0 +1,22 @@
+[
+  {
+	"ProductId": "4711",
+	"Price": 856.49,
+	"CurrencyCode": "EUR",
+	"ProductName": "Coffee",
+	"Description": "Coffee",
+	"Country": "55",
+	"Supplier": "2",
+	"SupplierName": "Pelé",
+	"CategoryCode": "Fd",
+	"WeightMeasure": 1467,
+	"WeightUnit": "g",
+	"Status": "Available",
+	"Quantity": 300,
+	"UoM": "PC",
+	"Width": 51,
+	"Depth": 42,
+	"Height": 18,
+	"DimUnit": "cm"
+  }
+]

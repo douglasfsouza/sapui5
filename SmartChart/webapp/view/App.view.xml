@@ -1,0 +1,30 @@
+<mvc:View
+	controllerName="doug.ui.smartControls.controller.App"
+	xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core/CustomData/1"
+	xmlns:sl="sap.ui.comp.navpopover"
+	xmlns:smartChart="sap.ui.comp.smartchart"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+<smartChart:SmartChart enableAutoBinding="true"
+                       entitySet="Products"
+					   useVariantManagement="true"
+					   persistencyKey="SmartChart_Explored"
+					   useChartPersonalisation="true"
+					   header="Products"
+>
+	<smartChart:semanticObjectController>
+		<sl:SemanticObjectController
+		      navigationTargetObtained="onNavigationTargetObtained"
+		      navigate="onNavigate"/>
+
+	</smartChart:semanticObjectController>    
+	
+</smartChart:SmartChart>
+
+
+
+	
+	
+	</mvc:View>
