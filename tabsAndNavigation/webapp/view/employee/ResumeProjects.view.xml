@@ -8,7 +8,7 @@
 >
     <Text
         renderWhitespace="false"
-        text="{Projects}"
+        text="{Projects} xxx -> this tab is a xml"
         textAlign="Begin"
         textDirection="Inherit"
         wrapping="true"
