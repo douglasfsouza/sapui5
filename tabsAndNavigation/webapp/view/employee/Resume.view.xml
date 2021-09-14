@@ -1,0 +1,136 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.employee.Resume"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page
+        id="employeeResumePage"
+        backgroundDesign="Standard"
+        contentOnlyBusy="false"
+        enableScrolling="true"
+        floatingFooter="false"
+        navButtonTooltip=""
+        navButtonPress=".onNavBack"
+        showFooter="true"
+        showHeader="true"
+        showNavButton="true"
+        showSubHeader="true"
+        title="Resume of {FirstName} {LastName}"
+        titleAlignment="Auto"
+        titleLevel="Auto"
+    >
+        <content>
+            <IconTabBar
+                id="iconTabBar"
+                applyContentPadding="true"
+                ariaTexts=""
+                backgroundDesign="Solid"
+                enableTabReordering="false"
+                expandable="true"
+                expanded="true"
+                headerBackgroundDesign="Transparent"
+                headerMode="Standard"
+                maxNestingLevel="0"
+                selectedKey=""
+                stretchContentHeight="false"
+                tabDensityMode="Cozy"
+                upperCase="false"
+                class="sapUiResponsiveContentPadding"
+                binding="{Resume}"
+            >
+                
+                <items>
+                    <IconTabFilter
+                        id="infoTab"
+                        text="tab info"
+                        key="info"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                        <Text
+                            renderWhitespace="false"
+                            text="{Information}"
+                            textAlign="Begin"
+                            textDirection="Inherit"
+                            wrapping="true"
+                            wrappingType="Normal"
+                        >
+                            
+                        </Text>
+                            
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="projectsTab"
+                        text="tab projects"
+                        key="Projects"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                        <mvc:XMLView
+                           viewName="sap.ui.demo.nav.view.employee.ResumeProjects">
+                        </mvc:XMLView>                       
+                       
+                    </IconTabFilter>
+
+
+                    <IconTabFilter
+                        id="hobbies"
+                        text="Hobbies"
+                        key="Hobbies"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                        <Text
+                            renderWhitespace="false"
+                            text="{Hobbies}"
+                            textAlign="Begin"
+                            textDirection="Inherit"
+                            wrapping="true"
+                            wrappingType="Normal"
+                        >
+                            
+                        </Text>
+                            
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="notes"
+                        text="Notes"
+                        key="Notes"
+                        design="Vertical"
+                        icon="empty string"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                       <Text
+                           renderWhitespace="false"
+                           text="{Notes}"
+                           textAlign="Begin"
+                           textDirection="Inherit"
+                           wrapping="true"
+                           wrappingType="Normal"
+                       >
+                           
+                       </Text>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

@@ -29,7 +29,7 @@ Ciar menu no front-end VARSIS sapui5
        - manifest.json
 	        - routes:
                  name: routeName(3)
-                 target: target_name(3)		
-            - targets
-                 target_name(3)		
+                 target: target_name(5)		
+            - targets //uma target não precisa ter route, pode ser chamada diretamente do controller
+                 target_name(5)		
                      viewName: xml_name  Ex: AgreementsEventsList				 

@@ -1,0 +1,99 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.employee.EmployeeEdit"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page id="employeeEditPage"
+          title="Detail for {FirstName} {LastName}"
+          showNavButton="true"
+          navButtonPress="onNavBack"
+          class="sapUiResponsiveContentPadding"
+    >
+        <content>
+            <Panel id="employeeEditPanel"
+                   width="auto"
+                   class="sapUiResponsiveMargin sapUiNoContentPadding">
+                   <headerToolbar>
+                       <Toolbar
+                           active="false"
+                           ariaHasPopup=""
+                           design="Auto"
+                           enabled="true"
+                           style="Standard">     
+                                <Title text="Employee ID: {EmployeeID}" level="H2"/>
+                                <ToolbarSpacer />     
+                                <Link
+                                    emphasized="false"
+                                    enabled="true"
+                                    href=""
+                                    rel=""
+                                    subtle="false"
+                                    target=""
+                                    text="Flip to Resume"
+                                    textAlign="Initial"
+                                    textDirection="Inherit"
+                                    validateUrl="false"
+                                    width=""
+                                    wrapping="false"
+                                    press=".onShowResume"
+                                >
+                                    
+                                </Link>       
+                       </Toolbar>             
+                       
+
+                   </headerToolbar>
+                   <content>
+                       <f:SimpleForm minWidth="1024"
+                                     editable="false"
+                                     layout="ResponsiveGridLayout"
+                                     labelSpanL="3"
+                                     labelSpanM="3"
+                                     emptySpanL="4"
+                                     emptySpanM="4"
+                                     columnsL="1"
+                                     columnsM="1">
+                                     
+                                    <f:content>
+                                        <Label text="First Name" />
+                                        <Text text="{FirstName}" />
+
+                                        <Label text="Last Name" />
+                                        <Text text="{LastName}" />
+
+                                        <Label text="Address" />
+                                        <Text text="{Address}" />
+
+                                        <Label text="City" />
+                                        <Text text="{City}, {Region}" />
+
+                                        <Label text="Postal Code" />
+                                        <Text text="{PostalCode}" />
+
+                                        <Label text="Home Phone" />
+                                        <Text text="{HomePhone}" />
+
+                                        <Label text="Country" />
+                                        <Text text="{Country}" />
+
+
+
+
+                                            
+                                    </f:content>
+                                         
+                                         
+                                     
+                       
+                       </f:SimpleForm>
+                   </content>
+            
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>
