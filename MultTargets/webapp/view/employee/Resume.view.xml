@@ -1,0 +1,105 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.employee.Resume"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page
+        id="employeeResumePage"
+        title="Resume of {FirstName} {LastName}"
+        contentOnlyBusy="false"
+        enableScrolling="true"
+        floatingFooter="false"
+        navButtonTooltip="Resumo"
+        navButtonPress=".onNavBack"
+        showFooter="true"
+        showHeader="true"
+        showNavButton="true"
+        showSubHeader="true"
+        
+        titleAlignment="Auto"
+        titleLevel="Auto"
+        class="sapUiResponsiveContentPadding"
+    >
+        <content>
+            <IconTabBar
+                id="iconTabBar"
+                headerBackgroundDesign="Transparent"
+                class="sapUiResponsiveContentPadding"                  
+                binding="{Resume}"                
+                select=".onTabSelect"
+                selectedKey="{view>/selectedTabKey}"            
+                
+            >
+                
+                <items>
+                    <IconTabFilter
+                        id="infoTab"
+                        text="tab info"
+                        key="info"
+                        
+                    >
+                        <Text
+                            renderWhitespace="true"
+                            text="{Information}"
+                            textAlign="Begin"
+                            textDirection="Inherit"
+                            wrapping="true"
+                            wrappingType="Normal"
+                        >
+                            
+                        </Text>
+                            
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="projectsTab"
+                        text="tab projects"
+                        key="Projects"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                        <mvc:XMLView
+                           viewName="sap.ui.demo.nav.view.employee.ResumeProjects">
+                        </mvc:XMLView>                       
+                       
+                    </IconTabFilter>
+
+
+                    <IconTabFilter
+                        id="hobbiesTab"
+                        text="Hobbies"
+                        key="Hobbies"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                        
+                            
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="notesTab"
+                        text="Notes"
+                        key="Notes"
+                        design="Vertical"
+                        iconColor="Default"
+                        iconDensityAware="true"
+                        showAll="false"
+                        visible="true"
+                    >
+                       
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

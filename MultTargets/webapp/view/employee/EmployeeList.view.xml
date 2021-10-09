@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.employee.EmployeeList"
+    id="employeesId"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page
+        id="employeeListPage"
+        title="Employees"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+        class="sapUiResponsiveContentPadding">
+
+        <content>
+            <List id="employeeList" headerText="Employee List" items="{/Employees}"        >
+                <items>
+                    <StandardListItem
+                        activeIcon=""
+                        adaptTitleSize="true"
+                        description=""
+                        icon=""
+                        iconDensityAware="false"
+                        iconInset="false"
+                        info=""
+                        infoState="None"
+                        infoStateInverted="false"
+                        infoTextDirection="Inherit"
+                        title="{FirstName} {LastName} "
+                        titleTextDirection="Inherit"
+                        wrapping="false"
+                        type="Navigation"
+                        press=".onEmployeePress"
+                    >
+                        
+                    </StandardListItem>
+                </items>
+            </List>
+            
+        </content>
+
+    </Page>
+        
+</mvc:View>

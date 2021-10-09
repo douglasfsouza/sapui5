@@ -1,0 +1,52 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.NotFound"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <MessagePage
+        description="Check the filter settings. - description"
+        enableFormattedText="false"
+        icon="sap-icon://documents"
+        iconAlt=""
+        showHeader="true"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        text="No matching items found. - text"
+        textDirection="Inherit"
+        title="Page not found title"
+        busy="false"
+        busyIndicatorDelay="1000"
+        busyIndicatorSize="Medium"
+        fieldGroupIds=""
+        visible="true"
+    >
+        <buttons>
+            <!--sap.m.Button-->
+        </buttons>
+        <customDescription>
+            <!--sap.m.Link-->
+        </customDescription>
+        <customText>
+            <!--sap.m.Link-->
+        </customText>
+        <customData>
+            <!--sap.ui.core.CustomData-->
+        </customData>
+        <dependents>
+            <!--sap.ui.core.Element-->
+        </dependents>
+        <dragDropConfig>
+            <!--sap.ui.core.dnd.DragDropBase-->
+        </dragDropConfig>
+        <layoutData>
+            <!--sap.ui.core.LayoutData-->
+        </layoutData>
+        <tooltip>
+            <!--sap.ui.core.TooltipBase-->
+        </tooltip>
+    </MessagePage>
+</mvc:View>

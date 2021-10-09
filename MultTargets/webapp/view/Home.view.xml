@@ -1,0 +1,167 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
+        <content>
+            <Button
+                class="sapUiTinyMarginEnd"
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Navigation"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                busy="false"
+                busyIndicatorDelay="1000"
+                busyIndicatorSize="Medium"
+                fieldGroupIds=""
+                visible="true"
+            >
+                <customData>
+                    <!--sap.ui.core.CustomData-->
+                </customData>
+                <dependents>
+                    <!--sap.ui.core.Element-->
+                </dependents>
+                <dragDropConfig>
+                    <!--sap.ui.core.dnd.DragDropBase-->
+                </dragDropConfig>
+                <layoutData>
+                    <!--sap.ui.core.LayoutData-->
+                </layoutData>
+                <tooltip>
+                    <!--sap.ui.core.TooltipBase-->
+                </tooltip>
+            </Button>
+
+            <Button
+                class="sapUiTinyMarginEnd"
+                press=".onDougClick"
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Doug"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                busy="false"
+                busyIndicatorDelay="1000"
+                busyIndicatorSize="Medium"
+                fieldGroupIds=""
+                visible="true"
+            >
+                <customData>
+                    <!--sap.ui.core.CustomData-->
+                </customData>
+                <dependents>
+                    <!--sap.ui.core.Element-->
+                </dependents>
+                <dragDropConfig>
+                    <!--sap.ui.core.dnd.DragDropBase-->
+                </dragDropConfig>
+                <layoutData>
+                    <!--sap.ui.core.LayoutData-->
+                </layoutData>
+                <tooltip>
+                    <!--sap.ui.core.TooltipBase-->
+                </tooltip>
+            </Button>
+            <Button
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Go Room"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                busy="false"
+                busyIndicatorDelay="1000"
+                busyIndicatorSize="Medium"
+                fieldGroupIds=""
+                visible="true"
+                press=".onGoRoom"
+            >
+                <customData>
+                    <!--sap.ui.core.CustomData-->
+                </customData>
+                <dependents>
+                    <!--sap.ui.core.Element-->
+                </dependents>
+                <dragDropConfig>
+                    <!--sap.ui.core.dnd.DragDropBase-->
+                </dragDropConfig>
+                <layoutData>
+                    <!--sap.ui.core.LayoutData-->
+                </layoutData>
+                <tooltip>
+                    <!--sap.ui.core.TooltipBase-->
+                </tooltip>
+            </Button>
+            <Button
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Display Notfound"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                press=".onDisplayNotfound"
+                id="btnDisplayNotfound"
+            >        
+                
+            </Button>
+            <Button
+                id="btnEmployee"
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Employee"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                class="sapUiTinyMarginEnd"
+                press=".onNavToEmployee"
+            >
+                
+            </Button>
+            <Button
+                id="employeeOverviewBtn"
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="EmployOverview"
+                textDirection="Inherit"
+                type="Default"
+                press=".onNavToEmployeeOverview"
+                class="sapUiTinyMarginEnd"
+            >
+                
+            </Button>
+        </content>
+    </Page>
+    
+</mvc:View>

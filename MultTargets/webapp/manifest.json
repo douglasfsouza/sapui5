@@ -1,0 +1,192 @@
+{
+	"_version": "1.21.0",
+	"sap.app": {
+		"id": "sap.ui.demo.nav",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			],
+			"fallbackLocale": ""
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"employeeRemote": {
+				"uri": "/here/goes/your/serviceUrl/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri" : "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+  	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.ui.demo.nav.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.ui.demo.nav.i18n.i18n",
+					"supportedLocales": [
+						""
+					],
+					"fallbackLocale": ""
+				}
+			},
+			"": {
+				"dataSource": "employeeRemote"
+			}
+		},
+		"routing": {
+			"config":{
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sap.ui.demo.nav.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition":"slide",
+				"async": true,
+				"bypassed": {
+					"target":"notFound"
+				}
+				
+			},
+			"routes":[{
+				"pattern": "ignorar",
+				"name": "appHome",
+				"target": "home"
+			},
+			{
+				"pattern": "",
+				"name": "appRoom",
+				"target": "room"
+			},
+			{
+				"pattern": "employees",
+				"name": "employeesList",
+				"target": "employees"
+			},
+			{
+				"pattern": "employees/overview",
+				"name": "employeeOverview",
+				"target":["employeeOverviewTop","employeeOverviewContent"]
+			},
+			{
+				"pattern": "employees/{employeeId}",
+				"name": "employeeEdit",
+				"target": "employeeEdit"
+			},
+			{
+				"pattern": "employees/{employeeId}/resume:?query:",
+				"name": "employeeResume",
+				"target":"employeeResume"
+			}
+			
+		
+		],			
+			"targets": {
+				"home":{
+					"viewId": "home",
+					"viewName": "Home",
+					"viewLevel": 1
+				},
+				"room":{
+					"viewId": "room",
+					"viewName": "Room",
+					"viewLevel": 1
+				},
+				"employees":
+				{
+					"viewId": "employeesId",
+					"viewName": "EmployeeList",
+					"viewLevel": 2,
+					"viewPath": "sap.ui.demo.nav.view.employee"
+				},
+				"employeeEdit":
+				{
+					"viewId": "employeeEdit",
+					"viewName": "employee.EmployeeEdit",
+					"viewLevel": 3
+				},
+				"employeeResume":{
+					"viewId": "resume",
+					"viewName": "employee.Resume",
+					"viewLevel": 4,
+					"transition":"flip"
+				},
+				"resumeTabHobbies":{					
+					"viewId": "idResumeTabHobbies",
+					"parent": "employeeResume",
+					"dgsComentario1": "parent é uma target que deve ser carregada antes",
+					"viewName": "ResumeHobbies",
+					"viewPath": "sap.ui.demo.nav.view.employee",					
+					"controlId": "hobbiesTab",
+					"dgsComentario": "controlId é nome do controle no xml",
+					"controlAggregation": "content"
+				},
+				"resumeTabNotes":{					
+					"viewId": "idResumeTabNotes",
+					"parent": "employeeResume",
+					"viewName": "ResumeNotes",
+					"viewPath": "sap.ui.demo.nav.view.employee",
+					"controlId": "notesTab",
+					"controlAggregation": "content"
+				},
+				"employeeOverview":{
+					"viewId": "employeeOverview",
+					"viewPath": "sap.ui.demo.nav.view.employee.overview",
+					"viewName": "EmployeeOverview",
+					"viewLevel": 2
+				},
+				"employeeOverviewTop":{
+					"viewId": "employeeOverviewTop",
+					"parent": "employeeOverview",
+					"viewPath": "sap.ui.demo.nav.view.employee.overview",
+					"viewName": "EmployeeOverviewTop",
+					"controlId": "EmployeeOverviewParent",
+					"controlAggregation": "content"
+				},
+				"employeeOverviewContent":{
+					"viewId": "employeeOverviewContent",
+					"parent": "employeeOverview",
+					"viewPath": "sap.ui.demo.nav.view.employee.overview",
+					"viewName": "EmployeeOverviewContent",
+					"controlId": "EmployeeOverviewParent",
+					"controlAggregation": "content"
+				},
+				"notFound":{
+					"viewId": "notFound",
+					"viewName": "NotFound",
+					"viewLevel": 1,
+					"transition": "flip"
+				}
+			}
+		}
+	}
+}
