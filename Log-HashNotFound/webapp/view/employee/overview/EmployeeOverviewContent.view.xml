@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.employee.overview.EmployeeOverviewContent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Table id="employeesTable"
+		items="{/Employees}"
+	    itemPress=".onItemPressed"	>
+		<headerToolbar>
+			<Toolbar>
+				<Title text="Employees" level="H2"/>
+				<ToolbarSpacer />
+				<SearchField id="searchField" search=".onSearchEmployeesTable" width="50%"/>
+				<Button icon="sap-icon://sort" press=".onSortButtonPressed"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="employeeIDCol"><Text text="EmployeeID"/></Column>
+			<Column id="firstNameCol" demandPopin="true"><Text text="FirstName"/></Column>
+			<Column id="lastNameCol" demandPopin="true"><Text text="LastName"/></Column>
+			<Column id="addressCol" minScreenWidth="Tablet" demandPopin="true"><Text text="Address"/></Column>
+			<Column id="cityCol" minScreenWidth="Tablet" demandPopin="true"><Text text="City"/></Column>
+			<Column id="regionCol" minScreenWidth="Tablet" demandPopin="true"><Text text="Region"/></Column>
+			<Column id="postalCodeCol" minScreenWidth="Tablet" demandPopin="true"><Text text="PostalCode"/></Column>
+			<Column id="countryCol" minScreenWidth="Tablet" demandPopin="true"><Text text="Country"/></Column>
+			<Column id="homePhoneCol" minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="Phone"/></Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation">
+				<cells>
+					<Text text="{EmployeeID}"/>
+					<Text text="{FirstName}"/>
+					<Text text="{LastName}"/>
+					<Text text="{Address}"/>
+					<Text text="{City}"/>
+					<Text text="{Region}"/>
+					<Text text="{PostalCode}"/>
+					<Text text="{Country}"/>
+					<Text text="{HomePhone}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

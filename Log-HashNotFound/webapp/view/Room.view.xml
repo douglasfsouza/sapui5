@@ -1,0 +1,89 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.Room"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Page title="Room" class="sapUiResponsiveContentPadding" showNavButton="true" navButtonPress="onNavBack" >
+        <content>
+           
+            <Button
+                class="sapUiTinyMarginEnd"
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Navigation"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                busy="false"
+                busyIndicatorDelay="1000"
+                busyIndicatorSize="Medium"
+                fieldGroupIds=""
+                visible="true"
+            >
+                <customData>
+                    <!--sap.ui.core.CustomData-->
+                </customData>
+                <dependents>
+                    <!--sap.ui.core.Element-->
+                </dependents>
+                <dragDropConfig>
+                    <!--sap.ui.core.dnd.DragDropBase-->
+                </dragDropConfig>
+                <layoutData>
+                    <!--sap.ui.core.LayoutData-->
+                </layoutData>
+                <tooltip>
+                    <!--sap.ui.core.TooltipBase-->
+                </tooltip>
+            </Button>
+
+            <Button
+                class="sapUiTinyMarginEnd"
+                press=".onDougClick"
+                activeIcon=""
+                ariaHasPopup="None"
+                enabled="true"
+                icon="empty string"
+                iconDensityAware="true"
+                iconFirst="true"
+                text="Doug in Room"
+                textDirection="Inherit"
+                type="Default"
+                width=""
+                busy="false"
+                busyIndicatorDelay="1000"
+                busyIndicatorSize="Medium"
+                fieldGroupIds=""
+                visible="true"
+            >
+                <customData>
+                    <!--sap.ui.core.CustomData-->
+                </customData>
+                <dependents>
+                    <!--sap.ui.core.Element-->
+                </dependents>
+                <dragDropConfig>
+                    <!--sap.ui.core.dnd.DragDropBase-->
+                </dragDropConfig>
+                <layoutData>
+                    <!--sap.ui.core.LayoutData-->
+                </layoutData>
+                <tooltip>
+                    <!--sap.ui.core.TooltipBase-->
+                </tooltip>
+            </Button>
+
+            <Label text="Primeiro procura a target com pattern = empty">
+           </Label>
+        </content>
+    </Page>
+    
+</mvc:View>
