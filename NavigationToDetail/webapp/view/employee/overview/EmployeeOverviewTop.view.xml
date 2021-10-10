@@ -1,0 +1,30 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	displayBlock="true"
+	height="20%"
+	busyIndicatorDelay="0"
+    class="sapUiMediumMarginBottom"
+>
+<Title
+    level="Auto"
+    text="EmployeeOverviewTop"
+    textAlign="Initial"
+    titleStyle="Auto"
+    wrapping="false"
+    wrappingType="Normal"
+/>
+<Button
+    ariaHasPopup="None"
+    enabled="true"
+    iconDensityAware="true"
+    iconFirst="true"
+    text="Botao no topo"
+    textDirection="Inherit"
+    type="Default"
+    class="sapUiMarginEnd"
+>
+    
+</Button>
+    
+</mvc:View>
