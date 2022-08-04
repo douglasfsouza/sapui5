@@ -1,0 +1,16 @@
+//filtrar o combo no Init:
+begin dgs - funcionou			 
+			var that = this;
+			var cmbBanco2 = this.getView().byId("cmbBanco");
+			debugger;
+				
+
+			cmbBanco2.addEventDelegate({
+				onAfterRendering: function() {
+				  that.getView().byId("cmbLayout").setFilterFunction(function(sTerm, oItem) {
+					 return oItem.getKey().match(341) ;
+				  });
+				 }
+				});
+
+			end

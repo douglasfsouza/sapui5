@@ -1,0 +1,94 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+>
+	<Dialog id="stdialog" title="Salvar Bloco" titleAlignment="Start" contentWidth="25rem" class="sapUiSizeCompact">
+		<customHeader>
+			<Bar
+				design="Auto"
+				titleAlignment="None"
+			>
+				<contentLeft>
+					<Title
+						text="Salvar bloco"
+						textAlign="Initial"
+						titleStyle="H4"
+						wrapping="false"
+						wrappingType="Normal"
+						class="sapUiTinyMargin"
+					>
+					</Title>
+				</contentLeft>
+				<contentMiddle>
+				</contentMiddle>
+				<contentRight>
+					<!--sap.ui.core.Control-->
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox class="sapUiResponsiveMargin">
+				<Label text="Exemplo:" />
+
+				<html:div style="width: 100%;
+					background-color: #f0f0f0;
+				"
+					class="sapUiSmallMarginBottom"
+
+				>
+					<HBox width="100%" justifyContent="Center" >
+						<html:div style="position: relative;">
+							<GenericTile 
+								id="st_sample"
+								class="sapUiSmallMargin tileLayout" 
+								header="{s4v34st1le>/U_TITLE}" 
+								subheader="{s4v34st1le>/U_SUBTITLE}"
+							>
+								<TileContent footer="{s4v34st1le>/U_FOOTER}">
+									<NumericContent value="999" withMargin="false"/>
+								</TileContent>
+							</GenericTile>
+							<html:div 
+								style="
+									position: absolute;
+									width: 100%;
+									height: 100%;
+									top: 0;
+									left: 0;
+									background: rgba(255,255,255,0.0);
+									z-index:999;
+								"
+							/>
+						</html:div>
+					</HBox>
+				</html:div>
+
+				<Label text="Título" />
+				<Input id="st_title" value="{s4v34st1le>/U_TITLE}" required="true" class="sapUiTinyMarginBottom" valueLiveUpdate="true" />
+				<Label text="Subtítulo" />
+				<Input id="st_subtitle" value="{s4v34st1le>/U_SUBTITLE}" required="false" class="sapUiTinyMarginBottom" valueLiveUpdate="true" />
+				<Label text="Rodapé" />
+				<Input id="st_footer" value="{s4v34st1le>/U_FOOTER}" required="false" class="sapUiTinyMarginBottom" valueLiveUpdate="true" />
+				<Label text="Grupo" />
+				<Input id="st_group" value="{s4v34st1le>/U_GROUPNAME}" required="true" />
+				<Label text="Público" visible="false" />
+				<Switch
+					id="st_shared"
+					customTextOff="Não"
+					customTextOn="Sim"
+					enabled="true"
+					name="st_shared"
+					state="{= ${s4v34st1le>/U_SHARED} === 'S' ? true : false}"
+					type="Default"
+					visible="false"
+				/>
+			</VBox>
+		</content>
+		<buttons>
+			<Button type="Emphasized" text="Salvar" press=".onSave" />			
+			<Button type="Transparent" text="Cancelar" press=".onClose"/>			
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

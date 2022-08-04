@@ -1,0 +1,59 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:grid="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <smartTable:SmartTable 
+        id="__ST" 
+        smartFilterId="__SFB" 
+        tableType="Table" 
+        useExportToExcel="true" 
+        useVariantManagement="true" 
+        useTablePersonalisation="true" 
+        showRowCount="true"
+        enableAutoBinding="false"
+        fitContainer="true"
+        placeToolbarInTable="true"
+        customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+        enableAutoColumnWidth="true"
+        beforeRebindTable=".onRebindTable"
+    >
+        <smartTable:layoutData>
+            <FlexItemData growFactor="1" baseSize="0%"/>
+        </smartTable:layoutData>
+
+        <smartTable:customToolbar>
+            <OverflowToolbar design="Transparent">
+                <ToolbarSpacer/>
+            </OverflowToolbar>
+        </smartTable:customToolbar>
+
+        <grid:Table
+            threshold="100"
+            rowActionCount="1"
+            visibleRowCountMode="Auto"
+            busyStateChanged=".onBusyStateChanged"
+            columnMove=".onGridColumnMove"
+            columnResize=".onGridColumnResize"
+            rowSelectionChange=".onRowSelection"
+            rowHeight="32"
+            columnHeaderHeight="24"
+            selectionBehavior="Row"
+        >
+            <grid:rowActionTemplate>
+                <grid:RowAction visible="true">
+                <grid:items>
+                        <!--sap.ui.table.RowActionItem-->
+                        <grid:RowActionItem
+                            type="Navigation"
+                            visible="true"
+                            press=".onRowActionPress"
+                        />
+                    </grid:items>
+                </grid:RowAction>
+            </grid:rowActionTemplate>
+        </grid:Table>
+    </smartTable:SmartTable>
+</c:FragmentDefinition>

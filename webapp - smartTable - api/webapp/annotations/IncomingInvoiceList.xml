@@ -1,0 +1,209 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+</edmx:Reference>
+<edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+</edmx:Reference>
+<edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+</edmx:Reference>
+<edmx:Reference Uri="/vsis/v1/$metadata">
+<edmx:Include Namespace="Varsis.OData.Models"/>
+</edmx:Reference>
+<edmx:DataServices>
+<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="odata.client.incominginvoiceslists">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/Code">
+<Annotation Term="Common.Label" String="Code"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_CTB_VAL">
+<Annotation Term="Common.Label" String="Valor"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_CARDCODE">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+<PropertyValue Property="CollectionPath" String="BusinessPartners"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterConstant">
+<PropertyValue Property="Constant" String="S"/>
+<PropertyValue Property="ValueListProperty" String="CardType"/>
+</Record>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_CARDCODE"/>
+<PropertyValue Property="ValueListProperty" String="CardCode"/>
+</Record>
+<Record Type="Common.ValueListParameterDisplayOnly">
+<PropertyValue Property="ValueListProperty" String="AliasName"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_STATUS_DESCR">
+<Annotation Term="Common.Label" String="Status"/>
+<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="CollectionPath" String="IncomingInvoiceListStatusType"/>
+<PropertyValue Property="Label" String="Status"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_STATUS_DESCR"/>
+<PropertyValue Property="ValueListProperty" String="Description"/>
+</Record>
+<Record Type="Common.ValueListParameterIn">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_STATUS"/>
+<PropertyValue Property="ValueListProperty" String="Key"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_DOCTYPE_DESCR">
+<Annotation Term="Common.Label" String="Tipo Documento"/>
+<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="CollectionPath" String="IncomingInvoiceListDocumentType"/>
+<PropertyValue Property="Label" String="Tipo Documento"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_DOCTYPE_DESCR"/>
+<PropertyValue Property="ValueListProperty" String="Description"/>
+</Record>
+<Record Type="Common.ValueListParameterIn">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_DOCTYPE"/>
+<PropertyValue Property="ValueListProperty" String="Key"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_AGE_DESCR">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListWithFixedValues" Bool="false"/>
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+<PropertyValue Property="CollectionPath" String="SubUsages"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_AGE"/>
+<PropertyValue Property="ValueListProperty" String="Code"/>
+</Record>
+<Record Type="Common.ValueListParameterOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_AGE_DESCR"/>
+<PropertyValue Property="ValueListProperty" String="Name"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList/U_AGE">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListWithFixedValues" Bool="false"/>
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+<PropertyValue Property="CollectionPath" String="SubUsages"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_AGE_DESCR"/>
+<PropertyValue Property="ValueListProperty" String="Name"/>
+</Record>
+<Record Type="Common.ValueListParameterOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="U_AGE"/>
+<PropertyValue Property="ValueListProperty" String="Code"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.IncomingInvoiceList">
+<Annotation Term="UI.PresentationVariant">
+<Record Type="UI.PresentationVariantType">
+<PropertyValue Property="RequestAtLeast">
+<Collection>
+<PropertyPath>Code</PropertyPath>
+<PropertyPath>U_STATUS</PropertyPath>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="UI.SelectionFields">
+<Collection>
+<PropertyPath>U_AGE</PropertyPath>
+<PropertyPath>U_AGE_DESCR</PropertyPath>
+<PropertyPath>U_STATUS_DESCR</PropertyPath>
+<PropertyPath>U_NTA_STR</PropertyPath>
+<PropertyPath>U_SER</PropertyPath>
+<PropertyPath>U_DTA_EMI_B1</PropertyPath>
+<PropertyPath>U_DTA_B1</PropertyPath>
+<PropertyPath>U_DOCTYPE_DESCR</PropertyPath>
+</Collection>
+</Annotation>
+<Annotation Term="UI.LineItem">
+    <Collection>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_AGE"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_AGE_DESCR"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_DOCTYPE_DESCR"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_BRANCHNAME_LGY"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_CARDCODE"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_CARDALIASNAME"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_NTA"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_SER"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_CFO"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_DTA_EMI_B1"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_DTA_B1"/>
+    </Record>
+    
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_CTB_VAL"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_STATUS_DESCR"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_DOCENTRY"/>
+    </Record>
+    <Record Type="UI.DataField">
+    <PropertyValue Property="Value" Path="U_ERRO"/>
+    </Record>
+    </Collection>
+</Annotation>
+</Annotations>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

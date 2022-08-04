@@ -1,0 +1,95 @@
+Registros de desenvolvimento
+   - Data 01-01-01 na grid
+        Marcar o campo com ? no modelo 
+		ex:
+		    [ODataStringProperty(50)]
+            [SAPODataProperty("Data Liquidação", AgregationRole = SAPODataPropertyAttribute.AgregationRoleEnum.Dimension, Tooltip = "Data Liquidação", DisplayFormat = "Date", FilterRestriction = "interval")]
+            public DateTime? U_RECDTLIQUIDA { get; set; }
+	--------------------
+	
+Mensagens:
+i = não deixa continuar
+! = alerta, deixa continuar
+x = Erro
+
+PopOver
+   Erros associados ao campo do Dialog
+   
+Mensagens de Sucesso
+   Deve ser apresentado em Messagebox de Informacao com icone de sucesso	
+   Titulo : Sucesso
+   icon: MessageBox.Icon.SUCCESS
+   icon: MessageBox.Icon.ERROR
+   icon: MessageBox.Icon.INFORMATION
+   icon: MessageBox.Icon.QUESTION
+   icon: MessageBox.Icon.WARNING
+   icon: MessageBox.Icon.NONE
+   
+   ex:
+		MessageBox.information(messageList, {
+				title: "Sucesso",
+				icon: MessageBox.Icon.SUCCESS,
+				onClose: function() {
+					this.getTable().rebindTable(true);					
+				}.bind(this)
+   
+Mensagens de retorno de erro do servico
+   Deve ser apresentado em MessageView
+   
+****
+MessageBox.information("Você selecionou um título já validado.\r\nDeseja continuar?", {
+						title: this._Schedule_Operation,                                
+						actions: [MessageBox.Action.YES, MessageBox.Action.NO],                 
+						emphasizedAction: MessageBox.Action.NO,        
+						initialFocus: MessageBox.Action.NO,
+						onClose: function (oAction) {
+							if (oAction === MessageBox.Action.YES) {
+								this.doSchedule();
+							}
+						}.bind(this)
+					});
+   
+*****************************   
+Custom Data
+   Qualquer controle pode ter dados adicionais
+   ex:
+      <Button
+	     text = "texto"
+		 press = "onPress"
+		 customData:kExtraValue="{extraValue}" />
+		 kExtraValue é uma chave qualquer
+		 e no controller:
+		 var obj = oEvent.getSource();
+		 console.log(obj.data("kExtraValue");
+		 
+		 outra forma no xml:
+		 <Button
+		   text="texto"
+		   press="onPress"
+		   <customData>
+				<CustomData
+					key="kExtraValue"
+					value="{extraValue}"/>
+		   </customData>
+		   
+		   Adicionando o customData diretamente no controller:
+		        oButton.data("kExtraValue", "your extra value");
+			Erro:
+			    Erro ao abrir configurações com a engrenagem, faltou definir algumas informações, com isso resolveu:
+				    <grid:customData>
+                            <core:CustomData key="p13nData" id="colReport"
+                                    value='\{"columnKey": "Code",
+                                        "autoColumnWidth": \{"min": 400, "max": 400},
+                                        "columnIndex": 0,
+                                        "leadingProperty": "Code",
+                                        "sortProperty": "Code"
+                                        }'
+                            />
+                        </grid:customData>
+	  
+*****************************
+Propriedade dinamica na view:
+visible="{= ${state>/showEditAttachment} ? true  : false }"
+"{= ${status} === 'critical' && ${amount} > 10000 }"
+visible="{= ${U_CODITEM} === '11' }"
+*****************************

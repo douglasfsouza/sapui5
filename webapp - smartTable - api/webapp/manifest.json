@@ -1,0 +1,95 @@
+{
+	"_version": "1.29.0",
+	"sap.app": {
+		"id": "webapp",
+		"type": "application",
+		"title": "SAPUI5 Smart Controls",
+		"description": "A simple app that explains the most important concepts of smart controls in SAPUI5",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"ach": "ach",
+		"dataSources": {
+			"mainService": {
+				"uri":"http://localhost:22040/vsis/v1/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": [
+						"annotation",
+						"despesas",
+						"IncomingInvoiceList",
+						"agreementsAnalyticsList",
+						"salesReturnsList"
+					],
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"annotation":{
+				"type":"ODataAnnotation",
+				"uri": "annotations/annotation.xml",
+				"settings": {
+					"localUri": "annotations/annotation.xml"
+				}
+			},
+			"despesas":{
+				"type":"ODataAnnotation",
+				"uri": "annotations/despesas.xml",
+				"settings": {
+					"localUri": "annotations/despesas.xml"
+				}
+			},
+			"IncomingInvoiceList":{
+				"type":"ODataAnnotation",
+				"uri": "annotations/IncomingInvoiceList.xml",
+				"settings": {
+					"localUri": "annotations/IncomingInvoiceList.xml"
+				}
+			},
+			"agreementsAnalyticsList": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/agreementsAnalyticsList.xml",
+                "settings": {
+                    "localUri": "annotations/agreementsAnalyticsList.xml"
+                }
+			},
+			"salesReturnsList": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/salesReturnsList.xml",
+                "settings": {
+                    "localUri": "annotations/salesReturnsList.xml"
+                }
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5"
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "webapp.SmartTable",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ui.table": {}
+				
+			}
+		},
+		"models": {
+			"": {
+				"dataSource": "mainService",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			}
+		}
+	}
+}

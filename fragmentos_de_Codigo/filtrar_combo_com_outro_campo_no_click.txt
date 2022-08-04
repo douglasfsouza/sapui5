@@ -1,0 +1,14 @@
+//Filtrar o combo que foi carregado de um servico apos selecionar um campo anterior:
+var cmbBanco = this.byId("cmbBanco").getSelectedItem();
+            var cmbLayout = this.byId("cmbLayout").getSelectedItem();
+            var fileUploader2 = this.byId("fileUploader2");
+			let banco = cmbBanco.mProperties.key;			
+		 
+			var oComboBoxControl = this.getView().byId("cmbLayout");
+			var oBindingComboBox = oComboBoxControl.getBinding("items");
+			var aFiltersComboBox = [];
+			var oFilterComboBox = new sap.ui.model.Filter("U_BANCO", sap.ui.model.FilterOperator.EQ , banco);
+			 
+			aFiltersComboBox.push(oFilterComboBox);
+			oBindingComboBox.filter(aFiltersComboBox, sap.ui.model.FilterType.Application);
+			

@@ -1,0 +1,121 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:v="sap.ui.comp.variants"
+	xmlns:smartchart="sap.ui.comp.smartchart"
+	xmlns:grid="sap.ui.table"
+	xmlns:plugins="sap.ui.table.plugins"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:sl="sap.ui.comp.navpopover"
+>
+	<f:DynamicPage id="__MAIN" fitContent="false">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<v:VariantManagement
+						id="__SVM" 
+						showExecuteOnSelection="false"
+						showSetAsDefault="false"
+						showShare="false" 
+						save=".saveVariant"
+						select=".selectVariant"
+						manage=".manageVariant"
+						variantItems="{v4r14nt>/}"
+						showCreateTile="false"
+					>
+						<v:variantItems>
+							<v:VariantItem 
+								key = "{v4r14nt>Code}"
+								text = "{v4r14nt>U_VARIANTNAME}"
+								author = "{v4r14nt>U_USERNAME}"
+								executeOnSelection =  "false"
+							/>
+						</v:variantItems>
+					</v:VariantManagement>
+				</f:heading>
+				<f:actions>
+					<Button icon="sap-icon://action" type="Transparent" press="onActionPress" tooltip="Ações">
+						<dependents>
+							<ActionSheet
+								id="actionSheet"
+								placement="Bottom"
+								showCancelButton="true"
+							>
+								<buttons>
+									<Button
+										icon="sap-icon://add-favorite" 
+										text="Salvar bloco"
+										type="Transparent" 
+										press="onSaveAsTilePress" 
+									/>
+									<Button
+										icon="sap-icon://email" 
+										text="Enviar e-mail"
+										type="Transparent" 
+										press="onSendEmailPress" 
+										enabled="false"
+									/>
+								</buttons>
+							</ActionSheet>
+						</dependents>
+					</Button>
+				</f:actions>
+				
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<smartFilterBar:SmartFilterBar 
+                        id="__SFB" 
+                        useToolbar="false" 
+						useDateRangeType="true"
+                        persistencyKey="fiori.test.application2.view.S4.FilterBar" 
+                        assignedFiltersChanged=".onAssignedFiltersChanged" 
+                        enableBasicSearch="false" 
+						search=".onFilterSearch"
+                    >
+						<!-- layout data used to make the table growing but the filter bar fixed -->
+						<smartFilterBar:layoutData>
+							<FlexItemData  shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<NavContainer height="100%" id="viewNavigator">
+				<Page id="chartTableArea" showHeader="false" >
+				</Page>
+				<Page id="chartChartArea" showHeader="false" >
+					<smartchart:SmartChart 
+						id ="__SCHART" 
+        				smartFilterId="__SFB" 
+						enableAutoBinding="false"
+						useVariantManagement="true" 
+						useChartPersonalisation="true"
+						showFullScreenButton="true" 
+						selectionMode="Single"
+						showChartTypeSelectionButton="true"
+						showChartTooltip="true" 
+						showDimensionsTitle="true"
+						showDrillBreadcrumbs="true"
+						showMeasuresTitle="true"
+						showDetailsButton="true" 
+						showDrillButtons="true"
+						height="100%"
+						customData:dateFormatSettings='\{"pattern":"y MMMM d"\}'
+					>
+					</smartchart:SmartChart>
+				</Page>
+			</NavContainer>
+		</f:content>
+		<f:dependents>
+			<c:Fragment id="Table" 				fragmentName="webapp.fragments.Table" type="XML"/>
+			<c:Fragment id="AnalyticalTable" 	fragmentName="webapp.fragments.AnalyticalTable" type="XML"/>
+		</f:dependents>
+	</f:DynamicPage>
+</c:FragmentDefinition>

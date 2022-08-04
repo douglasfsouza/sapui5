@@ -1,0 +1,133 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+   	xmlns:m="sap.m"
+   	xmlns:grid="sap.ui.table"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+>
+	<Dialog
+        id="DialogTransReferenceNotify"
+        title="Referenciar"
+		contentHeight="40%"
+	 	contentWidth="44%"		
+	>
+		<customHeader>
+			<Bar
+				design="Auto"
+				titleAlignment="None"
+			>
+				<contentLeft>
+					<Button
+						icon="sap-icon://alert"
+						text="{= ${notifications>/}.length }"
+						visible="{= ${notifications>/}.length > 0 }"
+						type="Emphasized"
+						press="_onMessagePopoverPress" 
+					/>
+				</contentLeft>
+				<contentMiddle>
+					<Title
+						level="Auto"
+						text="referenciar"
+						textAlign="Initial"
+						titleStyle="Auto"
+						width=""
+						wrapping="false"
+						wrappingType="Normal"
+					>
+					</Title>
+				</contentMiddle>
+				<contentRight>
+					<!--sap.ui.core.Control-->
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+			<smartForm:SmartForm 
+				id="TransReferenceNotifyEdit"				
+				editable="true"
+				entityType="TransExchangeWarehouseUpdateNotifyService"
+				useHorizontalLayout="false"
+			>
+				<smartForm:layout>
+					<smartForm:Layout  columnsM="1" columnsL="1"  columnsXL="1"  singleGroupFullSize="false" labelSpanL="3" labelSpanM="3"/>
+				</smartForm:layout>		
+
+				<smartForm:Group label=""  id="updatenotify">
+
+				</smartForm:Group>
+			</smartForm:SmartForm>
+
+
+            <grid:Table id="tableInvoice" rowSelectionChange="onRowSelectionReference" 
+                class="sapUiMediumMarginBeginEnd sapUiTinyMarginTopBottom"
+                width="90.8%"
+                visibleRowCount="7"
+                ariaLabelledBy="title">
+                <grid:extension>
+                        <m:OverflowToolbar design="Transparent">
+                            <m:content>
+                                <m:Title text="Notas" level="H2" />
+                                <m:HBox width="50%">
+                                </m:HBox>
+                                <m:ToolbarSpacer />
+                                <m:ToolbarSpacer />
+                            </m:content>
+                        </m:OverflowToolbar>
+                </grid:extension>
+                <grid:columns>
+                    <grid:Column   width="7rem">
+                        <m:Label text="DocEntry" />
+                        <grid:template>
+                            <m:Text text="{U_DOCENTRY}" wrapping="false" />
+                        </grid:template>
+                    </grid:Column>
+                    <grid:Column  width="5rem">
+                        <m:Label text="LineNum" />
+                        <grid:template>
+                            <m:Text text="{U_LINENUM}" wrapping="false"/>
+                        </grid:template>
+                    </grid:Column>
+                   <grid:Column  width="7rem">
+                        <m:Label text="Nota" />
+                        <grid:template>
+                            <m:Text text="{U_INVOICENUMBER}" wrapping="false"/>
+                        </grid:template>
+                    </grid:Column>
+                   <grid:Column  width="9rem">
+                        <m:Label text="Data de Lançamento" />
+                        <grid:template>
+						    <m:Text  text="{ path: 'U_POSTINGDATE', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" wrapping="false" />
+                        </grid:template>
+                    </grid:Column>
+                   <grid:Column  width="7rem">
+                        <m:Label text="Saldo" />
+                        <grid:template>
+							<m:Text text="{path: 'U_BALANCEQTY'}" wrapping="false"/>
+                        </grid:template>
+                    </grid:Column>
+
+                </grid:columns>
+            </grid:Table>
+
+
+		</content>
+
+		<beginButton>
+			<Button 
+				type="Accept" 
+				text="Confirmar" 
+				press="Reference_OnSave" 
+				enabled="true"
+			/>
+		</beginButton>
+
+		<endButton>
+			<Button type="Reject" text="Cancelar" press="Reference_OnClose" />
+		</endButton>
+
+    </Dialog>
+</c:FragmentDefinition>

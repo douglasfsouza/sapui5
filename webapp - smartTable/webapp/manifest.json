@@ -11,7 +11,8 @@
 		"ach": "CA-UI5-FST",
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/",
+				"uri: "/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/",
+				"uritst":"https://localhost:44374/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",

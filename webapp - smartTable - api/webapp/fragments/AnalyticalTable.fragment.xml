@@ -1,0 +1,58 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:grid="sap.ui.table"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <smartTable:SmartTable 
+        id="__ST" 
+        smartFilterId="__SFB" 
+        tableType="AnalyticalTable" 
+        useExportToExcel="true" 
+        useVariantManagement="true" 
+        useTablePersonalisation="true" 
+        showRowCount="true"
+        enableAutoBinding="false"
+        fitContainer="true"
+        placeToolbarInTable="false"
+        customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+        enableAutoColumnWidth="true"
+        beforeRebindTable=".onRebindTable"
+    >
+        <smartTable:layoutData>
+            <FlexItemData growFactor="1" baseSize="0%"/>
+        </smartTable:layoutData>
+
+        <smartTable:customToolbar>
+            <OverflowToolbar design="Transparent">
+                <ToolbarSpacer/>
+            </OverflowToolbar>
+        </smartTable:customToolbar>
+
+        <grid:AnalyticalTable
+            threshold="100"
+            rowActionCount="1"
+            busyStateChanged=".onBusyStateChanged"
+            columnMove=".onGridColumnMove"
+            columnResize=".onGridColumnResize"
+            rowSelectionChange=".onRowSelection"
+            visibleRowCountMode="Auto"
+            rowHeight="32"
+            columnHeaderHeight="24"
+        >
+            <grid:rowActionTemplate>
+                <grid:RowAction visible="true">
+                <grid:items>
+                        <!--sap.ui.table.RowActionItem-->
+                        <grid:RowActionItem
+                            type="Navigation"
+                            visible="true"
+                            press=".onRowActionPress"
+                        />
+                    </grid:items>
+                </grid:RowAction>
+            </grid:rowActionTemplate>
+        </grid:AnalyticalTable>
+    </smartTable:SmartTable>
+</c:FragmentDefinition>
