@@ -36,67 +36,9 @@ Criar menu no front-end VARSIS sapui5
                      viewName: xml_name  Ex: AgreementsEventsList	
 		- Component.js  
 		    return (4)
-   Se copiar projeto como modelo trocar o nome do projeto pelo novo em todo lugar inclusive no login\build.ps1, index.html e lauch.json
+   Se copiar projeto como modelo trocar o nome do projeto pelo novo em todo lugar inclusive no login\build.ps1, index.html e launch.json
+   Não excluir a target List, pois é chamada por Library
+   
 
-FireEvent:      
-      agrAnalytics.controller.MainList:
-		  onRowActionPress: function(oEvent) {
-            var context = oEvent.getSource()
-                                .getBindingContext();
-                               
-            var currentRow = context.getObject(context.getPath());
-
-            var oOwnerComponent = this.getOwnerComponent();
-
-            oOwnerComponent.fireEvent("toPaymInvoice", {
-                invoiceID:  currentRow.Code
-            });
-        },
-	*****************************
-	login.Component: (pegar o nome do componente em agrAnalytics.Component:
-	
-	agrAnalytics.Component.js:
-	      getComponentName: function() {
-			 return "agranalyticsComponent";
-		  },
-	******************************
-	varsis.login:
-	  eventMappings:
-	     agranalyticsComponent: [
-				{
-					name: "toAgreementAnalyticsFE",
-					route: "agranalyticsfe",
-					componentTargetInfo: {
-						agranalyticsfe: {
-							route: "root",
-							parameters: {}
-						}
-					}
-				},
-				{
-					name: "toRecvInvoice",
-					route: "recvinvoices",
-					componentTargetInfo: {
-						recvinvoices: {
-							route: "detail",
-							parameters: {
-								invoiceID: "invoiceID"
-							}
-						}
-					}
-				},
-				{
-					name: "toPaymInvoice",
-					route: "payminvoices",
-					componentTargetInfo: {
-						payminvoices: {
-							route: "detail",
-							parameters: {
-								invoiceID: "invoiceID"
-							}
-						}
-					}
-				}
-*************************************
 
   					 

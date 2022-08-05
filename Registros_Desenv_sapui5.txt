@@ -93,3 +93,63 @@ visible="{= ${state>/showEditAttachment} ? true  : false }"
 "{= ${status} === 'critical' && ${amount} > 10000 }"
 visible="{= ${U_CODITEM} === '11' }"
 *****************************
+FireEvent:      
+      agrAnalytics.controller.MainList:
+		  onRowActionPress: function(oEvent) {
+            var context = oEvent.getSource()
+                                .getBindingContext();
+                               
+            var currentRow = context.getObject(context.getPath());
+
+            var oOwnerComponent = this.getOwnerComponent();
+
+            oOwnerComponent.fireEvent("toPaymInvoice", {
+                invoiceID:  currentRow.Code
+            });
+        },
+	*****************************
+	login.Component: (pegar o nome do componente em agrAnalytics.Component:
+	
+	agrAnalytics.Component.js:
+	      getComponentName: function() {
+			 return "agranalyticsComponent";
+		  },
+	******************************
+	varsis.login:
+	  eventMappings:
+	     agranalyticsComponent: [
+				{
+					name: "toAgreementAnalyticsFE",
+					route: "agranalyticsfe",
+					componentTargetInfo: {
+						agranalyticsfe: {
+							route: "root",
+							parameters: {}
+						}
+					}
+				},
+				{
+					name: "toRecvInvoice",
+					route: "recvinvoices",
+					componentTargetInfo: {
+						recvinvoices: {
+							route: "detail",
+							parameters: {
+								invoiceID: "invoiceID"
+							}
+						}
+					}
+				},
+				{
+					name: "toPaymInvoice",
+					route: "payminvoices",
+					componentTargetInfo: {
+						payminvoices: {
+							route: "detail",
+							parameters: {
+								invoiceID: "invoiceID"
+							}
+						}
+					}
+				}
+*************************************
