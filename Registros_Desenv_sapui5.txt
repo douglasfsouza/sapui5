@@ -14,6 +14,11 @@ x = Erro
 
 PopOver
    Erros associados ao campo do Dialog
+*****************************************
+Coluna de Cores na grid para indicar o status:
+  ver setHighlightInfo
+  a cv retorna o campo u_advCriticality que sera utilizado no setHighlightInfo
+*****************************************
    
 Mensagens de Sucesso
    Deve ser apresentado em Messagebox de Informacao com icone de sucesso	
@@ -32,6 +37,7 @@ Mensagens de Sucesso
 				onClose: function() {
 					this.getTable().rebindTable(true);					
 				}.bind(this)
+		)};
    
 Mensagens de retorno de erro do servico
    Deve ser apresentado em MessageView
@@ -88,11 +94,135 @@ Custom Data
                         </grid:customData>
 	  
 *****************************
-Propriedade dinamica na view:
+customColumn
+   Em uma smartField você, a principio, não tem controle sobre as colunas porque define apenas o EntitySet
+   e as colunas são definidas no annotation
+   Porem pode-se substituir uma columa por um campo personalizado com customData:
+      Dentro de grid:Table, obs: a key precisa ser p13nData:
+	      <grid:Table			
+			visibleRowCountMode="Auto"
+			...
+			>	
+				<grid:columns>
+					<grid:Column>
+						<grid:customData>
+							<core:CustomData key="p13nData" id="formatTransactions"
+									value='\{"columnKey": "Format",
+										"autoColumnWidth": \{"min": 2, "max": 20},
+										"columnIndex": 5,
+										"leadingProperty": "Format",
+										"sortProperty": "Format",
+										"additionalProperty": "DataType"
+										}'
+							/>
+						</grid:customData>
+						<grid:label>
+							<Label text="Formato"/>
+						</grid:label>
+
+						<grid:template>
+							<HBox alignItems="Center" justifyContent="SpaceBetween">
+								<items>  
+									 <Input	
+										 value="{Format}"	
+										 width="300px"	
+										 enabled="{parts: [{path: 'DataType'}, {path: 'local>/transactionFieldsEditingInProgress'}], formatter: '._changeEnabledFormat'}"
+									 />																				 
+								</items>                                    
+							</HBox>
+						</grid:template> 													
+						 
+					</grid:Column>
+				</grid:columns>									
+		</grid:Table>
+	E no Controller:
+	   _changeEnabledFormat: function(tipo, editing){
+            return tipo === "D" && editing;                   
+        }
+		      
+*****************************
+Propriedade dinamica na view: expression bind
 visible="{= ${state>/showEditAttachment} ? true  : false }"
 "{= ${status} === 'critical' && ${amount} > 10000 }"
 visible="{= ${U_CODITEM} === '11' }"
 *****************************
+controlar enabled/disable do botao no controller:
+   Criar o botao na toolbar:
+            var page = this.getView().byId("page");
+            page.setViewInfo(this._viewInfo);            
+
+            S3ListPageController.prototype.onInit.apply(this, arguments);
+ 
+            var smartTable = page.getSmartTable();
+            var toolbar = smartTable.getCustomToolbar();  
+
+            toolbar.addContent(new sap.m.Button({ text: "Excluir", press: this._onDeleteLayoutPressed.bind(this) }).bindProperty("enabled", "local>/singleSelected"));
+
+   Iniciar o status:
+         this.setState({                
+                singleSelected: false
+            });
+   atualizar o status em rowRowSelection:
+        this.setState({
+                selectedRows: rows,
+                singleSelected: rows.length === 1
+            });
+*****************************
+Excluir:
+_onDeleteLayoutPressed: function(oEvent){
+            var oView = this.getView();
+            var oModel = oView.getModel();
+            var oState = this.getState();
+            var that = this;
+            var { selectedRows } = oState;
+
+            MessageBox.confirm("Confirma exclusão do Layout selecionado?", {
+                title: "Excluir",
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                emphasizedAction: MessageBox.Action.NO,
+                initialFocus: MessageBox.Action.NO,
+                onClose: (button) => {
+                    if (button === MessageBox.Action.YES) {
+                        oView.setBusy(true);
+
+                        oModel.remove(`/BankStatementLayoutsList('${selectedRows[0].getProperty('Code')}')`, {
+                            success: that._onDeleteSuccess.bind(that),
+                            error: (oError) => {
+                                oView.setBusy(false);
+                                that.ErrorHandling("Exclusão", oError);
+                            }
+                        });
+                    }                 
+                }
+            });
+        },
+
+        _onDeleteSuccess: function (oEvent) {
+            var oView = this.getView();
+            var that = this;
+
+            oView.setBusy(false);
+
+            MessageBox.success("Layout excluído", {
+                title: "Sucesso",
+                onClose: () => {
+                    var page = that.getView().byId("page");
+                    var smartTable = page.getSmartTable();
+                    smartTable.rebindTable(true);
+                }
+            });
+        },
+******************************
+pegar o conteudo do state:
+ var oState = this.getState(); 
+ var {status} = oState; 
+****************************
+pegar o valor de um smartfield no detail:
+   uma forma
+      definir um id para o smartfield na view
+	  e no controller:
+	     var code = this.byId("code").getValue();
+************************   
 FireEvent:      
       agrAnalytics.controller.MainList:
 		  onRowActionPress: function(oEvent) {
@@ -107,14 +237,36 @@ FireEvent:
                 invoiceID:  currentRow.Code
             });
         },
-	*****************************
+*****************************
 	login.Component: (pegar o nome do componente em agrAnalytics.Component:
 	
 	agrAnalytics.Component.js:
 	      getComponentName: function() {
 			 return "agranalyticsComponent";
 		  },
-	******************************
+******************************
+	s3rial.www.root/Component.js: 
+	    --s3rial.www.dda chamando srmFinance
+		--srmFinanceTarget -> precisa ser o mesmo definido em s3rial.www.root.manifest.json
+		--srmFinanceRoute -> precisa ser o mesmo definido em s3rial.www.root.manifest.json
+		--APInvoiceDetailRoute -> precisa se o mesmo definido em s3rial.www.srmfinance
+		--invoiceID -> presisa ser o mesmo definido no pattern da rota. ex: "pattern": "apinvoice/{invoiceID}",
+	    eventMappings:
+			ddaComponent: [
+					{
+						name: "toPaymInvoiceDetail",
+						route: "srmFinanceRoute",
+						componentTargetInfo: {
+							srmFinanceTarget: {
+								route: "APInvoiceDetailRoute",
+								parameters: {
+									invoiceID: "invoiceID"
+								}
+							}
+						}
+					}
+				],
+			
 	varsis.login:
 	  eventMappings:
 	     agranalyticsComponent: [
@@ -153,3 +305,670 @@ FireEvent:
 					}
 				}
 *************************************
+Notificações na Dialog:
+  - Precisa ter o evento:
+      _onMessagePopoverPress: function(oEvent) {
+			this.ToggleNotificationsFor(oEvent.getSource());
+		},
+	  e informar este evento no button da dialog
+  - Ao criar a Dialog:
+      that.EnableNotificationsTo(oDialog);
+	  that.ClearNotifications();
+					
+		
+  ao fechar a Dialog:
+      _OnClose: function (dialog, createdEntry) {
+			if (createdEntry) {
+				var oModel = this.getView().getModel();
+				oModel.deleteCreatedEntry(createdEntry);
+			}
+
+			this.ClearNotifications();
+			this.DisableNotificationsFrom(dialog);
+  Incluindo a mensagem no popover em validate:
+      that.ClearNotifications();
+      if (fldCfop.getValueState() !== "None" || fldCfop.getContent().getLastValue()=="") {
+                this.SetFieldSate(fldCfop, {type: "Warning", text: "CFOP deve ser preenchida.", context: fldCfop.getBindingContext() });
+            }
+			
+	   var notifications = this.getView().getModel("notifications").getData();
+	   var invalidInvoice = notifications ? notifications.find(m => m.type === "Error") : null;
+	   return !invalidInvoice;
+*******************************
+_editValidateAll: function(oEvent){
+            var fldDescription = this.byId("fldDescription");
+            var fldName = this.byId("fldName");    
+            
+            this.ClearNotifications();
+            
+            if (fldDescription.getValueState() !== "None" || fldDescription.getContent().getLastValue()=="") {
+                      this.SetFieldSate(fldDescription, {type: "Error", text: "A Descrição do Layout deve ser preenchida.", context: fldDescription.getBindingContext() });
+            }
+            if (fldName.getValueState() !== "None" || fldName.getContent().getLastValue()=="") {
+                this.SetFieldSate(fldName, {type: "Error", text: "O Código do Layout deve ser preenchido.", context: fldName.getBindingContext() });
+            }
+            
+                  
+             var notifications = this.getView().getModel("notifications").getData();
+             var invalidData = notifications ? notifications.find(m => m.type === "Error") : null;
+             return !invalidData;
+        }
+*******************************
+Model
+   desfazer alterações não confirmadadas
+       oModel.resetChanges();
+	   oModel.resetChanges([`/BusinessPlacesExtension('${this._key}')`], true);
+   definir grupos diferidos (não imediatos)
+	   oModel.setDeferredGroups([sGroupId]);
+	   acredito que seja para não executar imediatamente, somente apos algum processo..
+*******************************
+model.crateEntry(<Nome do controller>
+*******************************
+Chamar Insert:
+
+_onCompletePressed: function(){
+            var oView = this.getView();
+            var oModel = this.getView().getModel();
+            var that = this;
+
+            var ctx = oModel.createEntry("/TransBankFileComplete()", {
+				properties: {
+					Code: "001"
+				}
+			});
+
+            var oState = this.getState();
+            var {selectedRows} = oState;
+
+            var oData = ctx.getObject();
+            delete oData.__metadata;
+            
+            oData.ProcessType = selectedRows[0].getProperty("ProcessTypeId");
+            oData.ImportId = selectedRows[0].getProperty("Code");
+
+            oView.setBusy(true);
+
+            oModel.create("/TransBankFileComplete", oData, {
+                success: () => {
+                    oView.setBusy(false);
+                    MessageBox.success("Importação concluída", {
+                        title: "Sucesso",
+                        onClose: function () {
+                            var page = this.getView().byId("page");                
+                            var smartTable = page.getSmartTable();
+                            smartTable.rebindTable(true);
+                        }.bind(this)
+                    });
+                },
+                error: (oError) => {
+                    oView.setBusy(false);
+                    that.ErrorHandling('Concluir',oError);                    
+                }                                 
+            }); 
+        },
+
+********************************
+Formatar valores na smarttable com duas casas:
+   O SAPUI5 já formata, mas precisa estar com o tipo Decimal no oData e não Double
+********************************
+filtrar no rebindTable:
+onRebindTable: function(oSource){
+			alert("rebind");
+			var bind = oSource.getParameter('bindingParams');
+			var oFilter = new sap.ui.model.Filter("U_IdMes",sap.ui.model.FilterOperator.EQ,1);
+			bind.filters.push(oFilter);
+		},
+Obs: Coloca o filtro no oData chegando ao backend com ele montado para filtrar
+**********************************
+Filtrar na smartField com multiplos campos:
+ var f1 = new Filter(`'${sSearchQuery}'`, FilterOperator.Contains,"CardCode");
+                var f2 = new Filter(`'${sSearchQuery}'`, FilterOperator.Contains,"AliasName");
+                var f3 = new Filter({
+                    filters:[f1,f2],and:false
+                });
+                aFilters.push(f3);
+ Obs: Está invertido valor / campo devido a incompatibilidade com a Service Layer,
+      Usa substringof(<campo>,<valor>)
+	  sem inverter gera substringof(<valor>, <campo>)  -- e dá erro
+**********************************
+Ordenar a grid
+   oModel.read("/UserBranches", {
+                groupId: sGroupId,
+                filters: [
+                    new Filter("BPLId", FilterOperator.EQ, branchId)
+                ],
+                sorters: [
+                    new Sorter("UserCode")
+                ]
+            });
+ou
+ _onBeforeRebindTable: function(oSource){             
+            var binding = oSource.getParameter("bindingParams");
+            if (!binding.sorter || binding.sorter.length === 0){
+                binding.sorter = new Sorter("DocumentNumber");
+            }             
+        },
+**********************************
+Aumentar a quantidade de linhas na grid:
+onFilterSearch: function (oEvent) {
+			this.getTable().getTable().setThreshold(10000);
+		},
+**********************************
+Salvar o detalhe:
+onDetailAcceptPress: function(oEvent){
+            var oModel = this.getView().getModel();
+            var oView = this.getView();
+            var that = this;
+
+            var url = `/BusinessPlacesExtension('${this._key}')`;
+            var pendingChanges = oModel.getPendingChanges();
+            var payload = pendingChanges[url.substring(1)];
+
+            delete payload.__metadata;
+
+            oModel.update(url,payload,{
+                success: (response)=> this.onSaveSucess(response),
+                error: (OError)=>{
+                    oView.setBusy(false);
+                    that.ErrorHandling(oError,"Alteração");
+                }
+            })            
+        },
+
+        onSaveSucess: function(response){
+            this.setState({
+                editInProgress: false
+            });
+            MessageBox.success("Filial atualizada",{
+                title: "Sucesso"                
+            })
+        },
+**********************************
+Criar uma varivel no modelo para usar na view e alimentar no controller:
+"sap/ui/model/json/JSONModel"
+ 
+var header = {titulo: "teste"};
+var oModelHeader = new JSONModel(header);
+this.getView().setModel(oModelHeader,"header");
+na view:
+ <Title							 
+		text="{header>/titulo}"
+		wrapping="true"
+	/>
+**********************************
+SmartTable
+  EnableAutoBinding = true
+     Para carregar automaticamente a grid sem precisar clicar em Go
+  outra forma:
+      attachDisplay: function (oEvent) {
+			var parms = oEvent.getParameter("data");
+
+			// veio de retorno de alguma tela chamada
+			if (parms.type == "Confirm") {
+				this.getTable().{Table(true);
+			}
+		},
+   outra forma:
+       initialized: function(oEvents) {
+			SmartGridTable.prototype.initialized.apply(this, arguments);
+			this.getTable().rebindTable(true);
+		},
+Gravar dados na smarttable:
+   cleanItems: function(){			 
+			var table = this.byId("idSmartTableFiscalGroupListItem");
+			var items = table.getTable().getRows(2);
+
+			items.map((i) => {
+				i.mAggregations.cells[1].setValue(null);
+				i.mAggregations.cells[2].setValue(null);
+			});			
+		}
+Order by:
+   <smartTable:SmartTable id="smartTable" entitySet="ProjectHeaderSet" tableBindingPath="/ProjectHeaderSet"
+                app:p13nDialogSettings="{sort:{items:[{
+                    columnKey: 'Description',
+                    operation: 'Ascending'
+                }]}}" 
+                header="xx"
+	Ou, No controller:
+	    onRebindTable:  function(oEvent){
+			var oBind = oEvent.getParameter("bindingParams");
+			if (!oBind.sorter.length){
+				oBind.sorter.push(new sap.ui.model.Sorter("Code",true)); --true para descending
+			}
+		},
+******************************************
+RebindTable:
+    var page = this.getView().byId("page");                
+	var smartTable = page.getSmartTable();
+	smartTable.rebindTable(true);
+******************************************
+Table 
+   Ler dados da table
+       var smartTable = this.getView().byId("STCalendar");
+	   var table = smartTable.getTable();
+	   var ctx = table.getContextByIndex(i);
+	   var code ctx.getProperty("Code");
+	   ------------------
+   Criar linhas na table que esta dentro da smartview:
+        var oCalendarBinding = this.getView().byId("gridCalendar").getBinding("rows");
+                var oModel = this.getView().getModel();
+                for(let day = 0; day < 7; day++){
+                    let weekDayDescription = this.weekOfDayDescription(day);
+
+                    var ctx = oCalendarBinding.create({
+                        BPLId: this._branchId,
+                        TimeTypeId: this.byId("idComboBox").getSelectedKey(),
+                        WeekDay: (day + 1).toString(),
+                        WeekDayDescription: weekDayDescription,
+                        StartTime: 0,
+                        FormatedStartTime: '00:00',
+                        EndTime: 0,
+                        FormatedEndTime: '00:00',
+                        AfternoonStartTime: 0,
+                        FormatedAfternoonStartTime: '00:00',
+                        AfternoonEndTime: 0,
+                        FormatedAfternoonEndTime: '00:00',
+                        NightStartTime: 0,
+                        FormatedNightStartTime: '00:00',
+                        NightEndTime: 0,
+                        FormatedNightEndTime: '00:00' 
+                    },true,{inactive : true});
+
+                    oModel.setProperty("StartTime",0,ctx); --para gerar pendencia, para cancelar
+					------------------
+******************************************
+Rebind no detalhe se tabela:
+ _bindRecord: function (key) {
+
+            var that = this;
+            
+            this.getView().byId("SFCheckoutDetail").bindElement({                
+                path: `/TreasuryCheckoutList('${key}')`,
+                events: {
+                    change: function (oEvent) {
+                        that.getView().setBusy(false);                        
+                    }
+                }
+            });
+        }    
+******************************************
+Habilitar/Desabilitar edição na grid SmartTable
+  na view:
+  	  no cabeçalho da view:
+	     xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+
+      editable="{= ${local>/editInProgress/calendar} ? true : false}"
+      customData:useSmartToggle="true"
+******************************************
+Annotation
+*****************************************
+Mostrar outra coluna na descricao do combo:
+    Obs: Com isso dá para usar o campo BankDescription sem colocar na cv, somente retornando no modelo,
+	     porque faz a consulta por outro campo, o bankName.
+		 Mostra o BankDescription e faz a pesquisa pelo BankName:
+	<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="s3rial.odata.model.Bank/BankName">
+                <Annotation Term="Common.Text" Path="BankDescription">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueListWithFixedValues" Bool="true" />
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+                    <Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Banks"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BankName"/>
+                                    <PropertyValue Property="ValueListProperty" String="BankName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BankCode"/>
+                                    <PropertyValue Property="ValueListProperty" String="BankCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BankDescription"/>
+                                    <PropertyValue Property="ValueListProperty" String="BankDescription"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+*****************************************
+   Colocar valor padrao no filtro:
+        <Annotation Term="UI.SelectionVariant" Qualifier="Default">
+                <Record>
+                    <PropertyValue Property="Parameters">
+                        <Collection>
+                            <Record Type="UI.Parameter">
+                                <PropertyValue Property="PropertyName" PropertyPath="U_Ano" />
+                                <PropertyValue Property="PropertyValue" String="2021" />
+                            </Record>
+                        </Collection>  
+                    </PropertyValue>
+                </Record>
+            </Annotation> 
+	 ou
+	     <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.Despesas/U_Mes">
+                <Annotation Term="Common.Label" String="Mes"/>    
+                <Annotation Term="Common.FilterDefaultValue" String="7"/>                
+            </Annotations>   
+
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Varsis.OData.Models.Despesas/U_Ano">
+                <Annotation Term="Common.Label" String="Ano"/>    
+                <Annotation Term="Common.FilterDefaultValue" Int="2021"/>                
+            </Annotations> 
+   ou para combo:
+      <PropertyValue Property="SelectOptions">
+            <Collection>
+                <Record Type="UI.SelectOptionType">
+                    <PropertyValue Property="PropertyName" PropertyPath="Customer"/>
+                    <PropertyValue Property="Ranges">
+                        <Collection> 
+                            <Record Type="UI.SelectionRangeType">
+                                <PropertyValue EnumMember="UI.SelectionRangeSignType/I" Property="Sign"/>
+                                <PropertyValue EnumMember="UI.SelectionRangeOptionType/EQ" Property="Option"/>
+                                <PropertyValue Property="Low" String="ABC"/>
+                            </Record>
+                        </Collection>
+                    </PropertyValue>
+                </Record>n
+            </Collection>
+        </PropertyValue>
+   ou no Controller:
+        na view:
+		    initialise=".onInitSmartFilterBarExtension"
+		no controller:
+			onInitSmartFilterBarExtension: function(oEvent){
+				//alert("init filter bar");
+				var ano = new Date().getFullYear();
+				var oGlobalFilter = this.getView().byId("__SFB");
+				var oDefaultFilter = {
+					"U_Ano": ano
+				};
+				oGlobalFilter.setFilterData(oDefaultFilter);
+		},
+		
+Tamanho da coluna:
+    <Annotation Term="UI.LineItem">
+		<Collection>
+			<Record Type="UI.DataField">
+				<PropertyValue Property="Value" Path="StatusDescription" />
+				 <Annotation Term="com.sap.vocabularies.HTML5.v1.CssDefaults">
+					<Record>
+						<PropertyValue Property="width" String="7rem" />                                
+					</Record>
+				 </Annotation>
+			</Record>
+		
+*******************************************
+Chamar Detail
+    Precisa  ter rowAction na view:
+	    <grid:rowActionTemplate>
+			<grid:RowAction >
+				<grid:items>
+					<!--sap.ui.table.RowActionItem-->
+					<grid:RowActionItem
+						type="Navigation"
+						press="onRowActionPress"
+					/>
+				</grid:items>
+			</grid:RowAction>
+		</grid:rowActionTemplate>
+		Obs:
+		    Precisa ter rowActionCount="1"   
+			     <grid:Table
+                            threshold="100"       
+                            rowActionCount="1" 
+		exemplo completo:
+		    <smartTable:SmartTable 
+                        id="__ST_APInvoices"                         
+                        tableType="AnalyticalTable" 
+                        header="Títulos a pagar"
+                        fitContainer="true"
+                        customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+                        entitySet="AccountPayableInvoicesDDA"
+                        width="100%"
+                        showVariantManagement="false"
+                        beforeRebindTable="onAPInvoicesBeforeRebind"                        
+                    >
+                        <smartTable:layoutData>
+                            <FlexItemData growFactor="1" baseSize="0%"/>
+                        </smartTable:layoutData>                        
+
+                        <grid:Table
+                            threshold="100"       
+                            rowActionCount="1"                     
+                            visibleRowCountMode="Auto"
+                            rowSelectionChange="onInvoicesRowSelection"
+                            rowHeight="32"
+                            columnHeaderHeight="24"
+                            selectionBehavior="Row"
+                        >
+                            <grid:rowActionTemplate>
+                                <grid:RowAction>
+                                    <grid:items>
+                                        <grid:RowActionItem
+                                            visible="true"
+                                            type="Navigation"
+                                            press="onInvoiceDetailPress"                                            
+                                        />                                                                                    
+                                    </grid:items>
+                                </grid:RowAction>
+                            </grid:rowActionTemplate>
+
+                            <grid:layoutData>
+                                <FlexItemData growFactor="1" baseSize="0%"/>
+                            </grid:layoutData>                             
+                                                                
+                        </grid:Table>
+                    </smartTable:SmartTable>
+*********************************************************************************
+List Controller:
+    //Pegando dados da linha selecionada e passando para o detalhe
+	//Precisa alterar o manifest para colocar os campos na url do router
+	// ex "pattern": "detail/{absoluteEntry}/{documentNumber}/{status}/{itemName}",
+	onRowActionPress: function (oEvent) {
+            var context = oEvent.getSource()
+                .getBindingContext();
+
+            var oRouter = this.getOwnerComponent().getRouter();
+
+            oRouter.navTo("ProductionDetailRoute", {
+                absoluteEntry: context.getProperty("AbsoluteEntry"),
+                documentNumber: context.getProperty("DocumentNumber"),
+                status : context.getProperty("ProductionOrderStatusDesc"),
+                itemName : context.getProperty("ProductDescription")
+            });            
+        },
+				
+*******************************************
+Recebendo o id no detalhe e fazendo o binding:
+forma 1:
+    var pars = oEvent.getParameter("data");
+
+	if (pars.editMode != "insert"){
+		this.setState({
+			editMode: false
+		});
+		var that = this;
+		var uri = `/Despesas('${pars.recordKey}')`;
+		this.getView().bindElement(uri);		
+forma 2:
+	var pars = oEvent.getParameter("data");
+
+	if (pars.editMode != "insert"){
+		this.setState({
+			editMode: false
+		});
+		var that = this;
+		var uri = `/Despesas('${pars.recordKey}')`;
+		
+		this.getView().byId("page").bindElement({                
+			path: uri,
+			events: {
+				change: function (oEvent) {
+					debugger;
+					that.getView().setBusy(false);                        
+				}
+			}
+		});   
+forma 3:
+	var pars = oEvent.getParameter("data");
+
+	if (pars.editMode != "insert"){
+		this.setState({
+			editMode: false
+		});
+		var that = this;
+		var uri = `/Despesas('${pars.recordKey}')`;
+		oModel.read(uri,{
+                    success: (oData) => {
+                        this.getView().bindElement(uri);
+                    }
+                })
+  
+  
+*******************************************
+Pegar o oData no Detalhe para gravar:
+  var oData = this.getView().getElementBinding().getBoundContext().getObject();
+  delete oData.__metadata;
+*******************************************
+Personaliar a smartGridTable
+   - copiar os arquivos de library:
+       fragments\Table.fragment.xml
+	   fragments\AnalyticalTable.fragment.xml
+   - copiar o conteudo de fragments\SmartGridTable.fragment.xml
+      p/ sua View e substituir o caminho de AnalyticalTable e Table
+	  definir o nome do controller name
+	  <mvc:View  na primeira e ultima linhas
+	  incluir xmlns:mvc="sap.ui.core.mvc"
+         
+*******************************************
+Incluir um botão no header da smartTable:
+    varsis   
+	    var toolbar = this.getTable().getCustomToolbar();
+        toolbar.addContent(new sap.m.Button({ text: "Incluir", press: this.AddNew.bind(this) }));
+    s3rial
+	    var page = this.getView().byId("page");
+		var smartTable = page.getSmartTable();
+        var toolbar = smartTable.getCustomToolbar();  
+
+        toolbar.addContent(new sap.m.Button({ text: "Separar", press: this.Picking.bind(this) }));
+
+	
+*******************************************
+BackEnd
+*******************************************
+   public override bool RewriteQueryNeeded => true; -> Somente quando a cv for um cubo
+   PhysicalName
+      O nome do campo na cv sem U_
+********************************************
+Formatar Datas na Grid
+  colocar na view SmartTable:
+     customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+********************************************
+Formatar Datas na view:
+<layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
+					<m:ObjectStatus  title="Data" />
+					<m:ObjectStatus  class="sapMObjectStatusLarge" text="{
+						path: 'BalanceDate',
+						formatOptions:{
+							pattern: 'dd/MM/yyyy',
+							type: 'sap.ui.model.type.DateTime',
+							UTC: true
+						}}"/>
+				</layout:VerticalLayout>
+********************************************
+*Erros:                                    *
+********************************************
+   Não carrega o annotation da list
+      Pode ser propagateModel, tem que ser true para os  novos e false para o Legacy :
+          no manifest do root:
+                 "bankfileListTarget": {
+					"type": "Component",
+					"usage": "bankfileComponent",
+					"containerOptions": {
+						"propagateModel": true
+					},
+					"parent": "MainPage"
+				},	
+	   Pode ser
+	         campo do model nao existe na cv
+			    solucao:
+    				colocar ignoreonBackend
+********
+model.hasPendingChanges não detecta alteração,
+   pode ser   
+      o nome da campo ta errado na view:
+	      errado: "{u_campo} " 
+		  certo:  "{u_campo}"
+	  e tambem precisa fazer o model.read no Init antes do bind
+********				
+    AnalyticalBinding-dbg.js:458 Uncaught Error in AnalyticalBinding - The QueryResult 'AccountPayableDDAList' could not be retrieved. Please check your service definition.
+	   R: O dados estavam vindo como table, mesmo configurado com agregate, não sei por que
+	      na view mudei para usar Table tanto em 'tableType' quanto na tag : <grid:Table> , estava <grid:AnalyticalTable>
+		  Talvez no novo ambiente (s3rial) venha tudo como não agregate por padrão, se precisar de agregate precisa implementar..
+*********
+Não filtra na smartField com mais de um campo
+  dá erro porque usa contains gerando sintaxe com substringof invertida
+  para resolver deve-se inverter a ordem na criacao do Filter:
+	var f1 = new Filter(`'${sSearchQuery}'`, FilterOperator.Contains,"CardCode");
+                var f2 = new Filter(`'${sSearchQuery}'`, FilterOperator.Contains,"AliasName");
+                var f3 = new Filter({
+                    filters:[f1,f2],and:false
+                });
+                aFilters.push(f3);
+****************
+Mostra campo numerico tipo Dimension como Measure na smartTable e datas 1-1-1
+ r: Problema no PageResult, usar IQueryable
+    ex:         
+	  async public Task<IQueryable<AccountReceivableInvoice>> Get(ODataQueryOptions<AccountReceivableInvoice> queryOptions, [FromODataUri] string key = null)
+
+****************
+Qualifier:
+   usar o mesmo annotation para mais de uma tela, sendo que cada uma pode ter um filtro ou grid diferentes
+   criar o filtro ou lineitem no annotation com um qualifier unico
+   passar esse mesmo qualifier no onInit do controller
+   ex:
+        oTable = this.byId("__ST_Eletronic");
+		oTable.addCustomData(new sap.ui.core.CustomData({
+			key: "presentationVariantQualifier",
+			value: "AccountPayableEDI"
+		}));
+	e Tambem da para passar o parametro na view:
+	    customData:presentationVariantQualifier	='Abater'
+***************************
+Não faz o bind no detail:
+  pode ser o tipo de dados do campo Key do Model no back estar como long
+     solucao paleativa criar o campo code e carregar com o valor do campo long
+  pode ser que no annotation tenha CollectionPath errado
+      
+***************************
+Não carrega os dados apos incluir, sair e tentar editar, precisa fazer refresh manualmente na tela 
+   R:Necessario fazer um bindElement ao iniciar no modo edit. ex:
+       oModel.read("/Banks", {
+                filters: [
+                    new Filter("Code", FilterOperator.EQ, key)
+                ],                
+                success: (oData) => {
+                    oView.setBusy(false);
+
+                    oView.bindElement({
+                        path: `/Banks('${key}')`,
+                        events: {
+                            change: (oEvent) => {
+                                that.getView().setBusy(false);
+                                var oBndContext = that.getView().getElementBinding().getBoundContext();
+                                this.getView().byId("formGeral").bindElement(oBndContext.getPath());     --TINHA FALTADO ISSO
+                                this.getView().byId("formPagamento").bindElement(oBndContext.getPath());
+                                this.getView().byId("formConciliacao").bindElement(oBndContext.getPath());
+                    
+                                that.bindTables();
+                            }
+                        }
+                    });
+                }
+            });  
+***********************************************

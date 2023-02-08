@@ -11,10 +11,17 @@
 		"ach": "CA-UI5-FST",
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/",				
+				"uri":"http://localhost:22040/vsis/v1/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
+					"annotations": [
+						"annotation",
+						"despesas",
+						"IncomingInvoiceList",
+						"agreementsAnalyticsList",
+						"salesReturnsList"
+					],
 					"localUri": "localService/metadata.xml"
 				}
 			}

@@ -38,6 +38,9 @@ Criar menu no front-end VARSIS sapui5
 		    return (4)
    Se copiar projeto como modelo trocar o nome do projeto pelo novo em todo lugar inclusive no login\build.ps1, index.html e launch.json
    Não excluir a target List, pois é chamada por Library
+   No Menu criar rota para o Manifest
+   No Manifest criar rota para o projeto
+   No projeto criar rota para a view
    
 
 

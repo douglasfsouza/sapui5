@@ -1,0 +1,24 @@
+<mvc:View
+	controllerName="hello.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+    <Shell>
+        <App>
+            <pages>
+                <Page>
+                    <content>
+                        <mvc:XMLView viewName="hello.view.Hello" />                            
+                    </content>
+                </Page>                
+            </pages>          
+            
+        </App>
+    </Shell>
+    
+
+</mvc:View>

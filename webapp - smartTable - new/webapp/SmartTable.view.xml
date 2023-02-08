@@ -1,15 +1,15 @@
 <mvc:View
-	controllerName="webapp.SmartTableD"
+	controllerName="sap.ui.demo.smartControls.SmartTable"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable">
 	<smartFilterBar:SmartFilterBar
-		id="smartFilterBar1"
-		entitySet="IncomingInvoicesList">
+		id="smartFilterBar"
+		entitySet="Despesas">
 		<smartFilterBar:controlConfiguration>
 			<smartFilterBar:ControlConfiguration
-				key="Code"
+				key="U_Id"
 				visibleInAdvancedArea="true"
 				preventInitialDataFetchInValueHelpDialog="false">
 			</smartFilterBar:ControlConfiguration>
@@ -20,13 +20,13 @@
 		smartFilterId="smartFilterBar"
 		tableType="ResponsiveTable"
 		editable="false"
-		entitySet="IncomingInvoicesList"
+		entitySet="Despesas"
 		useVariantManagement="false"
 		useTablePersonalisation="true"
 		header="Despesas"
 		showRowCount="true"
 		useExportToExcel="false"
 		enableAutoBinding="true"
-		>
+		enableAutoColumnWidth="true">
 	</smartTable:SmartTable>
 </mvc:View>

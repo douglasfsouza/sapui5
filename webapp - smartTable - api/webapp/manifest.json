@@ -67,7 +67,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "webapp.SmartTable",
+			"viewName": "webapp.SmartTablex",
 			"type": "XML",
 			"async": true
 		},

@@ -1,0 +1,44 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    <Dialog id="moedasDialog" title="Moedas">
+     
+
+        <Panel
+            headerText="Countries and Currencies"
+            height="auto"
+            width="100%"
+        >  
+            <content>
+                <ComboBox
+                    filterSecondaryValues="true"
+                    showSecondaryValues="true"
+                    selectedItemId="idCountry"
+                    selectedKey="Country"
+                    items="{
+                        path: '/Countries',
+                        sorter: {path:'Country'}
+                        }"                    
+                >
+                    <c:ListItem key="{Country}" text="{Country}"
+                        additionalText="{Currency}"
+                    />                                              
+                </ComboBox>
+                   
+                <Button 
+                    text="Voltar"
+                    icon="sap-icon://arrow-left"
+                    press=".onMoedasBackPress"
+                    >
+                </Button>
+                
+            </content>
+            <headerToolbar>
+            </headerToolbar>
+        </Panel>
+    </Dialog>
+</c:FragmentDefinition>

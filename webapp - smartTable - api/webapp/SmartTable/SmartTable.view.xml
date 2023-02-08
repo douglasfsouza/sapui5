@@ -1,147 +1,32 @@
 <mvc:View
-	controllerName="webapp.SmartTable"
+	controllerName="webapp.SmartTableD"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:grid="sap.ui.table"
-    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	class="smart-grid sapUiSizeCompact">
-
-	<Page
-		id="page"
-		showHeader="true"
-		
-		enableScrolling="false"
-		class="sapUiNoContentPadding"
-	>
-        <customHeader>
-            <OverflowToolbar class="sapUiResponsiveContentPadding" design="Transparent">
-                <content>
-                    <HBox class="sapUiLargeMarginBegin">
-                        <Title text="Apuração Acordos" titleStyle="H4" />
-                    </HBox>
-                </content>
-            </OverflowToolbar>
-        </customHeader>
-
-        <content>
-
-			<IconTabBar
-				id="iconTabBar"
-				select="onQuickFilter"
-				expandable="false"
-				tabDensityMode = "Cozy"
-                stretchContentHeight = "true"
-				
-				class="sapUiNoContentPadding sapUiNoMarginBegin"
-				>
-				<items >
-					<IconTabFilter
-						key="PRE"
-						count="{counts>/PRE}"
-						text="Prévia"/>
-					<IconTabSeparator/>
-					<IconTabFilter
-						key="PEN"
-						count="{counts>/PEN}"
-						text="Pendentes"/>
-					<IconTabSeparator/>
-					<IconTabFilter
-						key="APU"
-						iconColor="Positive"
-						count="{counts>/APU}"
-						text="Apurados"/>
-					<IconTabFilter
-						key="CON"
-						iconColor="Critical"
-						count="{counts>/CON}"
-						text="Concluidos"/>
-					
-				</items>
-
-				<content>
-					<smartTable:SmartTable 
-						id="__ST_Verification" 
-						tableType="AnalyticalTable" 
-						fitContainer="true"
-						showTablePersonalisation="true"
-						useExportToExcel="false"
-						placeToolbarInTable="false"
-						showRowCount="true"
-						requestAtLeastFields="Code"
-						enableAutoBinding="true"
-						customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
-						enableAutoColumnWidth="true"
-						entitySet="AgreementsAnalyticsList"
-						showVariantManagement="false"
-						beforeRebindTable="onBeforeRebindTable_Verification"
-						class="sapUiLargeMarginBeginEnd sapUiTinyMarginTop"
-					>
-						<smartTable:customToolbar>
-							<OverflowToolbar 
-								design="Transparent" 
-								class="mtb-filter sapUiNoContentPadding sapUiNoMargin"
-							>
-								<content>
-									<HBox class="sapUiNoContentPadding sapUiNoMargin" >
-										<smartFilterBar:SmartFilterBar 
-											id="__SFB" 
-											useToolbar="false" 
-											useDateRangeType="true"
-											persistencyKey="fiori.test.application2.view.S4.FilterBar" 
-											enableBasicSearch="false" 
-											liveMode="true"
-											entitySet="AgreementsAnalyticsList"
-											showFilterConfiguration = "false"
-											filterChange="._onFilterChange"
-											class="sapUiNoMargin sapUiNoContentPadding"
-										>
-											<!-- layout data used to make the table growing but the filter bar fixed -->
-											<smartFilterBar:layoutData>
-												<FlexItemData  shrinkFactor="0"/>
-											</smartFilterBar:layoutData>
-										</smartFilterBar:SmartFilterBar>
-									</HBox>
-									<ToolbarSpacer />
-									<Button text="Apurar"      enabled="{actions>/canProcess}"   press="._onApurarPress" />
-									<Button text="Desfazer"    enabled="{actions>/canRollback}"  press="._onDesfazerPress" />
-									<Button text="Lançar"      enabled="{actions>/canLaunch}"    press="._onLancarPress" />
-									<Button text="Digitar"     enabled="{actions>/canGrowth}"    press="._onDigitarPress" />
-									<Button text="Reprocessar" enabled="{actions>/canReprocess}" press="._onReprocessarPress" />
-									<Button text="Visualizar"  enabled="true"                    press="._onViewReportPress" />
-								</content>
-							</OverflowToolbar>
-						</smartTable:customToolbar>
-						<grid:AnalyticalTable
-							threshold="10000"
-							visibleRowCountMode="Auto"
-							rowSelectionChange=".onRowSelection"
-							rowHeight="32"
-							busyStateChanged=".onBusyStateChanged"
-                            rowActionCount="1"
-						>
-							<grid:layoutData>
-								<FlexItemData growFactor="1" baseSize="0%"/>
-							</grid:layoutData>
-                            <grid:rowActionTemplate>
-                                <grid:RowAction visible="true">
-                                <grid:items>
-                                        <!--sap.ui.table.RowActionItem-->
-                                        <grid:RowActionItem
-                                            type="Navigation"
-                                            visible="true"
-                                            press=".onRowActionPress"
-                                        />
-                                    </grid:items>
-                                </grid:RowAction>
-                            </grid:rowActionTemplate>
-						</grid:AnalyticalTable>
-					</smartTable:SmartTable>
-				</content>
-			</IconTabBar>
-        </content>
-	</Page>
+	xmlns:smartTable="sap.ui.comp.smarttable">
+	<smartFilterBar:SmartFilterBar
+		id="smartFilterBar1"
+		entitySet="IncomingInvoicesList">
+		<smartFilterBar:controlConfiguration>
+			<smartFilterBar:ControlConfiguration
+				key="Code"
+				visibleInAdvancedArea="true"
+				preventInitialDataFetchInValueHelpDialog="false">
+			</smartFilterBar:ControlConfiguration>
+		</smartFilterBar:controlConfiguration>
+	</smartFilterBar:SmartFilterBar>
+	<smartTable:SmartTable
+		id="smartTable_ResponsiveTable"
+		smartFilterId="smartFilterBar"
+		tableType="ResponsiveTable"
+		editable="false"
+		entitySet="IncomingInvoicesList"
+		useVariantManagement="false"
+		useTablePersonalisation="true"
+		header="Despesas"
+		showRowCount="true"
+		useExportToExcel="false"
+		enableAutoBinding="true"
+		>
+	</smartTable:SmartTable>
 </mvc:View>

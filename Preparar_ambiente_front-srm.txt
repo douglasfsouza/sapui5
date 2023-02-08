@@ -1,0 +1,19 @@
+roteiro:
+
+Clonar o projeto: git clone --recurse-submodules -j8 https://marcelo-cuin@dev.azure.com/marcelo-cuin/S3RIAL/_git/s3rial.www.srm
+
+Abrir o vscode na pasta s3rial.www.srm
+- instalar extensão SAPUI5 Extension
+- instalar extensão UI5 Explorer
+- instalar extensão SAP Fiori Tools - Extension Pack
+Abrir o terminal do code
+- Executar o comando: npm install -G @ui5/cli
+- Ir para a pasta s3rial.www.srm
+---- Executar o comando: npm install
+
+Neste ponto, ainda na pasta s3rial.www.srm execute o comando: ui5 serve
+Se não aparecer nenhuma mensagem de erro, abra o browser e navegue para: http://localhost:8080/index.html
+
+neste projeto os annotations são centralizados no componente s3rial.www.root..., 
+isso faz com que possamos reutilizar um arquivo em vários componentes, 
+mas precisamos ter cuidado justamente por que qualquer alteração afeta todos os componentes onde o annotation é usado

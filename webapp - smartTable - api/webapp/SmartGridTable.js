@@ -101,7 +101,7 @@ sap.ui.define([
 		},
 
 		onFilterSearch: function (oEvent) {
-			this.getTable().getTable().setThreshold(100);
+			this.getTable().getTable().setThreshold(1000);
 			delete this.__selected_all_rows;
 			delete this.__count;
 		},

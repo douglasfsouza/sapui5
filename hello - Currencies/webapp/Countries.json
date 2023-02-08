@@ -1,0 +1,105 @@
+{
+    "Countries":[
+        {
+            "Country": "Brazil",
+            "Currency": "Real"
+        },        
+        {
+            "Country": "Kwait",
+            "Currency": "Dinnar"
+        },     
+        {
+            "Country": "Irak",
+            "Currency": "Dinnar"
+        },
+        {
+            "Country": "Australia",
+            "Currency": "Dollar"
+        },
+        {
+            "Country": "Canadian",
+            "Currency": "Dollar"
+        },
+        {
+            "Country": "Singapur",
+            "Currency": "Dollar"
+        },
+        {
+            "Country": "Portugal",
+            "Currency": "Euro"
+        },
+        {
+            "Country": "Suitzerland",
+            "Currency": "Franco Suico"
+        },
+        {
+            "Country": "Hungry",
+            "Currency": "Florim"
+        },
+        {
+            "Country": "Ien",
+            "Currency": "Japon"
+        },
+        {
+            "Country": "Papua new Guinea",
+            "Currency": "Kina"
+        },
+        {
+            "Country": "England",
+            "Currency": "Pound"
+        },
+        {
+            "Country": "Egypt",
+            "Currency": "Pound"
+        },
+        {
+            "Country": "Turkey",
+            "Currency": "Lira"
+        },
+        {
+            "Country": "Italian",
+            "Currency": "Lira/Eur"
+        },
+        {
+            "Country": "Argentina",
+            "Currency": "Peso"
+        },
+        {
+            "Country": "Chile",
+            "Currency": "Peso"
+        },
+        {
+            "Country": "Mexico",
+            "Currency": "Peso"
+        },
+        {
+            "Country": "China",
+            "Currency": "Renmimbi Yuan"
+        },
+        {
+            "Country": "Sri Lanka",
+            "Currency": "Rupia"
+        },
+        {
+            "Country": "Indy",
+            "Currency": "Rupia"
+        },
+        {
+            "Country": "Nepal",
+            "Currency": "Rupia"
+        },
+        {
+            "Country": "Arabia Saudita",
+            "Currency": "Ryal sar"
+        },
+        {
+            "Country": "Russian",
+            "Currency": "Rublo"
+        },
+        {
+            "Country": "Peru",
+            "Currency": "Sol"
+        }
+
+    ]
+}

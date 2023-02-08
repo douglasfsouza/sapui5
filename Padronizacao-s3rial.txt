@@ -1,0 +1,22 @@
+Padronizacao
+   Model
+      ODataTableAttribute com nome em MAIUSCULAS
+	  Não usar palavras que indicam plural:
+	       List
+		   Collection
+		   s no final
+	  BankStatementYesOrNotEnum - ok	       
+		   service: BankStatementYesOrNotEnum
+		   controller: BankStatementYesOrNotList
+      isCustom = true
+            somente quando este model for utilizado para fazer insert, delete, update
+            O processo de criacao de tabelas vai considerar este model para criar se estiver com True
+            Os campos que só existem na CV... tem o PHYSICALNAME igual ao da CV, sem o "U_"... com DisplayOnly = True	
+***********************
+   Telas
+       Botoes acima da grid
+	      Deixar ativo ou inativo conforme a seleção.
+		      ex. se só pode selecionar uma linha e o usuario selecionar duas então o botão deve ficar desativado
+			  
+   
+		   

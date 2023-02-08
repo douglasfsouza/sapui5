@@ -3,6 +3,6 @@ sap.ui.define([
 ], function(Controller) {
 	"use strict";
 
-	return Controller.extend("webapp.SmartTableD");
+	return Controller.extend("sap.ui.demo.smartControls.SmartTable");
 
 });

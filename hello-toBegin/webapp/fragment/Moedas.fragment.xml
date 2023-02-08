@@ -1,0 +1,7 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <Dialog id="moedasDialog" title="Moedas">
+    </Dialog>
+</c:FragmentDefinition>

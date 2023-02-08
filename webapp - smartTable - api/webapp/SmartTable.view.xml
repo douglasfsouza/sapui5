@@ -8,7 +8,7 @@
 	xmlns:smartchart="sap.ui.comp.smartchart"
     xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	
-    controllerName="webapp.SmartTable" 
+    controllerName="webapp.SmartTablex" 
 >
 	<f:DynamicPage id="__MAIN2" fitContent="false">
 		<f:title>

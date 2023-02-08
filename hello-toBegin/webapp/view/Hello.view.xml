@@ -1,0 +1,24 @@
+<mvc:View
+	controllerName="hello.controller.Hello"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<Panel>
+		<Button
+			text="Hello"
+			press=".onPress"
+		/>
+
+		<Input id="input"
+			width="10em"/>
+		<Button text="Ler"
+				press=".onLer"/>
+
+		<Button text="Moedas" press=".onMoedasPress"/>
+	</Panel>
+	
+</mvc:View>

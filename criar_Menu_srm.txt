@@ -1,0 +1,78 @@
+configurar o componente no projeto principal... o www.root..
+manifest.json em 3 pontos:
+  - componentUsages
+       registro do componente na aplicação
+	   ex productionComponent
+	   colocar em ordem alfabetica
+  - routes
+      prefix pode ser uma letra ja usada em outro componente, não causa conflito
+  - targets
+      propagateModel
+		isso faz com que os componentes instanciados HERDEM os models do projeto chamador... 
+		isso permite a centralização dos annotations em um único projeto
+		tem que ser true para os novos e false para legacy
+index.html
+   dizer para o framework onde encontrar o componente
+   "de/para"... sempre que encontrar (ex:) s3rial.www.library, trocar por "./resources/library"... 
+   então "fala" para o framework como resolver os caminhos dos arquivos com base no nome dos objetos
+Resources:
+   o processo que monta o deploy do projeto cria uma pasta "resources" e copia cada componente para uma pastinha separada lá dentro... 
+   então por isso no index.html assumimos que essa pasta exista...
+build.ps1
+  na raiz do srm
+  incluir o projeto no bloco Compilando 
+  incluir o projeto no bloco Finalizando construção
+  nome da pasta tem que ser igual ao do index.html
+  incluir o projeto no bloco copy-item
+  build é só quando for compilar para distribuir... não vai te afetar no desenvolvimento....
+  
+ui5.yaml 
+  está no srm.
+  ele tem um "servidor de conteúdo estático"
+  criar uma "pasta" virtual para o nosso servidor web de desenvolvimento...
+  a primeira linha "-path" é o caminho da pasta... 
+  e a segunda src diz qual é o caminho da pasta do seu projeto...
+  a indentação importa..
+  se estiver errado, dá erro ao rodar o "ui5 serve"
+  
+menu:
+   projeto www.root
+   temos dois arquivos de menu... 
+      1 para o usuário externo (fornecedor) e 
+	  1 para o usuário interno (colaborador)....
+	      menu_employee.json
+   cada grupo é uma "aba" no menu
+   routeName é o nome da rota do componente igual no manifest.json do www.root
+   targetName é o nome do target igual no manifest.json também no www.root
+   componentRoute é o nome da rota no manifest.json DO SEU componente.....
+   showInMenu faz aparecer no menu lateral, showInLaunchPad faz mostrar o "Tile" na tela principal...
+   neste arquivo também tem que tomar cuidado pra não deixar vírgulas a mais ou algum erro de sintaxe... 
+     senão dá erro ao tentar montar a tela...
+	 
+package.json do projeto
+   criar manualmente
+   
+o ui5.yaml não precisa...
+   esse arquivo é só o que está no www.srm..
+   
+no www.srm...
+   npm install 
+      cria o node_modules com apenas 1 link
+	 
+executar o ui5 serve na pasta www.srm
+
+Observações
+   - Ao criar uma segunda listview, cuidado com o campo pattern em Routes, deve trocar tambem se não chama a primeira, ex:
+       "pattern": "list"    --primeira list
+	   "pattern": "newlist" --nova lista
+Erros:
+    Cuidado com o nome no controller, se estiver errado dá erro de componente e não carrega nada:
+	     _viewInfo: {
+            mainRouteName: "fileimportListRoute",
+            variantProviderName: "s3rial.www.fileimport.FileImportList"
+        },
+	*************************
+	
+	   
+
+		

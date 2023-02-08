@@ -14,6 +14,18 @@
 				preventInitialDataFetchInValueHelpDialog="false">
 			</smartFilterBar:ControlConfiguration>
 		</smartFilterBar:controlConfiguration>
+
+		<OverflowToolbar design="Transparent" height="3rem">
+			<Title text="Title and Actions"/>
+			<ToolbarSpacer/>
+			<Button text="Comer" press=".onComer"/>
+			<Button icon="sap-icon://group-2"/>
+			<Button icon="sap-icon://action-settings"/>
+		</OverflowToolbar>	
+	
+		<Button text="Processar" press=".onProcessar"/>
+		 	
+		
 	</smartFilterBar:SmartFilterBar>
 	<smartTable:SmartTable
 		id="smartTable_ResponsiveTable"

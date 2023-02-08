@@ -1,0 +1,45 @@
+30-01-23
+Criar menu no srm com permissao de acesso via oData
+arquivo do menu   
+  s3rial.odata\cli\support\menu_employee.json
+     duas propriedades novas:
+	     - id
+		    criar uma nova id manualmente
+		 - claims
+		    permissao de acesso
+			
+			
+arquivo de permissao:
+   s3rial.odata\cli\support\permissions.json
+       ex:
+		  {
+			"id": "bankrecon.layout.READ",
+			"description": "Ler configuração do layout do extrato",
+			"moduleName": "Conciliação bancária",
+			"recordType": "Layout Extrato",
+			"functionName": "Listar"
+		  },
+  
+			
+Apos criar o menu e a claim, criar no banco de dados:
+    - alterar menu_employee
+	- alterar permissions.json
+    powershell:
+	     - ir ate a pasta debug s3rial.odata\cli\bin\debug
+		 - importar o menu_employee
+		     .\s3rial.exe permission --import --in ..\..\support\menu_employee.json --target development 
+		 - importar as permissoes
+		     .\s3rial.exe permission --import --in ..\..\support\permissions.json --target development  
+			 
+		 - definir o caminho de menu_employee:
+		     .\s3rial.exe menu --source ..\..\support\menu_employee.json --target development --all
+         
+		 - pegar o id em  "@S3SYSUSRPROF"		 
+		 
+		 - conceder permissao:
+		     .\s3rial.exe permission --grant bankrecon --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
+			 
+			 .\serial.exe permission --grant payminvoice.advancing --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
+			 
+			 
+		
