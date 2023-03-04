@@ -95,7 +95,7 @@ Custom Data
 	  
 *****************************
 customColumn
-   Em uma smartField você, a principio, não tem controle sobre as colunas porque define apenas o EntitySet
+   Em uma smartTable você, a principio, não tem controle sobre as colunas porque define apenas o EntitySet
    e as colunas são definidas no annotation
    Porem pode-se substituir uma columa por um campo personalizado com customData:
       Dentro de grid:Table, obs: a key precisa ser p13nData:
@@ -318,13 +318,20 @@ Notificações na Dialog:
 		
   ao fechar a Dialog:
       _OnClose: function (dialog, createdEntry) {
-			if (createdEntry) {
+			if (createdEntry)
+			{
 				var oModel = this.getView().getModel();
 				oModel.deleteCreatedEntry(createdEntry);
 			}
 
 			this.ClearNotifications();
 			this.DisableNotificationsFrom(dialog);
+			dialog.setBusy(false);
+			dialog.close();
+            var table =  this.getView().byId("smartTable_Contatos");
+            table.rebindTable(true);   
+************************************************
+************************************************
   Incluindo a mensagem no popover em validate:
       that.ClearNotifications();
       if (fldCfop.getValueState() !== "None" || fldCfop.getContent().getLastValue()=="") {
@@ -496,6 +503,12 @@ na view:
 		wrapping="true"
 	/>
 **********************************
+SetModel pode ser usado na view ou na table:
+   oTable.setModel(JSONModel);
+   this.getView().setModel(JSONModel);
+   Obs:
+      Se fizer setModel na view então a view não terá mais todos os servicos carregados previamente como businessParters, businessPlaces, etc
+**********************************
 SmartTable
   EnableAutoBinding = true
      Para carregar automaticamente a grid sem precisar clicar em Go
@@ -539,9 +552,43 @@ Order by:
 		},
 ******************************************
 RebindTable:
-    var page = this.getView().byId("page");                
-	var smartTable = page.getSmartTable();
-	smartTable.rebindTable(true);
+    Na page:
+      var page = this.getView().byId("page");                
+	  var smartTable = page.getSmartTable();
+	  smartTable.rebindTable(true);
+	Na smartTable:
+	    var table =  this.getView().byId("smartTable_Contatos");
+        table.rebindTable(true);  
+	Na table:
+	    this.getTable().rebindTable(true);
+	No smartForm:
+	   fazer um bindElement, ex:
+	       _bindRecord: function (key) {
+				var oView = this.getView();
+				var oModel = oView.getModel();
+				var that = this;
+
+				this.getView().setBusy(true);
+
+				oModel.read("/BankAccounts", {
+					filters: [
+						new Filter("Code", FilterOperator.EQ, key)
+					],
+					success: (oData) => {
+						oView.setBusy(false);
+
+						oView.bindElement({
+							path: `/BankAccounts('${key}')`,
+							events: {
+								change: (oEvent) => {
+									that.getView().setBusy(false);
+									that.bindTables();
+								}
+							}
+						});
+					}
+				});  
+	
 ******************************************
 Table 
    Ler dados da table
@@ -784,6 +831,45 @@ List Controller:
         },
 				
 *******************************************
+Auto size nas colunas da grid:
+	onRowsUpdated: function (oEvent) {
+            oEvent.preventDefault();
+
+            var bBusy = oEvent.getParameter("busy");
+
+            if (!bBusy) {
+                var oTable = oEvent.getSource();
+                var oTpc = null;
+
+                var bBusy = oEvent.getParameter("busy");
+                var table = oEvent.getSource();
+
+                if (!bBusy) {
+                    table.setBusy(false);
+                    table.setShowOverlay(false);
+                }
+
+                if (sap.ui.table.TablePointerExtension) {
+                    oTpc = new sap.ui.table.TablePointerExtension(oTable);
+                } else {
+                    oTpc = new sap.ui.table.extensions.Pointer(oTable);
+                }
+
+                var aColumns = oTable.getColumns();
+
+                for (var i = aColumns.length - 1; i >= 0; i--) {
+                    var c = aColumns[i];
+                    oTpc.doAutoResizeColumn(i);
+                }
+            }
+
+            if (!bBusy) {
+                table.setBusy(false);
+                table.setShowOverlay(false);
+            }
+        },  
+   
+*******************************************
 Recebendo o id no detalhe e fazendo o binding:
 forma 1:
     var pars = oEvent.getParameter("data");
@@ -834,6 +920,21 @@ forma 3:
 Pegar o oData no Detalhe para gravar:
   var oData = this.getView().getElementBinding().getBoundContext().getObject();
   delete oData.__metadata;
+*******************************************
+Pegar os dados da dialog gerada com createEntry para confirmar:
+//SMSuggestions é um SmartForm
+ var bindingContext = this.getView().byId("SMSuggestions").getBindingContext();
+
+            var ctx = oModel.createEntry("/TransAccountPayableDDAGenSuggestions()", {
+				properties: {
+					Code: "001",
+                    DDADueDateDivergence: bindingContext.getProperty("DDADueDateDivergence"),
+                    DDAValueDivergence: bindingContext.getProperty("DDAValueDivergence"),
+                    DDAPercentDivergence: bindingContext.getProperty("DDAPercentDivergence"),
+                    DDAValueFieldCompare: bindingContext.getProperty("DDAValueFieldCompare"),
+                    DDAUseInvoiceNumberCompare: bindingContext.getProperty("DDAUseInvoiceNumberCompare")
+				}
+			});
 *******************************************
 Personaliar a smartGridTable
    - copiar os arquivos de library:
@@ -922,7 +1023,7 @@ Não filtra na smartField com mais de um campo
                 aFilters.push(f3);
 ****************
 Mostra campo numerico tipo Dimension como Measure na smartTable e datas 1-1-1
- r: Problema no PageResult, usar IQueryable
+ r: Problema no PageResult, usar IQueryable e informar measure ou dimension em todos os campos no modelo
     ex:         
 	  async public Task<IQueryable<AccountReceivableInvoice>> Get(ODataQueryOptions<AccountReceivableInvoice> queryOptions, [FromODataUri] string key = null)
 
@@ -971,4 +1072,7 @@ Não carrega os dados apos incluir, sair e tentar editar, precisa fazer refresh 
                     });
                 }
             });  
+***********************************************
+Pegar o erro do model no backend:
+this.ModelState["entity"].Errors[0].Exception.Message
 ***********************************************
