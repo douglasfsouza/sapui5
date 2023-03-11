@@ -7,6 +7,10 @@ Registros de desenvolvimento
             public DateTime? U_RECDTLIQUIDA { get; set; }
 	--------------------
 	
+local>/<propriedade> - busca na raiz do model
+local><propriedade> - busca no model de origem do campo, por ex. o que foi informado no select
+**************************************************
+	
 Mensagens:
 i = não deixa continuar
 ! = alerta, deixa continuar
@@ -360,11 +364,22 @@ _editValidateAll: function(oEvent){
              var invalidData = notifications ? notifications.find(m => m.type === "Error") : null;
              return !invalidData;
         }
-*******************************
+***************************************************
+Definir o tamanho do smartField na tela de detalhe:
+	<smartForm:GroupElement>
+		<smartField:SmartField value="{U_PORTADOR}" enabled="{= ${local>/editing} === false ? false : (${U_CC_USA_CONC} === '1' ? true : false) }">
+			<smartField:layoutData>											
+				<layout:GridData span="XL2 L2 M3" />
+			</smartField:layoutData>
+		</smartField:SmartField>
+	</smartForm:GroupElement>	
+**************************************************
+
 Model
    desfazer alterações não confirmadadas
        oModel.resetChanges();
 	   oModel.resetChanges([`/BusinessPlacesExtension('${this._key}')`], true);
+	    oModel.resetChanges(null, /*bAll*/true, /*bDeleteCreatedEntities*/true);
    definir grupos diferidos (não imediatos)
 	   oModel.setDeferredGroups([sGroupId]);
 	   acredito que seja para não executar imediatamente, somente apos algum processo..
@@ -417,6 +432,29 @@ _onCompletePressed: function(){
 ********************************
 Formatar valores na smarttable com duas casas:
    O SAPUI5 já formata, mas precisa estar com o tipo Decimal no oData e não Double
+********************************
+Filtrar o comboBox:
+  na view:
+     <ComboBox         
+		id="cmbBank"                                                   
+		change="handleBankChange"      
+		items="{
+			path: '/Banks',
+			filters: [{path: 'PaymentLayout', operator: 'NE', value1: ''}],
+			sorter: { path: 'BankCode' }                                                
+		}">
+		<core:Item key="{BankCode}" text="{BankName}" />
+	</ComboBox>   
+  ou no Controller, tem mais flexibilidade podendo controlar os parametros :
+	var cmbBank = this.byId("cmbBank");
+	cmbBank.bindAggregation("items",{
+		path: "/Banks",
+		filters: [new Filter("PaymentLayout", FilterOperator.NE, "")],
+		template: new ListItem({
+			key: "{BankCode}",
+			text: "{BankName}"
+		})
+	})     
 ********************************
 filtrar no rebindTable:
 onRebindTable: function(oSource){
@@ -750,6 +788,11 @@ Tamanho da coluna:
 			</Record>
 		
 *******************************************
+Para esconder um campo do filtro da valueList dialog:
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="s3rial.odata.model.ChartOfAccounts/UsesAccountPayable">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+*******************************************
 Chamar Detail
     Precisa  ter rowAction na view:
 	    <grid:rowActionTemplate>
@@ -980,10 +1023,47 @@ Formatar Datas na view:
 							type: 'sap.ui.model.type.DateTime',
 							UTC: true
 						}}"/>
-				</layout:VerticalLayout>
-********************************************
-*Erros:                                    *
-********************************************
+				</layout:VerticalLayout>]
+Botao voltar:
+    na view:
+	   <NavContainer id="navContainer">
+	no controller:
+	   _onNavBackButton: function () {
+            var oView = this.getView();
+            var oNavCon = oView.byId("navContainer");
+            oNavCon.back();
+        },
+	outra forma:
+	    na view:
+		   <OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://decline"
+						press="._navBack"
+						tooltip="Fechar detalhe"
+					/>
+	    no controller:
+		   no sap.ui.define
+		       "sap/ui/core/routing/History",
+		   
+		   var oHistory = History.getInstance();
+            var sPreviousHash = oHistory.getPreviousHash();
+
+            this.getView().bindElement("");
+
+            this.setState({
+                editable: false,
+                addingNew: false
+            });
+
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
+            } else {
+                var oRouter = this.getOwnerComponent().getMainComponent().getRouter();
+                oRouter.navTo("launchPad", {}, true);
+            }
+**********************************************************************************************************************************************************
+*Erros:                                                                                                                                                  *
+**********************************************************************************************************************************************************
    Não carrega o annotation da list
       Pode ser propagateModel, tem que ser true para os  novos e false para o Legacy :
           no manifest do root:
@@ -1075,4 +1155,10 @@ Não carrega os dados apos incluir, sair e tentar editar, precisa fazer refresh 
 ***********************************************
 Pegar o erro do model no backend:
 this.ModelState["entity"].Errors[0].Exception.Message
+***********************************************
+Verificar se batch tem dados:
+if (((IBatchProvider)batch).Items.Count == 0)
+            {
+                return;
+            }
 ***********************************************
