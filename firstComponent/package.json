@@ -1,0 +1,15 @@
+{
+  "name": "dgs.comp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "browser-sync start -s \"./\" -f . --no-notify",
+    "prod": "browser-sync start -s \"dist/\" -f . --no-notify",
+    "build": "ui5 build --clean-dest --all --exclude-task=createDebugFiles",
+    "build-dbg": "ui5 build --clean-dest"
+  },
+  "description": ""
+}
