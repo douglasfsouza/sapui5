@@ -1,0 +1,16 @@
+<mvc:View
+	controllerName="dgs.routing.controller.MyDetail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Page >
+    <Button text="Voltar para Main List"
+            icon="sap-icon://arrow-left"   
+            press=".onNavBackPressed" 
+    />
+</Page>
+</mvc:View>

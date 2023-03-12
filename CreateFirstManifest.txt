@@ -1,0 +1,176 @@
+Criar um hello world com component e manifest:
+    - pode ver firstManifest compo exemplo
+	- gerar o arquivo package.json
+	- gerar o arquivo ui5.yaml
+	- ui5 serve
+	- no browser digitar: http://localhost:8080/index.html
+	- obs
+	    Component.js é chamado automaticamente pelo sapui5
+		o Model é iniciado em component.js e pode ser usado nos controllers e nas views
+		A rootview é definida no manifest
+	- estrutura:
+	   - index.html	  
+	   - Component.js
+	   - view/App.view.xml
+	   - controller/App.controller.js
+	   - manifest.json
+	   - package.json
+	   - ui5.yaml
+	- conteudo completo
+	    - index.html:
+		     <!DOCTYPE html>
+				<html>
+					<head>
+						<meta charset="utf-8">
+						<title>First Manifest</title>
+						<script
+							id="sap-ui-bootstrap"
+							src="./resources/sap-ui-core.js"
+							data-sap-ui-theme="sap_fiori_3"
+							data-sap-ui-resourceroots='{
+								"dgs.man": "./"
+							}'
+							data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+							data-sap-ui-compatVersion="edge"
+							data-sap-ui-async="true">
+						</script>
+					</head>
+					<body class="sapUiBody" id="content">
+						<div data-sap-ui-component data-name="dgs.man" data-id="container" data-settings='{"id" : "man"}'></div>
+					</body>
+				</html>
+				
+		 
+			
+		- Component.js:
+		   sap.ui.define([
+				'sap/ui/core/UIComponent',
+				'sap/ui/model/json/JSONModel'   
+			], function(UIComponent, JSONModel ) {
+				'use strict';
+
+				return UIComponent.extend("dgs.man.Component",{
+					metadata : {
+						"interfaces": ["sap.ui.core.IAsyncContentCreation"],
+						"manifest": "json"           
+					},
+
+					init : function () {
+						// call the init function of the parent
+						UIComponent.prototype.init.apply(this, arguments);
+
+						// set data model
+						var oData = {
+							recipient : {
+								name : "Hello World !!!!"
+							}
+						};
+						var oModel = new JSONModel(oData);
+						this.setModel(oModel);			 
+					}
+				});
+				
+			});
+			
+			
+		- view
+		    App.view.xml:
+				<mvc:View 
+					controllerName="dgs.comp.controller.App"
+					xmlns="sap.m"
+					xmlns:mvc="sap.ui.core.mvc" >    
+					<Button text="Click-me" press=".onButtonPressed"/>        
+				</mvc:View>
+				
+	    - controller
+		    App.controller.js:
+				sap.ui.define([
+					'sap/ui/core/mvc/Controller',
+					'sap/m/MessageToast'
+				], function(Controller, MessageToast) {
+					'use strict';
+
+					return Controller.extend("dgs.comp.controller.App",{
+						onButtonPressed: function(oEvent){
+							var oModel = this.getView().getModel();
+							var msg = oModel.getProperty("/recipient/name");
+							MessageToast.show(msg);
+						}
+					})    
+				});
+			
+		- package.json:
+		       {
+				"name": "FirstManifest",
+				"private": true,
+				"version": "1.0.0",
+				"author": "Doug",
+				"description": "First Manifest",
+				"scripts": {
+				  "start": "ui5 serve",
+				  "build": "ui5 build"
+				},
+				"devDependencies": {
+				  "@ui5/cli": "^2.0.0"
+				}
+			  }
+			  
+	    - ui5.yaml:
+		    specVersion: '2.5'
+			metadata:
+			  name: FirstManifest
+			type: application
+			framework:
+			  name: OpenUI5
+			  version: 1.93.0
+			  libraries:
+				- name: sap.ui.core
+				- name: sap.m
+				- name: themelib_sap_fiori_3
+				
+		- manifest.json:
+		     {
+				"_version": "1.12.0",
+				"sap.app": {
+				  "id": "dgs.man",
+				  "type": "application",
+				  "i18n": "i18n/i18n.properties",
+				  "title": "{{appTitle}}",
+				  "description": "{{appDescription}}",
+				  "applicationVersion": {
+					"version": "1.0.0"
+				  }
+				},
+				"sap.ui": {
+				  "technology": "UI5",
+				  "deviceTypes": {
+					  "desktop": true,
+					  "tablet": true,
+					  "phone": true
+				  }
+				},
+				"sap.ui5": {
+				  "rootView": {
+					  "viewName": "dgs.man.view.App",
+					  "type": "XML",
+					  "id": "app"
+				  },
+				  "dependencies": {
+					"minUI5Version": "1.93",
+					"libs": {
+					  "sap.ui.core": {},
+					  "sap.m": {}
+					}
+				  },
+				  "models": {
+					"i18n": {
+					  "type": "sap.ui.model.resource.ResourceModel",
+					  "settings": {
+						"bundleName": "sap.ui.demo.walkthrough.i18n.i18n",
+						"supportedLocales": [""],
+						"fallbackLocale": ""
+					  }
+					}
+				  }
+				}
+			  }

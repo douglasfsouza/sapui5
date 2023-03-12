@@ -1,0 +1,131 @@
+Criar um hello world com component:
+    - pode ver firstComponent compo exemplo
+	- gerar o arquivo package.json
+	- yarn dev
+	- no browser digitar: http://localhost:3000/webapp/index.html
+	- obs
+	    Component.js é chamado automaticamente pelo sapui5
+		o Model é iniciado em component.js e pode ser usado nos controllers e nas views
+	- estrutura:
+	   - index.html
+	   - index.js
+	   - Component.js
+	   - view/App.view.xml
+	   - controller/App.controller.js
+	   - package.json
+	- conteudo completo
+	    - index.html
+		     <!DOCTYPE html>
+				<html lang="en">
+				<head>
+					<meta charset="UTF-8">
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<title>First component</title>
+					<script id="sap-ui-bootstrap"
+							src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+							data-sap-ui-theme="sap_belize"
+							data-sap-ui-libs="sap.m"
+							data-sap-ui-resourceroots='{"dgs.comp": "./"}'
+							data-sap-ui-onInit="module:dgs/comp/index"
+							data-sap-ui-compatVersion="edge"
+							data-sap-ui-async="true"
+					>
+					</script>
+				</head>
+				<body class="sapUiBody" id="content">
+				</body>
+				</html>
+				
+		- index.js
+		      sap.ui.define([
+				'sap/ui/core/ComponentContainer'
+			], function(ComponentContainer) {
+				'use strict';
+
+				new ComponentContainer({
+					name: 'dgs.comp',
+					settings: {
+						id: 'comp'
+					},
+					async: true
+				}).placeAt("content");
+				
+			});
+			
+		- Component.js
+		    sap.ui.define([
+				'sap/ui/core/UIComponent',
+				'sap/ui/model/json/JSONModel'   
+			], function(UIComponent, JSONModel ) {
+				'use strict';
+
+				return UIComponent.extend("dgs.comp.Component",{
+					metadata : {
+						"interfaces": ["sap.ui.core.IAsyncContentCreation"],
+						"rootView": {
+							"viewName": "dgs.comp.view.App",
+							"type": "XML",
+							/*"async": true, // implicitly set via the sap.ui.core.IAsyncContentCreation interface*/
+							"id": "app"
+						}
+					},
+
+					init : function () {
+						// call the init function of the parent
+						UIComponent.prototype.init.apply(this, arguments);
+
+						// set data model
+						var oData = {
+							recipient : {
+								name : "Hello World !!!!"
+							}
+						};
+						var oModel = new JSONModel(oData);
+						this.setModel(oModel);			 
+					}
+				});
+				
+			});
+			
+		- view
+		    App.view.xml
+				<mvc:View 
+					controllerName="dgs.comp.controller.App"
+					xmlns="sap.m"
+					xmlns:mvc="sap.ui.core.mvc" >    
+					<Button text="Click-me" press=".onButtonPressed"/>        
+				</mvc:View>
+				
+	    - controller
+		    App.controller.js
+				sap.ui.define([
+					'sap/ui/core/mvc/Controller',
+					'sap/m/MessageToast'
+				], function(Controller, MessageToast) {
+					'use strict';
+
+					return Controller.extend("dgs.comp.controller.App",{
+						onButtonPressed: function(oEvent){
+							var oModel = this.getView().getModel();
+							var msg = oModel.getProperty("/recipient/name");
+							MessageToast.show(msg);
+						}
+					})    
+				});
+			
+		- package.json
+		       {
+				  "name": "dgs.comp",
+				  "version": "1.0.0",
+				  "main": "index.js",
+				  "keywords": [],
+				  "author": "",
+				  "license": "ISC",
+				  "scripts": {
+					"dev": "browser-sync start -s \"./\" -f . --no-notify",
+					"prod": "browser-sync start -s \"dist/\" -f . --no-notify",
+					"build": "ui5 build --clean-dest --all --exclude-task=createDebugFiles",
+					"build-dbg": "ui5 build --clean-dest"
+				  },
+				  "description": ""
+				}

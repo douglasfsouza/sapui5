@@ -1,0 +1,17 @@
+<mvc:View
+	controllerName="dgs.routing.controller.MyList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Shell >
+	<Page>
+		 <Button text="In List" press=".onInListPressed"></Button>
+		 <Button text="Detail" press=".onDetailPressed"></Button>
+	</Page>   
+</Shell>
+
+</mvc:View>
