@@ -1,0 +1,34 @@
+<mvc:View
+	controllerName="dgs.customctrl.controller.MyDetail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:mr="dgs.customctrl.control"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Page showNavButton="true" navButtonPress=".onNavBackPressed"
+ >
+    <Button text="Voltar para Main List"
+            icon="sap-icon://arrow-left"   
+            press=".onNavBackPressed" 
+    />
+	<mr:ProductRating 
+	      id="rating" 
+		  class="sapUiSmallMarginBeginEnd"
+		  change=".onRatingChange"
+		  
+	/>
+
+	<Button		 
+		text="Reset"
+		press=".onResetRating"
+		 
+	/>
+		
+ 
+		 
+ 
+</Page>
+</mvc:View>

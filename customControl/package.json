@@ -1,0 +1,14 @@
+{
+    "name": "CustomControl",
+    "private": true,
+    "version": "1.0.0",
+    "author": "Doug",
+    "description": "Custom Control",
+    "scripts": {
+      "start": "ui5 serve",
+      "build": "ui5 build"
+    },
+    "devDependencies": {
+      "@ui5/cli": "^2.0.0"
+    }
+  }

@@ -374,6 +374,23 @@ Definir o tamanho do smartField na tela de detalhe:
 		</smartField:SmartField>
 	</smartForm:GroupElement>	
 **************************************************
+Definir o smartfield com dialog help como não editável para usar apenas na dialog e não permitir digitar diretamente campo:
+   na View:
+	<smartForm:GroupElement>
+		<smartField:SmartField id="t_group_PaymMethod" change="._ValidateAll" value="{PaymMethod}" innerControlsCreated="onPaymMethodControlCreated">
+			<smartField:configuration>
+				<smartField:Configuration  displayBehaviour="idAndDescription"/>
+			</smartField:configuration>				
+		 </smartField:SmartField>
+	</smartForm:GroupElement>
+  no Controller:
+	onPaymMethodControlCreated: function(oEvent){
+			if (oEvent.getParameters()[0] instanceof sap.m.Input && oEvent.getParameters()[0].getShowValueHelp()) {
+				// set ValueHelpOnly for Inputs with ValueHelp
+				oEvent.getParameters()[0].setValueHelpOnly(true);
+			}
+		},
+**************************************************
 
 Model
    desfazer alterações não confirmadadas
@@ -1045,7 +1062,7 @@ Botao voltar:
 		   no sap.ui.define
 		       "sap/ui/core/routing/History",
 		   
-		   var oHistory = History.getInstance();
+		    var oHistory = History.getInstance();
             var sPreviousHash = oHistory.getPreviousHash();
 
             this.getView().bindElement("");
@@ -1061,6 +1078,12 @@ Botao voltar:
                 var oRouter = this.getOwnerComponent().getMainComponent().getRouter();
                 oRouter.navTo("launchPad", {}, true);
             }
+	Quando usar <Page>:
+	    na view:
+		    <Page 
+				showNavButton="true"
+				navButtonPress=".onNavBackPressed"
+			 >
 **********************************************************************************************************************************************************
 *Erros:                                                                                                                                                  *
 **********************************************************************************************************************************************************
