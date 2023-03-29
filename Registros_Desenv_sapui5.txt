@@ -872,6 +872,12 @@ Chamar Detail
                         </grid:Table>
                     </smartTable:SmartTable>
 *********************************************************************************
+Remover a seleção da grid   
+  if (indexes.findIndex(i => i === currentIndex) != -1) {
+		oEvent.getSource().removeSelectionInterval(currentIndex, currentIndex);
+		return;
+	}
+*********************************************************************************
 List Controller:
     //Pegando dados da linha selecionada e passando para o detalhe
 	//Precisa alterar o manifest para colocar os campos na url do router
@@ -1029,6 +1035,60 @@ BackEnd
 Formatar Datas na Grid
   colocar na view SmartTable:
      customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+ Segundo pesquisa no stackOverFlow, precisa usar coluna customizada, customData, e formatar o campo 
+********************************************
+Formatar Datas no smartField:
+	<smartForm:GroupElement>
+		<smartField:SmartField  enabled="false"  value="{ path: 'U_CLSTARTDATE', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true } }" >
+		</smartField:SmartField>
+	</smartForm:GroupElement>	
+********************************************
+Funcao para usar com formatter:
+_dateFormat: function(date){
+			if (date){
+				return date.toLocaleDateString();
+			}			
+		}
+********************************************
+Exemplo de view com customData na smartTable para formatar a data:
+	<grid:Table
+		visibleRowCountMode="Auto"
+		rowsUpdated=".onBusyStateChanged"
+		rowHeight="28"
+		columnHeaderHeight="24"
+		alternateRowColors="true"				 
+	>
+		<grid:columns>
+			<grid:Column >
+				<grid:customData>
+					<core:CustomData key="p13nData" id="csdDate"
+						value='\{"columnKey": "Date",
+							"autoColumnWidth": \{"min": 8, "max": 10},
+							"columnIndex": 5,
+							"leadingProperty": "Date",
+							"sortProperty": "Date" 
+							}' />								
+					 
+				</grid:customData>
+				<grid:label>
+					<Label text="Date"/>
+				</grid:label>
+				<grid:template>
+				<HBox alignItems="Center" justifyContent="SpaceBetween">
+					<items>  
+						 <Text											 
+							 text="{parts: [{path: 'Date'}], formatter: '._dateFormat'}"
+						 />	
+                          ou
+                         <Text	
+							text="{ path: 'Date', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd-MM-yyyy', UTC: true } }" 									 
+						 />							  
+					</items>                                    
+				</HBox>
+			</grid:template> 
+			</grid:Column>
+		</grid:columns>
+	</grid:Table>
 ********************************************
 Formatar Datas na view:
 <layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
@@ -1175,6 +1235,8 @@ Não carrega os dados apos incluir, sair e tentar editar, precisa fazer refresh 
                     });
                 }
             });  
+***********************************************
+expression bind visible não funciona para todos os campos
 ***********************************************
 Pegar o erro do model no backend:
 this.ModelState["entity"].Errors[0].Exception.Message
