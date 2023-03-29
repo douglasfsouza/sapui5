@@ -1,0 +1,117 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+      "id": "dgs.dsp",
+      "type": "application",
+      "i18n": "i18n/i18n.properties",
+      "title": "{{appTitle}}",
+      "description": "{{appDescription}}",
+      "applicationVersion": {
+        "version": "1.0.0"
+      },
+      "dataSources": {
+        "mainService":{
+          "uri": "http://localhost:32497/v1",
+          "type": "OData",
+          "settings": {
+                        "odataVersion": "2.0",
+                        "annotations": [
+                                        "StatusList",
+                                        "Expenses"
+                                       ],
+                        "localUri": "localService/metadata.xml"
+                      }
+        },
+        "StatusList": {
+          "type": "ODataAnnotation",
+          "uri": "annotations/StatusList.xml",
+          "settings": {
+                        "localUri": "annotations/StatusList.xml"
+                      }
+        },
+        "Expenses": {
+          "type": "ODataAnnotation",
+          "uri": "annotations/Expenses.xml",
+          "settings": {
+                        "localUri": "annotations/Expenses.xml"
+                      }
+        }
+      },
+      "offline": false,
+        "sourceTemplate": {
+            "id": "ui5template.smartTemplate",
+            "version": "1.40.12"
+        }
+    },
+  
+    "sap.ui": {
+      "technology": "UI5",
+      "deviceTypes": {
+          "desktop": true,
+          "tablet": true,
+          "phone": true
+      }
+    },
+    "sap.ui5": {
+      "rootView": {
+          "viewName": "dgs.dsp.view.App",
+          "type": "XML",
+          "id": "app"
+      },
+      "dependencies": {
+        "minUI5Version": "1.93",
+        "libs": {
+          "sap.ui.core": {},
+          "sap.m": {}
+        }
+      },
+      "models": {
+        "i18n": {
+          "type": "sap.ui.model.resource.ResourceModel",
+          "settings": {
+            "bundleName": "dgs.dsp.i18n.i18n",
+            "supportedLocales": [""],
+            "fallbackLocale": ""
+          }
+        },
+        "":{
+          "dataSource": "mainService",
+          "settings": {
+            "defaultBindingMode": "TwoWay"
+          }
+        }
+      },
+      "routing": {
+        "config":{
+          "routerClass": "sap.m.routing.Router",
+          "type": "View",
+          "viewType": "XML",
+          "path": "dgs.dsp.view",
+          "controlId": "app",
+          "controlAggregation": "pages"
+        },
+        "routes": [
+          {
+            "pattern": "",
+            "name": "dsplist",
+            "target": "dsplist"
+          },
+          {
+            "pattern": "d",
+            "name": "mydetail",
+            "target": "mydetail"
+          } 
+        ],
+        "targets": {
+          "dsplist": {
+            "id": "DspList",
+            "name": "DspList"
+          },
+          "mydetail": {
+            "id": "MyDetail",
+            "name": "MyDetail"
+          }
+        }
+      }      
+    }
+  }

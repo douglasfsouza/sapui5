@@ -1,0 +1,130 @@
+<mvc:View
+	controllerName="dgs.dsp.controller.DspList"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:grid="sap.ui.table"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	class="smart-grid sapUiSizeCompact">
+
+	<Page
+		id="page"
+		showHeader="true"
+		enableScrolling="false"
+	>
+           <content>
+			<IconTabBar
+				id="iconTabBar"
+				select="onQuickFilter"
+				expandable="false"
+				tabDensityMode = "Cozy"
+                stretchContentHeight = "true"
+				
+				class="sapUiNoContentPadding sapUiNoMarginBegin"
+			>
+				<items >
+					<IconTabFilter
+						key="Pendentes"
+						count="{counts>/Pendentes}"
+						text="Pendentes"/>
+					<IconTabSeparator/>
+					<IconTabFilter
+						key="Abatidos"
+						iconColor="Positive"
+						count="{counts>/Abatidos}"
+						text="Abatidos"/>
+					<IconTabFilter
+						key="Estornados"
+						iconColor="Critical"
+						count="{counts>/Estornados}"
+						text="Estornados"/>
+				</items>
+
+				<content>
+					<smartTable:SmartTable 
+						id="__ST_Eletronic" 
+						tableType="Table" 
+						showTablePersonalisation="true"
+						useVariantManagement="false"
+						useTablePersonalisation="true"
+						useExportToExcel="true"
+						placeToolbarInTable="true"
+						showRowCount="true"
+						requestAtLeastFields="Pag_Code"
+						enableAutoBinding="false"
+						customData:dateFormatSettings='{"pattern": "dd-MM-yyyy"}'
+						enableAutoColumnWidth="true"
+						entitySet="StatusList"
+						showVariantManagement="true"
+						beforeRebindTable="onBeforeRebindTable_Eletronic"
+						class="sapUiLargeMarginBeginEnd sapUiTinyMarginTop"
+					>
+						<smartTable:customToolbar>
+							<OverflowToolbar 
+								design="Transparent" 
+								class="mtb-filter sapUiNoContentPadding sapUiNoMargin"
+							>
+								<content>
+									<HBox class="sapUiNoContentPadding sapUiNoMargin" >
+										<smartFilterBar:SmartFilterBar 
+											id="__SFB" 
+											useToolbar="false" 
+											useDateRangeType="true"
+											persistencyKey="fiori.test.application2.view.S4.FilterBar" 
+											enableBasicSearch="false" 
+											liveMode="true"
+											entitySet="StatusList"
+											showFilterConfiguration = "false"
+											filterChange="._onFilterChange"
+											class="sapUiNoMargin sapUiNoContentPadding"
+										>
+											<!-- layout data used to make the table growing but the filter bar fixed -->
+											<smartFilterBar:layoutData>
+												<FlexItemData  shrinkFactor="0"/>
+											</smartFilterBar:layoutData>
+										</smartFilterBar:SmartFilterBar>
+									</HBox>
+									<ToolbarSpacer />
+									<Button text="Abater"     enabled="{actions>/canRebate}" press=".onAddRebatePress" />
+									<Button text="Desfazer"     enabled="{actions>/canUndo}"  press=".Rebate_Delete" />
+								</content>
+							</OverflowToolbar>
+						</smartTable:customToolbar>
+						<grid:Table
+							threshold="100"
+							visibleRowCountMode="Auto"
+							rowSelectionChange=".onRowSelection"
+							rowHeight="32"
+							busyStateChanged=".onBusyStateChanged"
+							selectionMode="MultiToggle"
+							selectionBehavior="Row"
+							rowActionCount="1"
+
+						>
+	
+							<grid:rowActionTemplate>
+									<grid:RowAction visible="true">
+									<grid:items>
+											<!--sap.ui.table.RowActionItem-->
+											<grid:RowActionItem
+												type="Navigation"
+												visible="true"
+												press=".onRowActionDetailPress"
+											/>
+										</grid:items>
+									</grid:RowAction>
+							</grid:rowActionTemplate>
+
+							<grid:layoutData>
+								<FlexItemData growFactor="1" baseSize="0%"/>
+							</grid:layoutData>
+						</grid:Table>
+					</smartTable:SmartTable>
+				</content>
+			</IconTabBar>
+        </content>
+	</Page>
+</mvc:View>

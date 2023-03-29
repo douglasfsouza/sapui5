@@ -1,0 +1,48 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:grid="sap.ui.table"	
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="dgs.dsp.Controller.DspList"
+	height="100%">
+
+		<!-- use this to make the table occupy the available screen height -->
+		<VBox fitContainer="true">
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" 
+			                               entitySet="StatusList" 
+										   persistencyKey="SmartFilter_Explored" 
+										    >
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Key">
+					<smartFilterBar:defaultFilterValues>
+							<smartFilterBar:SelectOption low="A">
+							</smartFilterBar:SelectOption>
+						</smartFilterBar:defaultFilterValues>
+					</smartFilterBar:ControlConfiguration>
+					
+				</smartFilterBar:controlConfiguration>
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="LineItemsSmartTable" 
+			                       entitySet="StatusList" 
+								   smartFilterId="smartFilterBar" 
+								   tableType="Table" 
+								   header="Line Items" 
+								   persistencyKey="SmartTableAnalytical_Explored" 
+								   enableAutoBinding="false" 
+								   class="sapUiResponsiveContentPadding" 
+								   editTogglable="true" 
+								   app:useSmartToggle="true">
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</VBox>
+</mvc:View>

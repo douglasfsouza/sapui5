@@ -1,0 +1,11 @@
+specVersion: '2.5'
+metadata:
+  name: Dsp
+type: application
+framework:
+  name: OpenUI5
+  version: 1.93.0
+  libraries:
+    - name: sap.ui.core
+    - name: sap.m
+    - name: themelib_sap_fiori_3
