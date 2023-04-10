@@ -39,7 +39,27 @@ Apos criar o menu e a claim, criar no banco de dados:
 		 - conceder permissao:
 		     .\s3rial.exe permission --grant bankrecon --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
 			 
-			 .\serial.exe permission --grant payminvoice.advancing --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
+			 .\s3rial.exe permission --grant payminvoice.advancing --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
+			 
+			 .\s3rial.exe permission --grant bankstatement --for 056b3096-c459-4334-9fb9-0903ee43c603 --target development
+			 
+			 .\s3rial.exe permission --grant bankstatement --for sys_internal --target development
 			 
 			 
+			 
+mudou:
+   importar 
+     primeiro 
+	    .\s3rial program --import --from ..\..\support\s3rial-programs.json --target development   
+		                                
+	  
+     depois importa o menu....
+	     .\s3rial menu --import --source ..\..\support\menu_employee.json --to sys_internal --target development
+		       obs: sys_internal é o nome do grupo de menu principal para usuários internos
+			   
+id:
+  cada ID é para um item que será chamado diretamente pelo menu
+  id é para diferenciar para criar variants e blocos
+
+
 		

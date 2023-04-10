@@ -1,0 +1,91 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+>
+	<Dialog
+        id="AddNewEditDialog"
+        title="Expense"
+		contentHeight="80%"
+	 	contentWidth="30%"		
+	>
+		<customHeader>
+			<Bar
+				design="Auto"
+				titleAlignment="None"
+			>
+				<contentLeft>
+					<Button
+						icon="sap-icon://alert"
+						text="{= ${notifications>/}.length }"
+						visible="{= ${notifications>/}.length > 0 }"
+						type="Emphasized"
+						press="_onMessagePopoverPress" 
+					/>
+				</contentLeft>
+				<contentMiddle>
+					<Title
+						level="Auto"
+						text="Expense"
+						textAlign="Initial"
+						titleStyle="Auto"
+						width=""
+						wrapping="false"
+						wrappingType="Normal"
+					>
+					</Title>
+				</contentMiddle>
+				<contentRight>
+					<!--sap.ui.core.Control-->
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+			<smartForm:SmartForm 
+				id="SFAddNewEdit"				
+				editable="true"
+				entityType="Expenses"
+				useHorizontalLayout="false"
+			>
+				<smartForm:layout>
+					<smartForm:Layout  columnsM="1" columnsL="1"  columnsXL="1"  singleGroupFullSize="false" labelSpanL="3" labelSpanM="3"/>
+				</smartForm:layout>		
+
+				<smartForm:Group label=""  id="idSFAddNewEdit">
+					<smartForm:GroupElement>
+						<smartField:SmartField   id="fldDate" value="{Date}" change="validateAll"/>
+					</smartForm:GroupElement>		
+					<smartForm:GroupElement>
+						<smartField:SmartField   id="fldDescription" value="{Description}" change="validateAll"/>
+					</smartForm:GroupElement>		
+                    <smartForm:GroupElement>
+						<smartField:SmartField   id="fldTypeDescription" value="{TypeDescription}" width="10rem" />
+					</smartForm:GroupElement>
+					<smartForm:GroupElement>
+                        <smartField:SmartField   id="fldType" value="{Type}" visible="false"  />
+					</smartForm:GroupElement>		
+                    <smartForm:GroupElement>
+						<smartField:SmartField   id="fldValue" value="{Value}" width="10rem" change="validateAll" />
+					</smartForm:GroupElement>									
+				</smartForm:Group>		
+			</smartForm:SmartForm>
+		</content>
+
+		<beginButton>
+			<Button 
+				type="Accept" 
+				text="Confirmar" 
+				press="onAddNewEditAccept" 
+				enabled="true"
+			/>
+		</beginButton>
+
+		<endButton>
+			<Button type="Reject" text="Cancelar" press="onAddNewEditClose" />
+		</endButton>
+
+    </Dialog>
+</c:FragmentDefinition>

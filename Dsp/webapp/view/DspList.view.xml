@@ -14,6 +14,7 @@
 			<smartFilterBar:SmartFilterBar id="smartFilterBar" 
 			                               entitySet="Expenses" 
 										   persistencyKey="SmartFilter_Explored" 
+										   initialise=".onFilterBarExtension"
 										    >
 				
 				<!-- layout data used to make the table growing but the filter bar fixed -->
@@ -42,38 +43,40 @@
 					<OverflowToolbar>
 						<ToolbarSpacer /> 
 						<Button text="Add" icon="sap-icon://add" press="onAddPressed" />
-						<Button text="Update" icon="sap-icon://edit" />
-						<Button text="Delete" icon="sap-icon://delete" />
+						<Button text="Update" icon="sap-icon://edit" enabled="{= ${local>/canUpdate}}" press="onUpdatePressed" />
+						<Button text="Delete" icon="sap-icon://delete" enabled="{= ${local>/canDelete} ? true : false}" press="onDeletePressed" />
 					</OverflowToolbar>
 					
 				</smartTable:customToolbar>
 
 				<grid:Table
 					visibleRowCountMode="Auto"
-					rowsUpdated=".onBusyStateChanged"
+					rowsUpdated=".onBusyStateChangedx"
 					rowHeight="28"
 					columnHeaderHeight="24"
-					alternateRowColors="true"				 
+					alternateRowColors="true"	
+					rowSelectionChange="onRowSelectionChange"			 
 				>
 					<grid:columns>
 						<grid:Column >
 							<grid:customData>
 								<core:CustomData key="p13nData" id="csdDate"
 									value='\{"columnKey": "Date",
-										"autoColumnWidth": \{"min": 8, "max": 10},
-										"columnIndex": 5,
+										"autoColumnWidth": \{"min": 10, "max": 40},
+										"columnIndex": 0,
 										"leadingProperty": "Date",
 										"sortProperty": "Date" 
 										}' />								
 								 
 							</grid:customData>
 							<grid:label>
-								<Label text="Date"/>
+								<Label text="Date" width="10rem" />
 							</grid:label>
 							<grid:template>
-							<HBox alignItems="Center" justifyContent="SpaceBetween">
+							<HBox alignItems="Center" justifyContent="SpaceBetween" width="10rem">
 								<items>  
 									 <Text	
+									    width ="10rem"
 									 	text="{ path: 'Date', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd-MM-yyyy', UTC: true } }" 									 
 									 />																				 
 								</items>                                    

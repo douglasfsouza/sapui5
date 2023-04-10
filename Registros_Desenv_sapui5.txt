@@ -172,6 +172,18 @@ controlar enabled/disable do botao no controller:
                 singleSelected: rows.length === 1
             });
 *****************************
+Colocar os valores negativos em vermelho na customColumn:
+    <ObjectNumber
+		number="{
+			parts:[{path:'AcctBalanceBeforeTransfer'},{path:'CurrencyCode'}],
+			type: 'sap.ui.model.type.Currency',
+			formatOptions: {showMeasure: false}
+		}"
+		unit="{CurrencyCode}" 
+		textAlign="Right"
+		state="{parts: [{path: 'AcctBalanceBeforeTransfer'}], formatter: '.formatValueState'}"
+	/>
+*****************************
 Excluir:
 _onDeleteLayoutPressed: function(oEvent){
             var oView = this.getView();
@@ -450,6 +462,13 @@ _onCompletePressed: function(){
 Formatar valores na smarttable com duas casas:
    O SAPUI5 já formata, mas precisa estar com o tipo Decimal no oData e não Double
 ********************************
+Formar valor com javascript:
+formatValue: function(value){
+			return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
+				value
+			  );		 
+		},
+*******************************
 Filtrar o comboBox:
   na view:
      <ComboBox         
@@ -810,6 +829,19 @@ Para esconder um campo do filtro da valueList dialog:
                 <Annotation Term="UI.HiddenFilter" Bool="true"/>
             </Annotations>
 *******************************************
+Para esconder um campo da grid da valueList dialog:
+	 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="s3rial.odata.model.Bank/AbsoluteEntry">
+		 <Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+	 </Annotations>
+********************************************
+Para esconder um campo da grid e do filtro:
+	<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="s3rial.odata.model.BankAccount/Code">
+		<Annotation Term="Common.Label" String="Id Conta bancária"/>
+		<Annotation Term="UI.HiddenFilter" Bool="true"/>
+		<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+	</Annotations>
+********************************************
+
 Chamar Detail
     Precisa  ter rowAction na view:
 	    <grid:rowActionTemplate>
@@ -985,7 +1017,7 @@ forma 3:
 *******************************************
 Pegar o oData no Detalhe para gravar:
   var oData = this.getView().getElementBinding().getBoundContext().getObject();
-  delete oData.__metadata;
+  delete oData.__metadata; (para não enviar a definicao do metatada para o backend)
 *******************************************
 Pegar os dados da dialog gerada com createEntry para confirmar:
 //SMSuggestions é um SmartForm
@@ -1043,6 +1075,31 @@ Formatar Datas no smartField:
 		</smartField:SmartField>
 	</smartForm:GroupElement>	
 ********************************************
+value="{
+		path: 'U_Abat_Manual', 
+		type: 'sap.ui.model.type.Float', 
+		formatOptions:{decimals: 2,
+					   maxFractionDigits: 2,
+					   minFractionDigits: 2,
+					   maxIntegerDigits: 15},  
+		constraints: {mininum:'0.00'}}"    
+***************************************************************
+ <smartField:SmartField 
+		textAlign="End"
+		enabled="false"
+		value="{
+			path: 'AcctBalanceBeforeTransfer',
+			type: 'sap.ui.model.type.Float',
+			formatOptions: {
+				groupingEnabled: true,
+				decimals: 2,
+				maxFractionDigits: 2,
+				minFractionDigits: 2,
+				maxIntegerDigits: 15
+			}
+		}" 
+	/>
+	*********************************
 Funcao para usar com formatter:
 _dateFormat: function(date){
 			if (date){
@@ -1246,4 +1303,7 @@ if (((IBatchProvider)batch).Items.Count == 0)
             {
                 return;
             }
+***********************************************
+Erro ao carregar a pagina com duas grids: getTableType, e fica com ampulheta eternamente, mas ao clicar em carregar pela segunda vez funciona
+r: Faltava busyStateChanged=".onBusyStateChanged"
 ***********************************************

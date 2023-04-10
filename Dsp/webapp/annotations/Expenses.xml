@@ -66,7 +66,7 @@
                     <Record Type="UI.PresentationVariantType">
                         <PropertyValue Property="RequestAtLeast">
                             <Collection>
-                                <PropertyPath>Id</PropertyPath>
+                                <PropertyPath>Code</PropertyPath>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -74,7 +74,6 @@
 
                 <Annotation Term="UI.SelectionFields" > 
                     <Collection>
-                        <PropertyPath >Date</PropertyPath>
                         <PropertyPath >Year</PropertyPath>
                         <PropertyPath >MonthDescription</PropertyPath>
                         <PropertyPath >TypeDescription</PropertyPath>
@@ -86,15 +85,35 @@
                     <Collection>                        
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Date" />
+                            <Annotation Term="com.sap.vocabularies.HTML5.v1.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="7rem" />                                
+                                </Record>
+                            </Annotation>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Description" />
+                             <Annotation Term="com.sap.vocabularies.HTML5.v1.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="10rem" />                                
+                                </Record>
+                            </Annotation>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="TypeDescription" />
+                            <Annotation Term="com.sap.vocabularies.HTML5.v1.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="4rem" />                                
+                                </Record>
+                            </Annotation>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Value" />
+                            <Annotation Term="com.sap.vocabularies.HTML5.v1.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="5rem" />                                
+                                </Record>
+                            </Annotation>
                         </Record>
  
                     </Collection>

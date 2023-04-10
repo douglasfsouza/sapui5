@@ -11,7 +11,7 @@
       },
       "dataSources": {
         "mainService":{
-          "uri": "http://localhost:32497/v1",
+          "uri": "http://192.168.15.201:32498/v1",
           "type": "OData",
           "settings": {
                         "odataVersion": "2.0",
